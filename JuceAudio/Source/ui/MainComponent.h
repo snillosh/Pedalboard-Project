@@ -9,6 +9,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include <array>
 #include "../audio/Audio.h"
 
 //==============================================================================
@@ -51,6 +52,7 @@ public:
     
 private:
     Audio& audio;
+    std::array<ComboBox,4> comboBoxs;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)

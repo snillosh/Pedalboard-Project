@@ -20,6 +20,7 @@ Audio::Audio()
     if ( ! errorMessage.isEmpty())
         DBG (errorMessage);
     audioDeviceManager.addAudioCallback (this);
+
 }
 
 Audio::~Audio()

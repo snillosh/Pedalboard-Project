@@ -14,7 +14,8 @@
 /** Class containing all audio processes */
 
 class Audio :   public MidiInputCallback,
-                public AudioIODeviceCallback
+                public AudioIODeviceCallback,
+                public Reverb::Parameters
 {
 public:
     /** Constructor */
