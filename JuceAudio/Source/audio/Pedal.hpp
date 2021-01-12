@@ -15,9 +15,12 @@ public:
     Pedal();
     ~Pedal();
     
-    bool getPedalState();
-    void setPedalState(bool onOrOff);
+    void setOnOffState (bool newState);
+    bool isOn() const;
+    void setParameter1(float input);
+    void setParameter2(float input);
+    void setParameter3(float input);
     
 private:
-    bool pedalState = false;
+    std::atomic<int> onOffState   {false};
 };

@@ -10,12 +10,13 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include <array>
+#include "Pedal.hpp"
 
 /** Class containing all audio processes */
 
 class Audio :   public MidiInputCallback,
-                public AudioIODeviceCallback,
-                public Reverb::Parameters
+                public AudioIODeviceCallback
 {
 public:
     /** Constructor */
@@ -23,6 +24,8 @@ public:
     
     /** Destructor */
     ~Audio();
+    
+    Pedal* getPedal(int index)  {return &pedal1[index];}
     
     /** Returns the audio device manager, don't keep a copy of it! */
     AudioDeviceManager& getAudioDeviceManager() { return audioDeviceManager;}
@@ -38,4 +41,5 @@ public:
     void audioDeviceStopped() override;
 private:
     AudioDeviceManager audioDeviceManager;
+    std::array<Pedal, 1> pedal1;
 };

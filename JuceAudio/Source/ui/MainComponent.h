@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 #include <array>
 #include "../audio/Audio.h"
+#include "PedalGUI.hpp"
 
 //==============================================================================
 /*
@@ -53,6 +54,7 @@ public:
 private:
     Audio& audio;
     std::array<ComboBox,4> comboBoxs;
+    std::array<PedalGUI, 1> pedal;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)

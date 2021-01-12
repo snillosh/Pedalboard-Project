@@ -18,12 +18,27 @@ Pedal::~Pedal()
     
 }
 
-bool Pedal::getPedalState()
+void Pedal::setOnOffState(const bool newState)
 {
-    return pedalState;
+    onOffState = newState;
 }
 
-void Pedal::setPedalState(bool onOrOff)
+bool Pedal::isOn() const
 {
-    pedalState = onOrOff;
+    return onOffState.load();
+}
+
+void Pedal::setParameter1(float input)
+{
+    
+}
+
+void Pedal::setParameter2(float input)
+{
+    
+}
+
+void Pedal::setParameter3(float input)
+{
+    
 }
