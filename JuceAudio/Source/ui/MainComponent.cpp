@@ -15,6 +15,15 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     for (auto& b : comboBoxs)
         addAndMakeVisible(b);
     
+    for (int i = 0; i < 4; i++)
+    {
+        comboBoxs[i].addItem ("Phaser", 1);
+        comboBoxs[i].addItem ("Compressor", 2);
+        comboBoxs[i].addItem ("Reverb", 3);
+        comboBoxs[i].addItem ("Delay", 4);
+        comboBoxs[i].addItem ("None", 5);
+    }
+    
     pedal[0].setPedal (audio.getPedal(0));
     addAndMakeVisible(pedal[0]);
     
