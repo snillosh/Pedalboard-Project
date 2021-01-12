@@ -41,5 +41,5 @@ public:
     void audioDeviceStopped() override;
 private:
     AudioDeviceManager audioDeviceManager;
-    std::array<Pedal, 1> pedal1;
+    std::array<Pedal, 4> pedal1;
 };

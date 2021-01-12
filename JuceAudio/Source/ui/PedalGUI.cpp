@@ -44,9 +44,11 @@ void PedalGUI::setPedal(Pedal* pedalPtr)
 void PedalGUI::resized()
 {
     auto r = getLocalBounds();
-    auto row = r.removeFromTop (getHeight() / 3);
-    auto row2 = r.removeFromTop(getHeight() / 2);
+    auto row = r.removeFromTop (getHeight());
     onOffButton.setBounds (row.removeFromLeft (getWidth() / 4));
+    parameterSlider1.setBounds(row.removeFromLeft(getWidth()));
+    parameterSlider2.setBounds(row.removeFromLeft(getWidth()));
+    parameterSlider3.setBounds(row.removeFromLeft(getWidth()));
 }
 
 void PedalGUI::buttonClicked(Button *button)

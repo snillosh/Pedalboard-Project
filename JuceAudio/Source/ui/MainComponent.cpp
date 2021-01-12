@@ -14,8 +14,22 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     setSize (1920, 1080);
     for (auto& b : comboBoxs)
         addAndMakeVisible(b);
+    
     pedal[0].setPedal (audio.getPedal(0));
     addAndMakeVisible(pedal[0]);
+    
+    pedal[1].setPedal (audio.getPedal(1));
+    addAndMakeVisible(pedal[1]);
+    
+    pedal[2].setPedal (audio.getPedal(2));
+    addAndMakeVisible(pedal[1]);
+    
+    pedal[3].setPedal (audio.getPedal(3));
+    addAndMakeVisible(pedal[3]);
+    /*
+    for (int i = 0; i<= pedal.size(); i++)
+        pedal[i].setPedal(audio.getPedal(i));
+     */
 }
 
 MainComponent::~MainComponent()
@@ -30,7 +44,10 @@ void MainComponent::resized()
     auto row = r.removeFromTop (40);
     for (auto& b : comboBoxs)
         b.setBounds(row.removeFromLeft(getWidth() / 4));
-    pedal[0].setBounds (r.removeFromTop (300));
+    pedal[0].setBounds (r.removeFromTop (100));
+    pedal[1].setBounds (r.removeFromTop(100));
+    pedal[2].setBounds(r.removeFromTop(100));
+    pedal[3].setBounds(r.removeFromTop(100));
 }
 void MainComponent::paint (Graphics& g)
 {

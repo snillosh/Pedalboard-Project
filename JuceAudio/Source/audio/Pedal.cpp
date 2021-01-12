@@ -30,15 +30,30 @@ bool Pedal::isOn() const
 
 void Pedal::setParameter1(float input)
 {
-    
+    parameter1 = input;
+}
+
+float Pedal::getParameter1() const
+{
+    return parameter1;
 }
 
 void Pedal::setParameter2(float input)
 {
-    
+    parameter2 = input;
+}
+
+float Pedal::getParameter2() const
+{
+    return parameter2;
 }
 
 void Pedal::setParameter3(float input)
 {
-    
+    parameter3 = input;
+}
+
+float Pedal::getParameter3() const
+{
+    return parameter3;
 }
