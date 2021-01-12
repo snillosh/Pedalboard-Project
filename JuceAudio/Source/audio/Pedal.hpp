@@ -13,16 +13,21 @@ class Pedal
 {
 public:
     Pedal();
-    ~Pedal();
+    virtual ~Pedal();
     
     void setOnOffState (bool newState);
     bool isOn() const;
+    
     void setParameter1(float input);
     float getParameter1() const;
+    
     void setParameter2(float input);
     float getParameter2() const;
+    
     void setParameter3(float input);
     float getParameter3 () const;
+    
+    virtual float process(float input);
     
 private:
     std::atomic<int> onOffState   {false};

@@ -6,16 +6,21 @@
 //  Copyright © 2021 UWE. All rights reserved.
 //
 
-#include "Reverb.hpp"
+#include "Reverberation.hpp"
 
 
 
-Reverb::Reverb()
+Reverberation::Reverberation()
 {
     
 }
 
-Reverb::~Reverb()
+Reverberation::~Reverberation()
+{
+    
+}
+
+float Reverberation::process(float input)
 {
     
 }

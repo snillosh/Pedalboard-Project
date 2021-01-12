@@ -18,3 +18,8 @@ Phaser::~Phaser()
 {
     
 }
+
+float Phaser::process(float input)
+{
+    
+}

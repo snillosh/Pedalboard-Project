@@ -25,7 +25,7 @@ public:
     /** Destructor */
     ~Audio();
     
-    Pedal* getPedal(int index)  {return &pedal1[index];}
+    Pedal* getPedal(int index);
     
     /** Returns the audio device manager, don't keep a copy of it! */
     AudioDeviceManager& getAudioDeviceManager() { return audioDeviceManager;}
@@ -41,5 +41,5 @@ public:
     void audioDeviceStopped() override;
 private:
     AudioDeviceManager audioDeviceManager;
-    std::array<Pedal, 4> pedal1;
+    std::array<Pedal, 4> pedal;
 };

@@ -57,3 +57,8 @@ float Pedal::getParameter3() const
 {
     return parameter3;
 }
+
+float Pedal::process(float input)
+{
+    return input;
+}

@@ -71,3 +71,8 @@ void Audio::audioDeviceStopped()
 {
 
 }
+
+Pedal* Audio::getPedal(int index)
+{
+    return &pedal[index];
+}

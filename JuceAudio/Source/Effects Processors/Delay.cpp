@@ -18,3 +18,8 @@ Delay::~Delay()
 {
     
 }
+
+float Delay::process(float input)
+{
+    
+}

@@ -8,14 +8,15 @@
 
 #pragma once
 #include <JuceHeader.h>
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
 
-
-class Phaser
+class Phaser : public Pedal
 {
 public:
     Phaser();
     ~Phaser();
     
+    float process(float input) override;
 private:
     
 };

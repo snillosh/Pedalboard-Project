@@ -8,13 +8,15 @@
 
 #pragma once
 #include <JuceHeader.h>
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
 
-
-class Delay
+class Delay : public Pedal
 {
 public:
     Delay();
     ~Delay();
+    
+    float process(float input) override;
 private:
     
 };
