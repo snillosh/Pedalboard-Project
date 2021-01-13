@@ -17,6 +17,12 @@ public:
     ~Delay();
     
     float process(float input) override;
+    void initialise ();
+
 private:
-    
+    float *pfCircularBuffer;
+    float fSR;
+    int iBufferSize;
+    int iBufferWritePos;
+    float fDelSig = 0;
 };

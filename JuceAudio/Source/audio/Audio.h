@@ -12,6 +12,7 @@
 #include <JuceHeader.h>
 #include <array>
 #include "Pedal.hpp"
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Delay.hpp"
 
 /** Class containing all audio processes */
 
@@ -42,4 +43,5 @@ public:
 private:
     AudioDeviceManager audioDeviceManager;
     std::array<Pedal, 4> pedal;
+    Delay delay;
 };

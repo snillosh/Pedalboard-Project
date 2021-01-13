@@ -37,7 +37,10 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     addAndMakeVisible(pedal[3]);
     /*
     for (int i = 0; i<= pedal.size(); i++)
+     {
         pedal[i].setPedal(audio.getPedal(i));
+        addAndMakeVisible(pedal[i]);
+     }
      */
 }
 

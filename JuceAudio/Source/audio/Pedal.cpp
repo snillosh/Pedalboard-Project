@@ -28,6 +28,16 @@ bool Pedal::isOn() const
     return onOffState.load();
 }
 
+void Pedal::setEnabled(bool newState)
+{
+    EnabledState = newState;
+}
+
+bool Pedal::isEnabled() const
+{
+    return EnabledState;
+}
+
 void Pedal::setParameter1(float input)
 {
     parameter1 = input;

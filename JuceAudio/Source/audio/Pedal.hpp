@@ -18,6 +18,9 @@ public:
     void setOnOffState (bool newState);
     bool isOn() const;
     
+    void setEnabled(bool newState);
+    bool isEnabled() const;
+    
     void setParameter1(float input);
     float getParameter1() const;
     
@@ -29,8 +32,10 @@ public:
     
     virtual float process(float input);
     
+    
 private:
     std::atomic<int> onOffState   {false};
+    std::atomic<int> EnabledState    {false};
     float parameter1 = 0;
     float parameter2 = 0;
     float parameter3 = 0;
