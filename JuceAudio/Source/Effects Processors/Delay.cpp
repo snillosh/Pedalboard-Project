@@ -26,20 +26,40 @@ void Delay::initialise()
     pfCircularBuffer = new float[iBufferSize];
     for (int x = 0; x<iBufferSize; x++)
         pfCircularBuffer[x] = 0;
-    
     iBufferWritePos = 0;
+    fDelayTime = 0.8;
+    fFeedbackGain = 0.7;
+}
+
+void Delay::setParameter1(float input)
+{
+    fFeedbackGain = (input / 10) * 0.7;
+}
+
+void Delay::setParameter2(float input)
+{
+    fDelayTime = (input / 10) * 0.8;
 }
 
 float Delay::process(float input)
 {
+    fOut = fDelSig + input;
     iBufferWritePos++;
     if (iBufferWritePos > (iBufferSize -1))
         iBufferWritePos = 0;
-    pfCircularBuffer[iBufferWritePos] = input;
-    signed int iBufferReadPos = iBufferWritePos - (0.25f * fSR);
+    pfCircularBuffer[iBufferWritePos] = fOut;
+    iBufferReadPos = iBufferWritePos - (fDelayTime * fSR);
+    if (iBufferReadPos < 0){
+        iBufferReadPos = (iBufferSize - (fDelayTime * fSR)) + iBufferWritePos;
+    }
+    else
+    {
+        iBufferReadPos = iBufferWritePos - (fDelayTime * fSR);
+    }
+    
     if (iBufferReadPos > (iBufferSize -1 ))
         iBufferReadPos = 0;
-    fDelSig = pfCircularBuffer[iBufferReadPos] * 0.2;
-    return fDelSig;
+    fDelSig = pfCircularBuffer[iBufferReadPos] * fFeedbackGain;
+    return fOut;
 }
 

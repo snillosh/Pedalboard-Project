@@ -20,7 +20,7 @@ Audio::Audio()
     if ( ! errorMessage.isEmpty())
         DBG (errorMessage);
     audioDeviceManager.addAudioCallback (this);
-
+    delay.initialise();
 }
 
 Audio::~Audio()
@@ -48,15 +48,12 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
 
     float *outL = outputChannelData[0];
     float *outR = outputChannelData[1];
-
     
     while(numSamples--)
     {
         auto output = *inL;
         *outL = delay.process(output);
         *outR = delay.process(output);
-        //DBG(output);
-        //DBG(pedal[0].process(output));
         
         inL++;
         outL++;

@@ -9,7 +9,6 @@
 #pragma once
 #include <JuceHeader.h>
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
-
 class Delay : public Pedal
 {
 public:
@@ -17,6 +16,8 @@ public:
     ~Delay();
     
     float process(float input) override;
+    void setParameter1(float input) override;
+    void setParameter2(float input) override;
     void initialise ();
 
 private:
@@ -24,5 +25,9 @@ private:
     float fSR;
     int iBufferSize;
     int iBufferWritePos;
+    int iBufferReadPos;
     float fDelSig = 0;
+    float fFeedbackGain;
+    float fDelayTime;
+    float fOut;
 };

@@ -21,13 +21,13 @@ public:
     void setEnabled(bool newState);
     bool isEnabled() const;
     
-    void setParameter1(float input);
+    virtual void setParameter1(float input);
     float getParameter1() const;
     
-    void setParameter2(float input);
+    virtual void setParameter2(float input);
     float getParameter2() const;
     
-    void setParameter3(float input);
+    virtual void setParameter3(float input);
     float getParameter3 () const;
     
     virtual float process(float input);
