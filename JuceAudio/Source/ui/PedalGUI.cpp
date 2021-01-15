@@ -53,9 +53,6 @@ void PedalGUI::resized()
 
 void PedalGUI::buttonClicked(Button *button)
 {
-    if (pedal == nullptr)
-        return;
-    
     if (button == &onOffButton)
     {
         pedal->setOnOffState( ! pedal->isOn());

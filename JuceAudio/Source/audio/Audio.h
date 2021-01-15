@@ -28,7 +28,10 @@ public:
     /** Destructor */
     ~Audio();
     
-    Pedal* getPedal(int index);
+    Pedal* getPedal1();
+    Pedal* getPedal2();
+    Pedal* getPedal3();
+    Pedal* getPedal4();
     
     /** Returns the audio device manager, don't keep a copy of it! */
     AudioDeviceManager& getAudioDeviceManager() { return audioDeviceManager;}
@@ -43,12 +46,13 @@ public:
     void audioDeviceAboutToStart (AudioIODevice* device) override;
     void audioDeviceStopped() override;
     void setPedalPtr1(int index);
+    
     void setPedalPtr2(int index);
     void setPedalPtr3(int index);
     void setPedalPtr4(int index);
 private:
     AudioDeviceManager audioDeviceManager;
-    std::array<Pedal, 4> pedal;
+    //std::array<Pedal, 4> pedal;
     Delay delay;
     Phaser phaser;
     Compressor compressor;

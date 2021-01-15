@@ -21,26 +21,21 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
         comboBoxs[i].addItem ("Compressor", 2);
         comboBoxs[i].addItem ("Reverb", 3);
         comboBoxs[i].addItem ("Delay", 4);
+        comboBoxs[i].addListener(this);
     }
     
-    pedal[0].setPedal (audio.getPedal(0));
-    addAndMakeVisible(pedal[0]);
+    pedalGUI[0].setPedal (audio.getPedal1());
+    addAndMakeVisible(pedalGUI[0]);
     
-    pedal[1].setPedal (audio.getPedal(1));
-    addAndMakeVisible(pedal[1]);
+    pedalGUI[1].setPedal (audio.getPedal2());
+    addAndMakeVisible(pedalGUI[1]);
     
-    pedal[2].setPedal (audio.getPedal(2));
-    addAndMakeVisible(pedal[1]);
+    pedalGUI[2].setPedal (audio.getPedal3());
+    addAndMakeVisible(pedalGUI[2]);
     
-    pedal[3].setPedal (audio.getPedal(3));
-    addAndMakeVisible(pedal[3]);
-    /*
-    for (int i = 0; i<= pedal.size(); i++)
-     {
-        pedal[i].setPedal(audio.getPedal(i));
-        addAndMakeVisible(pedal[i]);
-     }
-     */
+    pedalGUI[3].setPedal (audio.getPedal4());
+    addAndMakeVisible(pedalGUI[3]);
+    
 }
 
 MainComponent::~MainComponent()
@@ -55,10 +50,10 @@ void MainComponent::resized()
     auto row = r.removeFromTop (40);
     for (auto& b : comboBoxs)
         b.setBounds(row.removeFromLeft(getWidth() / 4));
-    pedal[0].setBounds (r.removeFromTop (100));
-    pedal[1].setBounds (r.removeFromTop(100));
-    pedal[2].setBounds(r.removeFromTop(100));
-    pedal[3].setBounds(r.removeFromTop(100));
+    pedalGUI[0].setBounds (r.removeFromTop (100));
+    pedalGUI[1].setBounds (r.removeFromTop(100));
+    pedalGUI[2].setBounds(r.removeFromTop(100));
+    pedalGUI[3].setBounds(r.removeFromTop(100));
 }
 void MainComponent::paint (Graphics& g)
 {
@@ -117,27 +112,22 @@ void MainComponent::menuItemSelected (int menuItemID, int topLevelMenuIndex)
 
 void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 {
-    DBG("COMBO CHANGED");
     if (comboBoxThatHasChanged == &comboBoxs[0])
     {
         audio.setPedalPtr1(comboBoxThatHasChanged->getSelectedId());
-        DBG("Pedal Slot 1 changed");
     }
     if (comboBoxThatHasChanged == &comboBoxs[1])
     {
         audio.setPedalPtr2(comboBoxThatHasChanged->getSelectedId());
-        DBG("Pedal Slot 2 changed");
     }
         
     if (comboBoxThatHasChanged == &comboBoxs[2])
     {
         audio.setPedalPtr3(comboBoxThatHasChanged->getSelectedId());
-        DBG("Pedal Slot 3 changed");
     }
         
     if (comboBoxThatHasChanged == &comboBoxs[3])
     {
         audio.setPedalPtr4(comboBoxThatHasChanged->getSelectedId());
-        DBG("Pedal Slot 4 changed");
     }
 }

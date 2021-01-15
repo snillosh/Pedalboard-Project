@@ -56,7 +56,7 @@ public:
 private:
     Audio& audio;
     std::array<ComboBox,4> comboBoxs;
-    std::array<PedalGUI, 4> pedal;
+    std::array<PedalGUI, 4> pedalGUI;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)

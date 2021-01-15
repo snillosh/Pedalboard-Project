@@ -83,56 +83,114 @@ void Audio::audioDeviceStopped()
 
 }
 
-Pedal* Audio::getPedal(int index)
+
+Pedal* Audio::getPedal1()
 {
-    return &pedal[index];
+    return pedalPtr1;
 }
+
+Pedal* Audio::getPedal2()
+{
+    return pedalPtr2;
+}
+
+Pedal* Audio::getPedal3()
+{
+    return pedalPtr3;
+}
+
+Pedal* Audio::getPedal4()
+{
+    return pedalPtr4;
+}
+
 
 void Audio::setPedalPtr1(int index)
 {
-    DBG("Pedal Slot 1 Changed");
-    if (index == 1)
+    
+    if (index == 1){
         pedalPtr1 = &phaser;
+        DBG("Pedal Slot 1 changed to a phaser");
+    }
     if (index == 2)
+    {
         pedalPtr1 = &compressor;
+        DBG("Pedal Slot 1 changed to a compressor");
+    }
     if (index == 3)
+    {
         pedalPtr1 = &reverberation;
+        DBG("Pedal Slot 1 changed to a reverb");
+    }
     else if (index == 4)
+    {
         pedalPtr1 = &delay;
+        DBG("Pedal Slot 1 changed to a delay");
+    }
 }
 void Audio::setPedalPtr2(int index)
 {
-    DBG("Pedal Slot 2 Changed");
-    if (index == 1)
+    if (index == 1){
         pedalPtr2 = &phaser;
+        DBG("Pedal Slot 2 changed to a phaser");
+    }
     if (index == 2)
+    {
         pedalPtr2 = &compressor;
+        DBG("Pedal Slot 2 changed to a compressor");
+    }
     if (index == 3)
+    {
         pedalPtr2 = &reverberation;
+        DBG("Pedal Slot 2 changed to a reverb");
+    }
     else if (index == 4)
+    {
         pedalPtr2 = &delay;
+        DBG("Pedal Slot 2 changed to a delay");
+    }
 }
 void Audio::setPedalPtr3(int index)
 {
-    DBG("Pedal Slot 3 Changed");
-    if (index == 1)
+    if (index == 1){
         pedalPtr3 = &phaser;
+        DBG("Pedal Slot 3 changed to a phaser");
+    }
     if (index == 2)
+    {
         pedalPtr3 = &compressor;
+        DBG("Pedal Slot 3 changed to a compressor");
+    }
     if (index == 3)
+    {
         pedalPtr3 = &reverberation;
+        DBG("Pedal Slot 3 changed to a reverb");
+    }
     else if (index == 4)
+    {
         pedalPtr3 = &delay;
+        DBG("Pedal Slot 3 changed to a delay");
+    }
 }
 void Audio::setPedalPtr4(int index)
 {
-    DBG("Pedal Slot 4 Changed");
-    if (index == 1)
+    if (index == 1){
         pedalPtr4 = &phaser;
+        DBG("Pedal Slot 4 changed to a phaser");
+    }
     if (index == 2)
+    {
         pedalPtr4 = &compressor;
+        DBG("Pedal Slot 4 changed to a compressor");
+    }
     if (index == 3)
+    {
         pedalPtr4 = &reverberation;
+        DBG("Pedal Slot 4 changed to a reverb");
+    }
     else if (index == 4)
+    {
         pedalPtr4 = &delay;
+        DBG("Pedal Slot 4 changed to a delay");
+    }
 }

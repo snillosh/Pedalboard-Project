@@ -43,30 +43,23 @@ void Delay::setParameter2(float input)
 
 float Delay::process(float input)
 {
-    // May need to remove this to get it to work at first.
-    if (isOn()){
-        fOut = fDelSig + input;
-        iBufferWritePos++;
-        if (iBufferWritePos > (iBufferSize -1))
-            iBufferWritePos = 0;
-        pfCircularBuffer[iBufferWritePos] = fOut;
-        iBufferReadPos = iBufferWritePos - (fDelayTime * fSR);
-        if (iBufferReadPos < 0){
-            iBufferReadPos = (iBufferSize - (fDelayTime * fSR)) + iBufferWritePos;
-        }
-        else
-        {
-            iBufferReadPos = iBufferWritePos - (fDelayTime * fSR);
-        }
-        
-        if (iBufferReadPos > (iBufferSize -1 ))
-            iBufferReadPos = 0;
-        fDelSig = pfCircularBuffer[iBufferReadPos] * fFeedbackGain;
-        return fOut;
+    fOut = fDelSig + input;
+    iBufferWritePos++;
+    if (iBufferWritePos > (iBufferSize -1))
+        iBufferWritePos = 0;
+    pfCircularBuffer[iBufferWritePos] = fOut;
+    iBufferReadPos = iBufferWritePos - (fDelayTime * fSR);
+    if (iBufferReadPos < 0){
+        iBufferReadPos = (iBufferSize - (fDelayTime * fSR)) + iBufferWritePos;
     }
     else
     {
-        return input;
+        iBufferReadPos = iBufferWritePos - (fDelayTime * fSR);
     }
+    
+    if (iBufferReadPos > (iBufferSize -1 ))
+        iBufferReadPos = 0;
+    fDelSig = pfCircularBuffer[iBufferReadPos] * fFeedbackGain;
+    return fOut;
 }
 

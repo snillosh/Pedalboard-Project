@@ -30,7 +30,7 @@ public:
     virtual void setParameter3(float input);
     float getParameter3 () const;
     
-    virtual float process(float input);
+    virtual float process(float input) = 0;
     
     
 private:
