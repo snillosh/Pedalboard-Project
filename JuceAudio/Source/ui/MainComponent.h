@@ -19,7 +19,8 @@
     your controls and content.
 */
 class MainComponent   : public Component,
-                        public MenuBarModel
+                        public MenuBarModel,
+                        public ComboBox::Listener
 {
 public:
     //==============================================================================
@@ -32,6 +33,7 @@ public:
     //Comoponent====================================================================
     void resized() override;
     void paint (Graphics&) override;
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
     
     //MenuBarEnums/MenuBarModel=====================================================
     enum Menus

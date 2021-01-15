@@ -21,5 +21,5 @@ Phaser::~Phaser()
 
 float Phaser::process(float input)
 {
-    
+    return input;
 }

@@ -21,6 +21,12 @@ Audio::Audio()
         DBG (errorMessage);
     audioDeviceManager.addAudioCallback (this);
     delay.initialise();
+    
+    
+    pedalPtr1 = &phaser;
+    pedalPtr2 = &compressor;
+    pedalPtr3 = &reverberation;
+    pedalPtr4 = &delay;
 }
 
 Audio::~Audio()
@@ -51,9 +57,14 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
     
     while(numSamples--)
     {
-        auto output = *inL;
-        *outL = delay.process(output);
-        *outR = delay.process(output);
+        auto input = *inL;
+        auto pedalProcessSlot1 = pedalPtr1->process(input);
+        auto pedalProcessSlot2 = pedalPtr2->process(pedalProcessSlot1);
+        auto pedalProcessSlot3 = pedalPtr3->process(pedalProcessSlot2);
+        auto pedalProcessSlot4 = pedalPtr4->process(pedalProcessSlot3);
+        auto output = pedalProcessSlot4;
+        *outL = output;
+        *outR = output;
         
         inL++;
         outL++;
@@ -75,4 +86,53 @@ void Audio::audioDeviceStopped()
 Pedal* Audio::getPedal(int index)
 {
     return &pedal[index];
+}
+
+void Audio::setPedalPtr1(int index)
+{
+    DBG("Pedal Slot 1 Changed");
+    if (index == 1)
+        pedalPtr1 = &phaser;
+    if (index == 2)
+        pedalPtr1 = &compressor;
+    if (index == 3)
+        pedalPtr1 = &reverberation;
+    else if (index == 4)
+        pedalPtr1 = &delay;
+}
+void Audio::setPedalPtr2(int index)
+{
+    DBG("Pedal Slot 2 Changed");
+    if (index == 1)
+        pedalPtr2 = &phaser;
+    if (index == 2)
+        pedalPtr2 = &compressor;
+    if (index == 3)
+        pedalPtr2 = &reverberation;
+    else if (index == 4)
+        pedalPtr2 = &delay;
+}
+void Audio::setPedalPtr3(int index)
+{
+    DBG("Pedal Slot 3 Changed");
+    if (index == 1)
+        pedalPtr3 = &phaser;
+    if (index == 2)
+        pedalPtr3 = &compressor;
+    if (index == 3)
+        pedalPtr3 = &reverberation;
+    else if (index == 4)
+        pedalPtr3 = &delay;
+}
+void Audio::setPedalPtr4(int index)
+{
+    DBG("Pedal Slot 4 Changed");
+    if (index == 1)
+        pedalPtr4 = &phaser;
+    if (index == 2)
+        pedalPtr4 = &compressor;
+    if (index == 3)
+        pedalPtr4 = &reverberation;
+    else if (index == 4)
+        pedalPtr4 = &delay;
 }

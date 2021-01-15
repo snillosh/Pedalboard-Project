@@ -21,7 +21,6 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
         comboBoxs[i].addItem ("Compressor", 2);
         comboBoxs[i].addItem ("Reverb", 3);
         comboBoxs[i].addItem ("Delay", 4);
-        comboBoxs[i].addItem ("None", 5);
     }
     
     pedal[0].setPedal (audio.getPedal(0));
@@ -113,5 +112,32 @@ void MainComponent::menuItemSelected (int menuItemID, int topLevelMenuIndex)
             la.componentToCentreAround = this;
             la.launchAsync();
         }
+    }
+}
+
+void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
+{
+    DBG("COMBO CHANGED");
+    if (comboBoxThatHasChanged == &comboBoxs[0])
+    {
+        audio.setPedalPtr1(comboBoxThatHasChanged->getSelectedId());
+        DBG("Pedal Slot 1 changed");
+    }
+    if (comboBoxThatHasChanged == &comboBoxs[1])
+    {
+        audio.setPedalPtr2(comboBoxThatHasChanged->getSelectedId());
+        DBG("Pedal Slot 2 changed");
+    }
+        
+    if (comboBoxThatHasChanged == &comboBoxs[2])
+    {
+        audio.setPedalPtr3(comboBoxThatHasChanged->getSelectedId());
+        DBG("Pedal Slot 3 changed");
+    }
+        
+    if (comboBoxThatHasChanged == &comboBoxs[3])
+    {
+        audio.setPedalPtr4(comboBoxThatHasChanged->getSelectedId());
+        DBG("Pedal Slot 4 changed");
     }
 }

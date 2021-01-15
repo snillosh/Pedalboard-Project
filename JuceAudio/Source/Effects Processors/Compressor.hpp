@@ -16,7 +16,6 @@ class Compressor :   public Pedal
 public:
     Compressor();
     ~Compressor();
-    
     float process(float input) override;
 private:
     

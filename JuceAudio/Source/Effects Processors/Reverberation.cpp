@@ -22,5 +22,5 @@ Reverberation::~Reverberation()
 
 float Reverberation::process(float input)
 {
-    
+    return input;
 }

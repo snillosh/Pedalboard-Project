@@ -4,17 +4,35 @@
               jucerFormatVersion="1" bundleIdentifier="com.sda.JuceAudio" cppLanguageStandard="17"
               companyName="UWE" useAppConfig="0" addUsingNamespaceToJuceHeader="1">
   <MAINGROUP id="jzdGEt" name="SDA Pedal Project">
-    <GROUP id="{48570F17-E5C2-62FF-4322-07FEF18BCFB5}" name="Source">
-      <FILE id="ipw0wI" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
-      <GROUP id="{EDB7DD54-F1A5-2AF9-9A8E-BB8C1949FB85}" name="audio">
-        <FILE id="Whpark" name="Audio.cpp" compile="1" resource="0" file="Source/audio/Audio.cpp"/>
-        <FILE id="BSd6Eg" name="Audio.h" compile="0" resource="0" file="Source/audio/Audio.h"/>
-      </GROUP>
-      <GROUP id="{A636AEE2-D3B2-F357-7DEE-3EF69ACE2115}" name="ui">
-        <FILE id="Qcy7ee" name="MainComponent.cpp" compile="1" resource="0"
-              file="Source/ui/MainComponent.cpp"/>
-        <FILE id="GZwZKi" name="MainComponent.h" compile="0" resource="0" file="Source/ui/MainComponent.h"/>
-      </GROUP>
+    <GROUP id="{F4120B7C-4CD0-BA95-C120-3C1D261F78DD}" name="audio">
+      <FILE id="xxJKHu" name="Audio.cpp" compile="1" resource="0" file="Source/audio/Audio.cpp"/>
+      <FILE id="FndvNl" name="Audio.h" compile="0" resource="0" file="Source/audio/Audio.h"/>
+      <FILE id="qpe0rE" name="Pedal.cpp" compile="1" resource="0" file="Source/audio/Pedal.cpp"/>
+      <FILE id="vINQRR" name="Pedal.hpp" compile="0" resource="0" file="Source/audio/Pedal.hpp"/>
+    </GROUP>
+    <GROUP id="{FABFE436-4E34-880A-F613-BB39AE5C15B5}" name="Effects Processors">
+      <FILE id="kDmkgc" name="Compressor.cpp" compile="1" resource="0" file="Source/Effects Processors/Compressor.cpp"/>
+      <FILE id="dFDg32" name="Compressor.hpp" compile="0" resource="0" file="Source/Effects Processors/Compressor.hpp"/>
+      <FILE id="i3o46X" name="Delay.cpp" compile="1" resource="0" file="Source/Effects Processors/Delay.cpp"/>
+      <FILE id="hUKiGI" name="Delay.hpp" compile="0" resource="0" file="Source/Effects Processors/Delay.hpp"/>
+      <FILE id="UZVWcE" name="PeakDetection.cpp" compile="1" resource="0"
+            file="Source/Effects Processors/PeakDetection.cpp"/>
+      <FILE id="mEB2BZ" name="PeakDetection.hpp" compile="0" resource="0"
+            file="Source/Effects Processors/PeakDetection.hpp"/>
+      <FILE id="ITc22s" name="Phaser.cpp" compile="1" resource="0" file="Source/Effects Processors/Phaser.cpp"/>
+      <FILE id="nMWmv1" name="Phaser.hpp" compile="0" resource="0" file="Source/Effects Processors/Phaser.hpp"/>
+      <FILE id="q8dojr" name="Reverberation.cpp" compile="1" resource="0"
+            file="Source/Effects Processors/Reverberation.cpp"/>
+      <FILE id="rWih6w" name="Reverberation.hpp" compile="0" resource="0"
+            file="Source/Effects Processors/Reverberation.hpp"/>
+    </GROUP>
+    <FILE id="w1w42h" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    <GROUP id="{B5A08D2B-B7C2-AAAD-B270-7A62E29BA044}" name="ui">
+      <FILE id="RL5djg" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/ui/MainComponent.cpp"/>
+      <FILE id="tg5Zvj" name="MainComponent.h" compile="0" resource="0" file="Source/ui/MainComponent.h"/>
+      <FILE id="D5ctCZ" name="PedalGUI.cpp" compile="1" resource="0" file="Source/ui/PedalGUI.cpp"/>
+      <FILE id="cB0R1N" name="PedalGUI.hpp" compile="0" resource="0" file="Source/ui/PedalGUI.hpp"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>

@@ -21,6 +21,6 @@ Compressor::~Compressor()
 
 float Compressor::process(float input)
 {
-    
+    return input;
 }
 
