@@ -15,7 +15,7 @@ public:
     Pedal();
     virtual ~Pedal();
     
-    void setOnOffState (bool newState);
+    virtual void setOnOffState (bool newState);
     bool isOn() const;
     
     void setEnabled(bool newState);

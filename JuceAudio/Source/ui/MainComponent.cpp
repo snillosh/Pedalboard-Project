@@ -11,7 +11,7 @@
 //==============================================================================
 MainComponent::MainComponent (Audio& a) :   audio (a)
 {
-    setSize (1920, 1080);
+    setSize (1280, 720);
     for (auto& b : comboBoxs)
         addAndMakeVisible(b);
     
@@ -50,28 +50,29 @@ void MainComponent::resized()
     auto row = r.removeFromTop (40);
     for (auto& b : comboBoxs)
         b.setBounds(row.removeFromLeft(getWidth() / 4));
-    pedalGUI[0].setBounds (r.removeFromTop (100));
-    pedalGUI[1].setBounds (r.removeFromTop(100));
-    pedalGUI[2].setBounds(r.removeFromTop(100));
-    pedalGUI[3].setBounds(r.removeFromTop(100));
+    pedalGUI[0].setBounds (r.removeFromLeft (getWidth() /4));
+    pedalGUI[1].setBounds (r.removeFromLeft (getWidth() /4));
+    pedalGUI[2].setBounds(r.removeFromLeft (getWidth() /4));
+    pedalGUI[3].setBounds(r.removeFromLeft (getWidth() /4));
 }
 void MainComponent::paint (Graphics& g)
 {
-    /*
+    
     auto r = getLocalBounds();
+    /*
     auto row = r.removeFromTop(300);
     int halfWidth = getWidth() / 2.0;
     int halfHeight = getHeight() / 2.0;
     float threeQuarters = (getWidth() / 4) * 3;
      */
     g.setColour(Colours::green);
-    g.fillRect(0, 0 , getWidth() / 4, getHeight());
+    g.fillRect(r.removeFromLeft(getWidth() / 4));
     g.setColour(Colours::purple);
-    g.fillRect(getWidth() / 4, 0 , getWidth() / 4, getHeight());
+    g.fillRect(r.removeFromLeft(getWidth() / 4));
     g.setColour(Colours::blue);
-    g.fillRect(getWidth() / 2, 0 , getWidth() / 4, getHeight());
+    g.fillRect(r.removeFromLeft(getWidth() / 4));
     g.setColour(Colours::yellow);
-    g.fillRect(getWidth() - 480, 0 , getWidth() / 4, getHeight());
+    g.fillRect(r.removeFromLeft(getWidth() / 4));
 
 }
 
@@ -115,19 +116,23 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     if (comboBoxThatHasChanged == &comboBoxs[0])
     {
         audio.setPedalPtr1(comboBoxThatHasChanged->getSelectedId());
+        pedalGUI[0].setPedal (audio.getPedal1());
     }
     if (comboBoxThatHasChanged == &comboBoxs[1])
     {
         audio.setPedalPtr2(comboBoxThatHasChanged->getSelectedId());
+        pedalGUI[1].setPedal (audio.getPedal2());
     }
         
     if (comboBoxThatHasChanged == &comboBoxs[2])
     {
         audio.setPedalPtr3(comboBoxThatHasChanged->getSelectedId());
+        pedalGUI[3].setPedal (audio.getPedal3());
     }
         
     if (comboBoxThatHasChanged == &comboBoxs[3])
     {
         audio.setPedalPtr4(comboBoxThatHasChanged->getSelectedId());
+        pedalGUI[4].setPedal (audio.getPedal4());
     }
 }
