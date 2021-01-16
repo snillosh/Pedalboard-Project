@@ -68,6 +68,26 @@ float Pedal::getParameter3() const
     return parameter3;
 }
 
+void Pedal::setParameter4(float input)
+{
+    parameter4 = input;
+}
+
+float Pedal::getParameter4() const
+{
+    return parameter4;
+}
+
+void Pedal::setParameter5(float input)
+{
+    parameter5 = input;
+}
+
+float Pedal::getParameter5() const
+{
+    return parameter5;
+}
+
 float Pedal::process(float input)
 {
     return input;

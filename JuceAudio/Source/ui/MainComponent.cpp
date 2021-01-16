@@ -47,7 +47,7 @@ MainComponent::~MainComponent()
 void MainComponent::resized()
 {
     auto r = getLocalBounds();
-    auto row = r.removeFromTop (40);
+    auto row = r.removeFromTop (getWidth() / 32);
     for (auto& b : comboBoxs)
         b.setBounds(row.removeFromLeft(getWidth() / 4));
     pedalGUI[0].setBounds (r.removeFromLeft (getWidth() /4));

@@ -21,6 +21,11 @@ Compressor::~Compressor()
 
 float Compressor::process(float input)
 {
-    return input;
+    if (isOn())
+    {
+        return input;
+    }
+    else
+        return input;
 }
 

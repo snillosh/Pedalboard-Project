@@ -21,5 +21,10 @@ Phaser::~Phaser()
 
 float Phaser::process(float input)
 {
-    return input;
+    if (isOn())
+    {
+        return input;
+    }
+    else
+        return input;
 }

@@ -17,6 +17,18 @@ public:
     ~Reverberation();
     
     float process(float input) override;
-private:
+    void setParameter1(float input) override;
+    void setParameter2(float input) override;
+    void initialise ();
     
+private:
+    float *pfCircularBuffer;
+    float fSR;
+    int iBufferSize;
+    int iBufferWritePos;
+    int iBufferReadPos;
+    float fDelSig = 0;
+    float fFeedbackGain;
+    float fDelayTime;
+    float fOut;
 };

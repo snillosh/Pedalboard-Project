@@ -25,10 +25,17 @@ PedalGUI::PedalGUI()
     addAndMakeVisible(&parameterSlider2);
     parameterSlider2.addListener(this);
     
-    parameterSlider2.setSliderStyle(Slider::Rotary);
+    parameterSlider3.setSliderStyle(Slider::Rotary);
     addAndMakeVisible(&parameterSlider3);
     parameterSlider3.addListener(this);
     
+    parameterSlider4.setSliderStyle(Slider::Rotary);
+    addAndMakeVisible(&parameterSlider4);
+    parameterSlider4.addListener(this);
+    
+    parameterSlider5.setSliderStyle(Slider::Rotary);
+    addAndMakeVisible(&parameterSlider5);
+    parameterSlider5.addListener(this);
 }
 
 PedalGUI::~PedalGUI()
@@ -43,14 +50,16 @@ void PedalGUI::setPedal(Pedal* pedalPtr)
 
 void PedalGUI::resized()
 {
-    auto r2 = getLocalBounds();
+    //auto r2 = getLocalBounds();
     auto r = getLocalBounds();
-    auto row = r.removeFromBottom(getHeight() * 0.75);
-    auto row2 = r2.removeFromBottom(getHeight() / 4);
-    onOffButton.setBounds (row2.removeFromLeft (getWidth() * 0.75));
-    parameterSlider1.setBounds(row.removeFromLeft(getWidth() / 3));
-    parameterSlider2.setBounds(row.removeFromLeft(getWidth() / 3));
-    parameterSlider3.setBounds(row.removeFromLeft(getWidth()) / 3);
+    auto row = r.removeFromTop((getHeight() / 8) * 7);
+    auto row2 = r.removeFromBottom(getHeight() / 8);
+    onOffButton.setBounds (row2.removeFromLeft (getWidth()));
+    parameterSlider1.setBounds(row.removeFromBottom(getHeight() / 8));
+    parameterSlider2.setBounds(row.removeFromBottom(getHeight() / 8));
+    parameterSlider3.setBounds(row.removeFromBottom(getHeight() / 8));
+    parameterSlider4.setBounds(row.removeFromBottom(getHeight() / 8));
+    parameterSlider5.setBounds(row.removeFromBottom(getHeight() / 8));
 }
 
 void PedalGUI::buttonClicked(Button *button)
@@ -74,4 +83,8 @@ void PedalGUI::sliderValueChanged (Slider* slider)
         pedal->setParameter2(parameterSlider2.getValue());
     else if (slider == &parameterSlider3)
         pedal->setParameter3(parameterSlider3.getValue());
+    else if (slider == &parameterSlider4)
+        pedal->setParameter4(parameterSlider4.getValue());
+    else if (slider == &parameterSlider3)
+        pedal->setParameter5(parameterSlider5.getValue());
 }

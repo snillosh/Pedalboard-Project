@@ -30,6 +30,12 @@ public:
     virtual void setParameter3(float input);
     float getParameter3 () const;
     
+    virtual void setParameter4(float input);
+    float getParameter4 () const;
+    
+    virtual void setParameter5(float input);
+    float getParameter5 () const;
+    
     virtual float process(float input) = 0;
     
     
@@ -39,4 +45,6 @@ private:
     float parameter1 = 0;
     float parameter2 = 0;
     float parameter3 = 0;
+    float parameter4 = 0;
+    float parameter5 = 0;
 };

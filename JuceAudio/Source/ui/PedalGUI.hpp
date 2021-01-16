@@ -25,10 +25,12 @@ public:
     
 private:
     Pedal* pedal           {nullptr};
-    TextButton onOffButton {"On"};
+    TextButton onOffButton {"Pedal is Off"};
     Slider parameterSlider1;
     Slider parameterSlider2;
     Slider parameterSlider3;
+    Slider parameterSlider4;
+    Slider parameterSlider5;
     
     
 };
