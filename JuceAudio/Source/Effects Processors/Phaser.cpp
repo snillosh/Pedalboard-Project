@@ -28,3 +28,24 @@ float Phaser::process(float input)
     else
         return input;
 }
+
+void Phaser::setParameter1(float input)
+{
+    
+}
+void Phaser::setParameter2(float input)
+{
+    
+}
+void Phaser::setParameter3(float input)
+{
+    
+}
+void Phaser::setParameter4(float input)
+{
+    
+}
+void Phaser::setParameter5(float input)
+{
+    
+}

@@ -19,6 +19,9 @@ public:
     float process(float input) override;
     void setParameter1(float input) override;
     void setParameter2(float input) override;
+    void setParameter3(float input) override;
+    void setParameter4(float input) override;
+    void setParameter5(float input) override;
     void initialise ();
 
 private:

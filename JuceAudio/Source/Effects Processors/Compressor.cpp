@@ -29,3 +29,23 @@ float Compressor::process(float input)
         return input;
 }
 
+void Compressor::setParameter1(float input)
+{
+    
+}
+void Compressor::setParameter2(float input)
+{
+    
+}
+void Compressor::setParameter3(float input)
+{
+    
+}
+void Compressor::setParameter4(float input)
+{
+    
+}
+void Compressor::setParameter5(float input)
+{
+    
+}

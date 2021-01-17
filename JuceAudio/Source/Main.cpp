@@ -61,7 +61,7 @@ public:
     public:
         MainWindow (juce::String name, Audio& audio)
             : DocumentWindow (name,
-                              Colours::lightgrey,
+                              Colours::black,
                               DocumentWindow::allButtons)
         {
             setUsingNativeTitleBar (true);

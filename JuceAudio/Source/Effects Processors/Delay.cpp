@@ -41,6 +41,17 @@ void Delay::setParameter2(float input)
     fDelayTime = (input / 10) * 0.8;
 }
 
+void Delay::setParameter3(float input)
+{
+}
+
+void Delay::setParameter4(float input)
+{
+}
+
+void Delay::setParameter5(float input)
+{
+}
 float Delay::process(float input)
 {
     if (isOn())

@@ -30,6 +30,7 @@ void Reverberation::initialise()
     iBufferWritePos = 0;
     fDelayTime = 0.8;
     fFeedbackGain = 0.7;
+    //dsp::ProcessSpec spec;
 }
 
 void Reverberation::setParameter1(float input)
@@ -39,7 +40,20 @@ void Reverberation::setParameter1(float input)
 
 void Reverberation::setParameter2(float input)
 {
+    fCutOff = (input / 10) * 5000;
+}
+
+void Reverberation::setParameter3(float input)
+{
     fDelayTime = (input / 10) * 0.8;
+}
+void Reverberation::setParameter4(float input)
+{
+    
+}
+void Reverberation::setParameter5(float input)
+{
+    
 }
 
 float Reverberation::process(float input)
