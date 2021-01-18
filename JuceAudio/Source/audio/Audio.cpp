@@ -21,6 +21,7 @@ Audio::Audio()
         DBG (errorMessage);
     audioDeviceManager.addAudioCallback (this);
     delay.initialise();
+    compressor.intitialise();
     
     
     pedalPtr1 = &phaser;

@@ -10,12 +10,12 @@
 
 
 
-void peakDetection::initalise(int sampleLength, int sampleRate)
+void peakDetection::initalise(int sampleLength)
 {
     iMeasuredLength = sampleLength; // set length of samples to measure
     iMeasuredItems = 0; // set starting variables to 0
     fMax = fMaxold = 0;
-    sr = sampleRate;
+    sr = 44100;
 }
 
 float peakDetection::process(float input)
@@ -37,4 +37,5 @@ float peakDetection::process(float input)
     //double  rel = (fRelease == 0.0) ? (0.0) : exp (-1.0 / (sr * fRelease));
     float coeff = (fMaxNew > fMaxold) ? 0.1 : 0.0003; // Set envelope to either attack or release
     return fMaxold = coeff * fMaxNew + (1-coeff) * fMaxold; // Apply envelope to peak and return it
+    fMaxold = fMaxNew;
 }

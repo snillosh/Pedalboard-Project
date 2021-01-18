@@ -13,7 +13,7 @@
 class peakDetection
 {
 public:
-    void initalise(int sampleLength, int sampleRate);
+    void initalise(int sampleLength);
     float process(float input);
 private:
     int iMeasuredLength, iMeasuredItems, sr;
