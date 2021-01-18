@@ -9,6 +9,8 @@
       <FILE id="FndvNl" name="Audio.h" compile="0" resource="0" file="Source/audio/Audio.h"/>
       <FILE id="qpe0rE" name="Pedal.cpp" compile="1" resource="0" file="Source/audio/Pedal.cpp"/>
       <FILE id="vINQRR" name="Pedal.hpp" compile="0" resource="0" file="Source/audio/Pedal.hpp"/>
+      <FILE id="hFCbLi" name="Record.cpp" compile="1" resource="0" file="Source/audio/Record.cpp"/>
+      <FILE id="ht3a8Z" name="Record.h" compile="0" resource="0" file="Source/audio/Record.h"/>
     </GROUP>
     <GROUP id="{FABFE436-4E34-880A-F613-BB39AE5C15B5}" name="Effects Processors">
       <FILE id="kDmkgc" name="Compressor.cpp" compile="1" resource="0" file="Source/Effects Processors/Compressor.cpp"/>
@@ -31,6 +33,10 @@
       <FILE id="RL5djg" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/ui/MainComponent.cpp"/>
       <FILE id="tg5Zvj" name="MainComponent.h" compile="0" resource="0" file="Source/ui/MainComponent.h"/>
+      <FILE id="ehlutd" name="RecordComponent.cpp" compile="1" resource="0"
+            file="Source/RecordComponent.cpp"/>
+      <FILE id="zF6tAf" name="RecordComponent.h" compile="0" resource="0"
+            file="Source/RecordComponent.h"/>
       <FILE id="D5ctCZ" name="PedalGUI.cpp" compile="1" resource="0" file="Source/ui/PedalGUI.cpp"/>
       <FILE id="cB0R1N" name="PedalGUI.hpp" compile="0" resource="0" file="Source/ui/PedalGUI.hpp"/>
     </GROUP>

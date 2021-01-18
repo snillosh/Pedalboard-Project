@@ -12,6 +12,7 @@
 #include <array>
 #include "../audio/Audio.h"
 #include "PedalGUI.hpp"
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/RecordComponent.h"
 
 //==============================================================================
 /*
@@ -57,6 +58,8 @@ private:
     Audio& audio;
     std::array<ComboBox,4> comboBoxs;
     std::array<PedalGUI, 4> pedalGUI;
+    RecordComponent recordComponent;
+    
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)

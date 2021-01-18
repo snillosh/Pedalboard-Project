@@ -36,6 +36,8 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     pedalGUI[3].setPedal (audio.getPedal4());
     addAndMakeVisible(pedalGUI[3]);
     
+    addAndMakeVisible(recordComponent);
+    
 }
 
 MainComponent::~MainComponent()
@@ -47,13 +49,16 @@ MainComponent::~MainComponent()
 void MainComponent::resized()
 {
     auto r = getLocalBounds();
-    auto row = r.removeFromTop (getWidth() / 32);
+    auto row = r.removeFromTop (getHeight() / 32);
+    auto row2 = r.removeFromBottom(getHeight() * 0.75);
+    auto row3 = r.removeFromTop(getHeight()/ 4);
     for (auto& b : comboBoxs)
         b.setBounds(row.removeFromLeft(getWidth() / 4));
-    pedalGUI[0].setBounds (r.removeFromLeft (getWidth() /4));
-    pedalGUI[1].setBounds (r.removeFromLeft (getWidth() /4));
-    pedalGUI[2].setBounds(r.removeFromLeft (getWidth() /4));
-    pedalGUI[3].setBounds(r.removeFromLeft (getWidth() /4));
+    recordComponent.setBounds (row3.removeFromTop (60));
+    pedalGUI[0].setBounds (row2.removeFromLeft (getWidth() /4));
+    pedalGUI[1].setBounds (row2.removeFromLeft (getWidth() /4));
+    pedalGUI[2].setBounds(row2.removeFromLeft (getWidth() /4));
+    pedalGUI[3].setBounds(row2.removeFromLeft (getWidth() /4));
 }
 void MainComponent::paint (Graphics& g)
 {
