@@ -58,6 +58,7 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
     
     while(numSamples--)
     {
+        //This needs to be changed to use the JUCE audio mixer
         auto input = *inL;
         auto pedalProcessSlot1 = pedalPtr1->process(input);
         auto pedalProcessSlot2 = pedalPtr2->process(pedalProcessSlot1);
@@ -108,7 +109,7 @@ Pedal* Audio::getPedal4()
 
 void Audio::setPedalPtr1(int index)
 {
-    
+    // these long if else need to be changed to be more concise
     if (index == 1){
         pedalPtr1 = &phaser;
         DBG("Pedal Slot 1 changed to a phaser");
