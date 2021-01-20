@@ -1,10 +1,12 @@
-//
-//  Reverb.cpp
-//  SDA Pedal Project - App
-//
-//  Created by Bevan Salter on 12/01/2021.
-//  Copyright © 2021 UWE. All rights reserved.
-//
+/*
+  ==============================================================================
+
+    Reverb.cpp
+    Created: 12 Jan 2021 11:17:00pm
+    Author:  Bevan Salter
+
+  ==============================================================================
+*/
 
 #include "Reverberation.hpp"
 
@@ -32,30 +34,48 @@ void Reverberation::initialise()
     fFeedbackGain = 0.7;
     //dsp::ProcessSpec spec;
 }
-
+//------------------------------------------------
 void Reverberation::setParameter1(float input)
 {
     fFeedbackGain = (input / 10) * 0.5;
 }
-
+float Reverberation::getParameter1() const
+{
+    return fFeedbackGain;
+}
+//------------------------------------------------
 void Reverberation::setParameter2(float input)
 {
     fCutOff = (input / 10) * 5000;
 }
-
+float Reverberation::getParameter2() const
+{
+    return fCutOff;
+}
+//------------------------------------------------
 void Reverberation::setParameter3(float input)
 {
     fDelayTime = (input / 10) * 0.8;
 }
+float Reverberation::getParameter3() const
+{
+    return fDelayTime;
+}
+//------------------------------------------------
 void Reverberation::setParameter4(float input)
 {
-    
 }
+float Reverberation::getParameter4() const
+{
+}
+//------------------------------------------------
 void Reverberation::setParameter5(float input)
 {
-    
 }
-
+float Reverberation::getParameter5() const
+{
+}
+//------------------------------------------------
 float Reverberation::process(float input)
 {
     if (isOn())

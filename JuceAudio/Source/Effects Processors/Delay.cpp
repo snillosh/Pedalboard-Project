@@ -1,11 +1,12 @@
-//
-//  Delay.cpp
-//  SDA Pedal Project - App
-//
-//  Created by Bevan Salter on 12/01/2021.
-//  Copyright © 2021 UWE. All rights reserved.
-//
+/*
+  ==============================================================================
 
+    Delay.cpp
+    Created: 12 Jan 2021 11:17:00pm
+    Author:  Bevan Salter
+
+  ==============================================================================
+*/
 #include "Delay.hpp"
 
 
@@ -30,28 +31,47 @@ void Delay::initialise()
     fDelayTime = 0.8;
     fFeedbackGain = 0.7;
 }
-
+//Mutator
 void Delay::setParameter1(float input)
 {
     fFeedbackGain = (input / 10) * 0.7;
 }
-
+// ACCESSOR
+float Delay::getParameter1() const
+{
+    return fFeedbackGain;
+}
+//---------------------------------------------
 void Delay::setParameter2(float input)
 {
     fDelayTime = (input / 10) * 0.8;
 }
-
+float Delay::getParameter2() const
+{
+    return fDelayTime;
+}
+//---------------------------------------------
 void Delay::setParameter3(float input)
 {
 }
-
+float Delay::getParameter3() const
+{
+}
+//---------------------------------------------
 void Delay::setParameter4(float input)
 {
 }
-
+float Delay::getParameter4() const
+{
+}
+//---------------------------------------------
 void Delay::setParameter5(float input)
 {
 }
+float Delay::getParameter5() const
+{
+}
+//---------------------------------------------
 float Delay::process(float input)
 {
     if (isOn())

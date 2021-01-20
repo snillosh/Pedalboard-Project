@@ -1,10 +1,12 @@
-//
-//  Compressor.cpp
-//  SDA Pedal Project - App
-//
-//  Created by Bevan Salter on 12/01/2021.
-//  Copyright © 2021 UWE. All rights reserved.
-//
+/*
+  ==============================================================================
+
+    Compressor.cpp
+    Created: 12 Jan 2021 11:17:00pm
+    Author:  Bevan Salter
+
+  ==============================================================================
+*/
 
 #include "Compressor.hpp"
 
@@ -18,28 +20,48 @@ Compressor::~Compressor()
 {
     
 }
-
+//------------------------------------------------
 void Compressor::setParameter1(float input)
 {
     fThresh = input / 10.f;
 }
+float Compressor::getParameter1() const
+{
+    return fThresh;
+}
+//---------------------------------------------
 void Compressor::setParameter2(float input)
 {
     fRatio = ((input / 10.f) * 31.f) + 1.f;
 }
+float Compressor::getParameter2() const
+{
+    return fRatio;
+}
+//---------------------------------------------
 void Compressor::setParameter3(float input)
 {
     makeUp = input + 1.f;
 }
+float Compressor::getParameter3() const
+{
+    return makeUp;
+}
+//---------------------------------------------
 void Compressor::setParameter4(float input)
 {
-    
 }
+float Compressor::getParameter4() const
+{
+}
+//---------------------------------------------
 void Compressor::setParameter5(float input)
 {
-    
 }
-
+float Compressor::getParameter5() const
+{
+}
+//---------------------------------------------
 void Compressor::intitialise()
 {
     peak.initalise(0.001 * 44100);

@@ -1,10 +1,12 @@
-//
-//  PedalGUI.hpp
-//  SDA Pedal Project - App
-//
-//  Created by Bevan Salter on 12/01/2021.
-//  Copyright © 2021 UWE. All rights reserved.
-//
+/*
+  ==============================================================================
+
+    PedalGUI.hpp
+    Created: 12 Jan 2021 8:30:00pm
+    Author:  Bevan Salter
+
+  ==============================================================================
+*/
 
 #pragma once
 #include <JuceHeader.h>

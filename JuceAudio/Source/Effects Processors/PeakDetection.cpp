@@ -1,10 +1,12 @@
-//
-//  PeakDetection.cpp
-//  SDA Pedal Project - App
-//
-//  Created by Bevan Salter on 13/01/2021.
-//  Copyright © 2021 UWE. All rights reserved.
-//
+/*
+  ==============================================================================
+
+    PeakDetection.cpp
+    Created: 12 Jan 2021 11:17:00pm
+    Author:  Bevan Salter
+
+  ==============================================================================
+*/
 
 #include "PeakDetection.hpp"
 
