@@ -10,12 +10,17 @@
 #pragma once
 #include <JuceHeader.h>
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
+#include "/Users/bevansalter/Desktop/Level 3/Final Year Project/Xcode Projects/FYP Phaser Project/FYP Phaser Project/Source/LFO.h"
 
 class Phaser : public Pedal
 {
 public:
     Phaser();
     ~Phaser();
+    
+    void initialiser();
+    
+    void updateFilter();
     
     float process(float input) override;
     
@@ -35,5 +40,11 @@ public:
     float getParameter5() const override;
     
 private:
+    OwnedArray<juce::dsp::FirstOrderTPTFilter<float>> allpassFilters;
+    SinOscillator rateLFO;
     
+    float rate, depth, feedback, mix, output;
+    static constexpr int numStages = 4;
+    double sampleRate = 44100.0;
+    float allpassOutFinal;
 };

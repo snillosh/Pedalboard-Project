@@ -33,7 +33,5 @@ private:
     Slider parameterSlider3;
     Slider parameterSlider4;
     Slider parameterSlider5;
-    
-    
 };
 

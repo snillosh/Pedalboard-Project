@@ -17,19 +17,19 @@ RecordComponent::RecordComponent()
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     playButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    playButton.setColour (TextButton::buttonColourId, Colours::grey);
+    playButton.setColour (TextButton::buttonColourId, Colours::lightblue);
     playButton.setColour (TextButton::buttonOnColourId, Colours::lightgrey);
     addAndMakeVisible (&playButton);
     playButton.addListener (this);
     
     recordButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    recordButton.setColour (TextButton::buttonColourId, Colours::darkred);
-    recordButton.setColour (TextButton::buttonOnColourId, Colours::red);
+    recordButton.setColour (TextButton::buttonColourId, Colours::goldenrod);
+    recordButton.setColour (TextButton::buttonOnColourId, Colours::lightgrey);
     addAndMakeVisible (&recordButton);
     recordButton.addListener (this);
     
     saveButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    saveButton.setColour (TextButton::buttonColourId, Colours::grey);
+    saveButton.setColour (TextButton::buttonColourId, Colours::red);
     saveButton.setColour (TextButton::buttonOnColourId, Colours::lightgrey);
     addAndMakeVisible (&saveButton);
     saveButton.addListener (this);

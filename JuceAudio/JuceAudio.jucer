@@ -27,8 +27,9 @@
             file="Source/Effects Processors/Reverberation.cpp"/>
       <FILE id="rWih6w" name="Reverberation.hpp" compile="0" resource="0"
             file="Source/Effects Processors/Reverberation.hpp"/>
+      <FILE id="FRp0vO" name="LFO.cpp" compile="1" resource="0" file="../../../Level 3/Final Year Project/Xcode Projects/FYP Phaser Project/FYP Phaser Project/Source/LFO.cpp"/>
+      <FILE id="IXEgm7" name="LFO.h" compile="0" resource="0" file="../../../Level 3/Final Year Project/Xcode Projects/FYP Phaser Project/FYP Phaser Project/Source/LFO.h"/>
     </GROUP>
-    <FILE id="w1w42h" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
     <GROUP id="{B5A08D2B-B7C2-AAAD-B270-7A62E29BA044}" name="ui">
       <FILE id="RL5djg" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/ui/MainComponent.cpp"/>
@@ -40,6 +41,11 @@
       <FILE id="D5ctCZ" name="PedalGUI.cpp" compile="1" resource="0" file="Source/ui/PedalGUI.cpp"/>
       <FILE id="cB0R1N" name="PedalGUI.hpp" compile="0" resource="0" file="Source/ui/PedalGUI.hpp"/>
     </GROUP>
+    <FILE id="w1w42h" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    <FILE id="zKjtKm" name="State.cpp" compile="1" resource="0" file="Source/State.cpp"/>
+    <FILE id="btS2jL" name="State.h" compile="0" resource="0" file="Source/State.h"/>
+    <FILE id="Wx4nRq" name="UnitTest.cpp" compile="1" resource="0" file="Source/UnitTest.cpp"/>
+    <FILE id="jhlK8e" name="UnitTest.h" compile="0" resource="0" file="Source/UnitTest.h"/>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
   <EXPORTFORMATS>
