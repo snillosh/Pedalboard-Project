@@ -22,10 +22,14 @@ Audio::Audio()
         DBG (errorMessage);
     audioDeviceManager.addAudioCallback (this);
     
+    dsp::ProcessSpec spec;
+    
+    sampleRate = spec.sampleRate;
     
     delay.initialise();
     compressor.intitialise();
-    phaser.initialiser();
+    phaser.initialiser(sampleRate);
+    reverberation.initialise();
     
     
     pedalPtr1 = &phaser;
@@ -69,6 +73,15 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
         auto pedalProcessSlot3 = pedalPtr3->process(pedalProcessSlot2);
         auto pedalProcessSlot4 = pedalPtr4->process(pedalProcessSlot3);
         auto output = pedalProcessSlot4;
+        
+        if (output > 1)
+        {
+            output = 1;
+        }
+        else if (output < -1)
+        {
+            output = -1;
+        }
         *outL = output;
         *outR = output;
         

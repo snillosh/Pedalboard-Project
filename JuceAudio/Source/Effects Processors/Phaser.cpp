@@ -61,10 +61,10 @@ float Phaser::getParameter5() const
 {
 }
 //----------------------------------------
-void Phaser::initialiser()
+void Phaser::initialiser(double setSampleRate)
 {
     dsp::ProcessSpec spec;
-    sampleRate = spec.sampleRate;
+    sampleRate = setSampleRate;
     rateLFO.setSampleRate(sampleRate);
     for (auto n = 0; n < numStages; ++n)
     {

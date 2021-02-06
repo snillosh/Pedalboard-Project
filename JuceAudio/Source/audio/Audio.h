@@ -62,4 +62,6 @@ private:
     Pedal* pedalPtr2;
     Pedal* pedalPtr3;
     Pedal* pedalPtr4;
+    
+    double sampleRate;
 };

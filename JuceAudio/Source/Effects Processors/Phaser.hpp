@@ -18,7 +18,7 @@ public:
     Phaser();
     ~Phaser();
     
-    void initialiser();
+    void initialiser(double setSampleRate);
     
     void updateFilter();
     
@@ -45,6 +45,6 @@ private:
     
     float rate, depth, feedback, mix, output;
     static constexpr int numStages = 4;
-    double sampleRate = 44100.0;
+    double sampleRate;
     float allpassOutFinal;
 };

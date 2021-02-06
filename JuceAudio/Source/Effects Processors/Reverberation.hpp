@@ -38,14 +38,5 @@ public:
     void initialise ();
     
 private:
-    float *pfCircularBuffer;
-    float fSR;
-    int iBufferSize;
-    int iBufferWritePos;
-    int iBufferReadPos;
-    float fDelSig = 0;
-    float fFeedbackGain;
-    float fDelayTime;
-    float fCutOff;
-    float fOut;
+    dsp::Reverb reverb;
 };
