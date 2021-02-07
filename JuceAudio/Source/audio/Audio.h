@@ -17,6 +17,7 @@
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Compressor.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Phaser.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Reverberation.hpp"
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/None.h"
 /** Class containing all audio processes */
 
 class Audio :   public MidiInputCallback,
@@ -54,6 +55,7 @@ private:
     Phaser phaser;
     Compressor compressor;
     Reverberation reverberation;
+    None none;
     Pedal* pedalPtr1;
     Pedal* pedalPtr2;
     Pedal* pedalPtr3;

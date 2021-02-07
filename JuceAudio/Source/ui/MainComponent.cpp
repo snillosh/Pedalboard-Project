@@ -15,7 +15,7 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
 {
     setSize (1280, 720);
     
-    for (int index = 0; index < pedalAmount; ++index)
+    for (int index = 0; index < 6; ++index)
       comboBoxVector.emplace_back(std::make_unique<ComboBox>());
     
     for (auto& b : comboBoxVector){
@@ -24,6 +24,8 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
         b.get()->addItem ("Compressor", 2);
         b.get()->addItem ("Reverb", 3);
         b.get()->addItem ("Delay", 4);
+        b.get()->addItem ("None", 5);
+        b.get()->setSelectedId(5);
         b.get()->addListener(this);
     }
     
@@ -33,10 +35,11 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     pedalAmountSelector.addItem("4", 4);
     pedalAmountSelector.addItem("5", 5);
     pedalAmountSelector.addItem("6", 6);
+    pedalAmountSelector.setSelectedId(4);
     pedalAmountSelector.addListener(this);
     addAndMakeVisible(pedalAmountSelector);
     
-    for (int index = 0; index < pedalAmount; ++index)
+    for (int index = 0; index < 6; ++index)
       pedalGUIVector.emplace_back(std::make_unique<PedalGUI>());
     
     for(auto& p : pedalGUIVector)
@@ -48,7 +51,7 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     }
     
     addAndMakeVisible(recordComponent);
-    
+    resized();
 }
 
 MainComponent::~MainComponent()
@@ -60,18 +63,24 @@ MainComponent::~MainComponent()
 void MainComponent::resized()
 {
     auto r = getLocalBounds();
+    
     auto row = r.removeFromTop (getHeight() / 16);
+    
     auto row2 = r.removeFromBottom(getHeight() * 0.75);
+    
     auto row3 = r.removeFromTop(getHeight()/ 32);
+    
     auto recordComp = row.removeFromTop(getHeight()/16);
+    
     for (auto& b : comboBoxVector)
-        b.get()->setBounds(row3.removeFromLeft(getWidth() / 4));
+        b.get()->setBounds(row3.removeFromLeft(getWidth() / pedalAmount));
+    
     recordComponent.setBounds (recordComp.removeFromRight (getWidth() * 0.75));
+    
     pedalAmountSelector.setBounds(recordComp.removeFromLeft(getWidth()/4));
+    
     for (auto& p : pedalGUIVector)
-    {
         p.get()->setBounds (row2.removeFromLeft (getWidth() /pedalAmount));
-    }
 }
 void MainComponent::paint (Graphics& g)
 {
@@ -84,13 +93,17 @@ void MainComponent::paint (Graphics& g)
     float threeQuarters = (getWidth() / 4) * 3;
      */
     g.setColour(Colours::green);
-    g.fillRect(r.removeFromLeft(getWidth() / 4));
+    g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
     g.setColour(Colours::purple);
-    g.fillRect(r.removeFromLeft(getWidth() / 4));
+    g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
     g.setColour(Colours::blue);
-    g.fillRect(r.removeFromLeft(getWidth() / 4));
+    g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
     g.setColour(Colours::yellow);
-    g.fillRect(r.removeFromLeft(getWidth() / 4));
+    g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
+    g.setColour(Colours::sandybrown);
+    g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
+    g.setColour(Colours::lightgrey);
+    g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
 
 }
 
@@ -157,5 +170,7 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     if(comboBoxThatHasChanged == &pedalAmountSelector)
     {
         pedalAmount = comboBoxThatHasChanged->getSelectedId();
+        repaint();
+        resized();
     }
 }
