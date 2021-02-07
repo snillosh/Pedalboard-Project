@@ -14,16 +14,17 @@
 MainComponent::MainComponent (Audio& a) :   audio (a)
 {
     setSize (1280, 720);
-    for (auto& b : comboBoxs)
-        addAndMakeVisible(b);
     
-    for (int i = 0; i < 4; i++)
-    {
-        comboBoxs[i].addItem ("Phaser", 1);
-        comboBoxs[i].addItem ("Compressor", 2);
-        comboBoxs[i].addItem ("Reverb", 3);
-        comboBoxs[i].addItem ("Delay", 4);
-        comboBoxs[i].addListener(this);
+    for (int index = 0; index < pedalAmount; ++index)
+      comboBoxVector.emplace_back(std::make_unique<ComboBox>());
+    
+    for (auto& b : comboBoxVector){
+        addAndMakeVisible(b.get());
+        b.get()->addItem ("Phaser", 1);
+        b.get()->addItem ("Compressor", 2);
+        b.get()->addItem ("Reverb", 3);
+        b.get()->addItem ("Delay", 4);
+        b.get()->addListener(this);
     }
     
     pedalAmountSelector.addItem("1", 1);
@@ -35,17 +36,16 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     pedalAmountSelector.addListener(this);
     addAndMakeVisible(pedalAmountSelector);
     
-    pedalGUI[0].setPedal (audio.getPedal(1));
-    addAndMakeVisible(pedalGUI[0]);
+    for (int index = 0; index < pedalAmount; ++index)
+      pedalGUIVector.emplace_back(std::make_unique<PedalGUI>());
     
-    pedalGUI[1].setPedal (audio.getPedal(2));
-    addAndMakeVisible(pedalGUI[1]);
+    for(auto& p : pedalGUIVector)
+        addAndMakeVisible (p.get());
     
-    pedalGUI[2].setPedal (audio.getPedal(3));
-    addAndMakeVisible(pedalGUI[2]);
-    
-    pedalGUI[3].setPedal (audio.getPedal(4));
-    addAndMakeVisible(pedalGUI[3]);
+    for (int i = 0; i < pedalGUIVector.size(); i++)
+    {
+        pedalGUIVector[i]->setPedal (audio.getPedal(i + 1));
+    }
     
     addAndMakeVisible(recordComponent);
     
@@ -64,14 +64,14 @@ void MainComponent::resized()
     auto row2 = r.removeFromBottom(getHeight() * 0.75);
     auto row3 = r.removeFromTop(getHeight()/ 32);
     auto recordComp = row.removeFromTop(getHeight()/16);
-    for (auto& b : comboBoxs)
-        b.setBounds(row3.removeFromLeft(getWidth() / 4));
+    for (auto& b : comboBoxVector)
+        b.get()->setBounds(row3.removeFromLeft(getWidth() / 4));
     recordComponent.setBounds (recordComp.removeFromRight (getWidth() * 0.75));
     pedalAmountSelector.setBounds(recordComp.removeFromLeft(getWidth()/4));
-    pedalGUI[0].setBounds (row2.removeFromLeft (getWidth() /4));
-    pedalGUI[1].setBounds (row2.removeFromLeft (getWidth() /4));
-    pedalGUI[2].setBounds(row2.removeFromLeft (getWidth() /4));
-    pedalGUI[3].setBounds(row2.removeFromLeft (getWidth() /4));
+    for (auto& p : pedalGUIVector)
+    {
+        p.get()->setBounds (row2.removeFromLeft (getWidth() /pedalAmount));
+    }
 }
 void MainComponent::paint (Graphics& g)
 {
@@ -131,27 +131,27 @@ void MainComponent::menuItemSelected (int menuItemID, int topLevelMenuIndex)
 
 void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 {
-    if (comboBoxThatHasChanged == &comboBoxs[0])
+    if (comboBoxThatHasChanged == &*comboBoxVector[0])
     {
         audio.setPedalPtr(1, comboBoxThatHasChanged->getSelectedId());
-        pedalGUI[0].setPedal (audio.getPedal(1));
+        pedalGUIVector[0]->setPedal (audio.getPedal(1));
     }
-    if (comboBoxThatHasChanged == &comboBoxs[1])
+    if (comboBoxThatHasChanged == &*comboBoxVector[1])
     {
         audio.setPedalPtr(2,comboBoxThatHasChanged->getSelectedId());
-        pedalGUI[1].setPedal (audio.getPedal(2));
+        pedalGUIVector[1]->setPedal (audio.getPedal(2));
     }
         
-    if (comboBoxThatHasChanged == &comboBoxs[2])
+    if (comboBoxThatHasChanged == &*comboBoxVector[2])
     {
         audio.setPedalPtr(3,comboBoxThatHasChanged->getSelectedId());
-        pedalGUI[3].setPedal (audio.getPedal(3));
+        pedalGUIVector[3]->setPedal (audio.getPedal(3));
     }
         
-    if (comboBoxThatHasChanged == &comboBoxs[3])
+    if (comboBoxThatHasChanged == &*comboBoxVector[3])
     {
         audio.setPedalPtr(4,comboBoxThatHasChanged->getSelectedId());
-        pedalGUI[4].setPedal (audio.getPedal(4));
+        pedalGUIVector[4]->setPedal (audio.getPedal(4));
     }
     
     if(comboBoxThatHasChanged == &pedalAmountSelector)
