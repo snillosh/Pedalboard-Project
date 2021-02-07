@@ -153,4 +153,9 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         audio.setPedalPtr4(comboBoxThatHasChanged->getSelectedId());
         pedalGUI[4].setPedal (audio.getPedal4());
     }
+    
+    if(comboBoxThatHasChanged == &pedalAmountSelector)
+    {
+        pedalAmount = comboBoxThatHasChanged->getSelectedId();
+    }
 }
