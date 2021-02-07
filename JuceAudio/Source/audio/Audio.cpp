@@ -107,102 +107,102 @@ void Audio::audioDeviceStopped()
 }
 
 
-Pedal* Audio::getPedal1()
-{
-    return pedalPtr1;
-}
-
-Pedal* Audio::getPedal2()
-{
-    return pedalPtr2;
-}
-
-Pedal* Audio::getPedal3()
-{
-    return pedalPtr3;
-}
-
-Pedal* Audio::getPedal4()
-{
-    return pedalPtr4;
-}
-
-Pedal* Audio::getPedal5()
-{
-    return pedalPtr5;
-}
-
-Pedal* Audio::getPedal6()
-{
-    return pedalPtr6;
-}
-
-
-
-void Audio::setPedalPtr1(int index)
-{
-    // these long if else need to be changed to be more concise
-    if (index == 1)
-        pedalPtr1 = &phaser;
-    if (index == 2)
-        pedalPtr1 = &compressor;
-    if (index == 3)
-        pedalPtr1 = &reverberation;
-    else if (index == 4)
-        pedalPtr1 = &delay;
-}
-void Audio::setPedalPtr2(int index)
+Pedal* Audio::getPedal(int index)
 {
     if (index == 1)
-        pedalPtr2 = &phaser;
+    {
+        return pedalPtr1;
+    }
     if (index == 2)
-        pedalPtr2 = &compressor;
+    {
+        return pedalPtr2;
+    }
     if (index == 3)
-        pedalPtr2 = &reverberation;
-    else if (index == 4)
-        pedalPtr2 = &delay;
+    {
+        return pedalPtr3;
+    }
+    if (index == 4)
+    {
+        return pedalPtr4;
+    }
+    if (index == 5)
+    {
+        return pedalPtr5;
+    }
+    if (index == 6)
+    {
+        return pedalPtr6;
+    }
 }
-void Audio::setPedalPtr3(int index)
+
+
+
+void Audio::setPedalPtr(int pedalToSet ,int index)
 {
-    if (index == 1)
-        pedalPtr3 = &phaser;
-    if (index == 2)
-        pedalPtr3 = &compressor;
-    if (index == 3)
-        pedalPtr3 = &reverberation;
-    else if (index == 4)
-        pedalPtr3 = &delay;
-}
-void Audio::setPedalPtr4(int index)
-{
-    if (index == 1)
-        pedalPtr4 = &phaser;
-    if (index == 2)
-        pedalPtr4 = &compressor;
-    if (index == 3)
-        pedalPtr4 = &reverberation;
-    else if (index == 4)
-        pedalPtr4 = &delay;
-}
-void Audio::setPedalPtr5(int index)
-{
-    if (index == 1)
-        pedalPtr5 = &phaser;
-    if (index == 2)
-        pedalPtr5 = &compressor;
-    if (index == 3)
-        pedalPtr5 = &reverberation;
-    else if (index == 4)
-        pedalPtr5 = &delay;
-}
-void Audio::setPedalPtr6(int index)
-{
-    if (index == 1)
-        pedalPtr6 = &phaser;
-    if (index == 2)
-        pedalPtr6 = &compressor;
-    if (index == 3)
-        pedalPtr6 = &reverberation;
-    else if (index == 4)
-        pedalPtr6 = &delay;
+    if (pedalToSet == 1)
+    {
+        if (index == 1)
+            pedalPtr1 = &phaser;
+        if (index == 2)
+            pedalPtr1 = &compressor;
+        if (index == 3)
+            pedalPtr1 = &reverberation;
+        else if (index == 4)
+            pedalPtr1 = &delay;
+    }
+    if (pedalToSet == 2)
+    {
+        if (index == 1)
+            pedalPtr2 = &phaser;
+        if (index == 2)
+            pedalPtr2 = &compressor;
+        if (index == 3)
+            pedalPtr2 = &reverberation;
+        else if (index == 4)
+            pedalPtr2 = &delay;
+    }
+    if (pedalToSet == 3)
+    {
+        if (index == 1)
+            pedalPtr3 = &phaser;
+        if (index == 2)
+            pedalPtr3 = &compressor;
+        if (index == 3)
+            pedalPtr3 = &reverberation;
+        else if (index == 4)
+            pedalPtr3 = &delay;
+    }
+    if (pedalToSet == 4)
+    {
+        if (index == 1)
+            pedalPtr4 = &phaser;
+        if (index == 2)
+            pedalPtr4 = &compressor;
+        if (index == 3)
+            pedalPtr4 = &reverberation;
+        else if (index == 4)
+            pedalPtr4 = &delay;
+    }
+    if (pedalToSet == 5)
+    {
+        if (index == 1)
+            pedalPtr5 = &phaser;
+        if (index == 2)
+            pedalPtr5 = &compressor;
+        if (index == 3)
+            pedalPtr5 = &reverberation;
+        else if (index == 4)
+            pedalPtr5 = &delay;
+    }
+    if (pedalToSet == 6)
+    {
+        if (index == 1)
+            pedalPtr6 = &phaser;
+        if (index == 2)
+            pedalPtr6 = &compressor;
+        if (index == 3)
+            pedalPtr6 = &reverberation;
+        else if (index == 4)
+            pedalPtr6 = &delay;
+    }
 }

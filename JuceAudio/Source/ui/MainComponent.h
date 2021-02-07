@@ -60,14 +60,16 @@ public:
     
 private:
     Audio& audio;
-    std::array<ComboBox,4> comboBoxs;
-    std::array<PedalGUI, 4> pedalGUI;
-    //std::vector <ComboBox> comboBoxVector;
-    //std::vector <PedalGUI> pedalGUIVector;
+    //std::array<ComboBox,4> comboBoxs;
+    //std::array<PedalGUI, 4> pedalGUI;
+    ComboBox pedalTypeSelector;
+    PedalGUI pedalGUI;
+    std::vector <ComboBox> comboBoxVector;
+    std::vector <PedalGUI> pedalGUIVector;
     RecordComponent recordComponent;
     ComboBox pedalAmountSelector;
     
-    int pedalAmount = 4;
+    int pedalAmount = 6;
     
 
     //==============================================================================
