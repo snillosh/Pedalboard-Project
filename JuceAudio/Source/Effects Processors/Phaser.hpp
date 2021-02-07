@@ -18,7 +18,7 @@ public:
     Phaser();
     ~Phaser();
     
-    void initialiser(double setSampleRate);
+    void initialise();
     
     void updateFilter();
     
@@ -43,8 +43,8 @@ private:
     OwnedArray<juce::dsp::FirstOrderTPTFilter<float>> allpassFilters;
     SinOscillator rateLFO;
     
-    float rate, depth, feedback, mix, output;
+    float rate = 0.04f, depth = 0.8f, feedback = 0.8f, mix = 0.5f, output = 1.0f;
     static constexpr int numStages = 4;
-    double sampleRate;
-    float allpassOutFinal;
+    double sampleRate = 44100.0;
+    float allpassOutFinal = 1.0f;
 };

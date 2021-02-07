@@ -17,7 +17,7 @@ Phaser::Phaser()
     {
         allpassFilters.add(new juce::dsp::FirstOrderTPTFilter<float>());
         allpassFilters[n]->setType(juce::dsp::FirstOrderTPTFilterType::allpass);
-        
+        allpassFilters[n]->snapToZero();
     }
 }
 
@@ -61,10 +61,10 @@ float Phaser::getParameter5() const
 {
 }
 //----------------------------------------
-void Phaser::initialiser(double setSampleRate)
+void Phaser::initialise()
 {
     dsp::ProcessSpec spec;
-    sampleRate = setSampleRate;
+    spec.sampleRate = sampleRate;
     rateLFO.setSampleRate(sampleRate);
     for (auto n = 0; n < numStages; ++n)
     {
@@ -75,18 +75,19 @@ void Phaser::initialiser(double setSampleRate)
 
 void Phaser::updateFilter()
 {
-    rate = 0.04f;
-    depth = 1.0f;
+    rate = 10.0f;
+    depth = 0.8f;
     mix = 0.5f;
     feedback = 0.8f;
     rateLFO.setFrequency(rate);
     rateLFO.setGain(depth);
+    float phaserPositionInHertz = (rateLFO.nextSample() * 0.5f) + 0.5f;
+    phaserPositionInHertz = (phaserPositionInHertz * 9702.0f) + 98.0f;
+    DBG("PHASE POSITON IN HERTZ: " << phaserPositionInHertz);
     for (auto n = 0; n < numStages; n++)
     {
-        float phaserPositionInHertz = (rateLFO.nextSample() * 0.5f) + 0.5f;
-        phaserPositionInHertz = (phaserPositionInHertz * 9702.0f) + 98.0f;
         allpassFilters[n]->setCutoffFrequency(phaserPositionInHertz);
-        
+        allpassFilters[n]->snapToZero();
     }
 }
 
@@ -95,16 +96,17 @@ float Phaser::process(float input)
     if (isOn())
     {
         updateFilter();
-        
-        float allpass1 = allpassFilters[0]->processSample(0, input) + (allpassOutFinal * feedback);
-        float allpass2 = allpassFilters[1]->processSample(0, allpass1);
-        float allpass3 = allpassFilters[2]->processSample(0, allpass2);
-        allpassOutFinal = allpassFilters[3]-> processSample(0, allpass3);
+        float allpass1 = allpassFilters[0]->processSample(1, input) + (allpassOutFinal * feedback);
+        float allpass2 = allpassFilters[1]->processSample(1, allpass1);
+        float allpass3 = allpassFilters[2]->processSample(1, allpass2);
+        allpassOutFinal = allpassFilters[3]-> processSample(1, allpass3);
         output = (mix * allpassOutFinal) + ((1.0f - mix) * input);
         return output;
     }
     else
+    {
         return input;
+    }
 }
 
 

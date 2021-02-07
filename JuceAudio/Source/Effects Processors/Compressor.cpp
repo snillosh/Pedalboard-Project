@@ -64,7 +64,14 @@ float Compressor::getParameter5() const
 //---------------------------------------------
 void Compressor::intitialise()
 {
+    dsp::ProcessSpec spec;
     peak.initalise(0.001 * 44100);
+    compress.setThreshold(20);
+    compress.setRatio(16);
+    compress.setAttack(16);
+    compress.setRelease(100);
+    compress.prepare(spec);
+    
 }
 
 float Compressor::Compress(float x){
@@ -82,9 +89,8 @@ float Compressor::process(float input)
 {
     if (isOn())
     {
-        peakValue = peak.process(input);
-        gainReduction = Compress(peakValue);
-        return input * gainReduction * makeUp;
+        DBG("COMPRESSION IN ACTION");
+        return compress.processSample(0, input);
     }
     else
     {

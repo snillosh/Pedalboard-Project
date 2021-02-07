@@ -35,16 +35,16 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     pedalAmountSelector.addListener(this);
     addAndMakeVisible(pedalAmountSelector);
     
-    pedalGUI[0].setPedal (audio.getPedal1());
+    pedalGUI[0].setPedal (audio.getPedal(1));
     addAndMakeVisible(pedalGUI[0]);
     
-    pedalGUI[1].setPedal (audio.getPedal2());
+    pedalGUI[1].setPedal (audio.getPedal(2));
     addAndMakeVisible(pedalGUI[1]);
     
-    pedalGUI[2].setPedal (audio.getPedal3());
+    pedalGUI[2].setPedal (audio.getPedal(3));
     addAndMakeVisible(pedalGUI[2]);
     
-    pedalGUI[3].setPedal (audio.getPedal4());
+    pedalGUI[3].setPedal (audio.getPedal(4));
     addAndMakeVisible(pedalGUI[3]);
     
     addAndMakeVisible(recordComponent);
@@ -133,25 +133,25 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 {
     if (comboBoxThatHasChanged == &comboBoxs[0])
     {
-        audio.setPedalPtr1(comboBoxThatHasChanged->getSelectedId());
-        pedalGUI[0].setPedal (audio.getPedal1());
+        audio.setPedalPtr(1, comboBoxThatHasChanged->getSelectedId());
+        pedalGUI[0].setPedal (audio.getPedal(1));
     }
     if (comboBoxThatHasChanged == &comboBoxs[1])
     {
-        audio.setPedalPtr2(comboBoxThatHasChanged->getSelectedId());
-        pedalGUI[1].setPedal (audio.getPedal2());
+        audio.setPedalPtr(2,comboBoxThatHasChanged->getSelectedId());
+        pedalGUI[1].setPedal (audio.getPedal(2));
     }
         
     if (comboBoxThatHasChanged == &comboBoxs[2])
     {
-        audio.setPedalPtr3(comboBoxThatHasChanged->getSelectedId());
-        pedalGUI[3].setPedal (audio.getPedal3());
+        audio.setPedalPtr(3,comboBoxThatHasChanged->getSelectedId());
+        pedalGUI[3].setPedal (audio.getPedal(3));
     }
         
     if (comboBoxThatHasChanged == &comboBoxs[3])
     {
-        audio.setPedalPtr4(comboBoxThatHasChanged->getSelectedId());
-        pedalGUI[4].setPedal (audio.getPedal4());
+        audio.setPedalPtr(4,comboBoxThatHasChanged->getSelectedId());
+        pedalGUI[4].setPedal (audio.getPedal(4));
     }
     
     if(comboBoxThatHasChanged == &pedalAmountSelector)

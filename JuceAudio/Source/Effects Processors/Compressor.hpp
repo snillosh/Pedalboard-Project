@@ -47,4 +47,5 @@ private:
     float peakValue = 0;
     float gainReduction = 0;
     peakDetection peak;
+    dsp::Compressor<float> compress;
 };
