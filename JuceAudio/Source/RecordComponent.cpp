@@ -47,7 +47,7 @@ void RecordComponent::paint (juce::Graphics& g)
 void RecordComponent::resized()
 {
     auto r = getLocalBounds();
-    auto row = r.removeFromTop (getHeight() / 2);
+    auto row = r.removeFromTop (getHeight());
     playButton.setBounds (row.removeFromLeft (getWidth() / 3));
     recordButton.setBounds (row.removeFromLeft(getWidth() / 3));
     saveButton.setBounds ( row.removeFromLeft(getWidth() / 3));

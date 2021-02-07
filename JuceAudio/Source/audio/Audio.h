@@ -33,6 +33,8 @@ public:
     Pedal* getPedal2();
     Pedal* getPedal3();
     Pedal* getPedal4();
+    Pedal* getPedal5();
+    Pedal* getPedal6();
     
     /** Returns the audio device manager, don't keep a copy of it! */
     AudioDeviceManager& getAudioDeviceManager() { return audioDeviceManager;}
@@ -46,11 +48,14 @@ public:
                                 int numSamples) override;
     void audioDeviceAboutToStart (AudioIODevice* device) override;
     void audioDeviceStopped() override;
-    void setPedalPtr1(int index);
     
+    void setPedalPtr1(int index);
     void setPedalPtr2(int index);
     void setPedalPtr3(int index);
     void setPedalPtr4(int index);
+    void setPedalPtr5(int index);
+    void setPedalPtr6(int index);
+    
 private:
     AudioDeviceManager audioDeviceManager;
     //std::array<Pedal, 4> pedal;
@@ -62,6 +67,8 @@ private:
     Pedal* pedalPtr2;
     Pedal* pedalPtr3;
     Pedal* pedalPtr4;
+    Pedal* pedalPtr5;
+    Pedal* pedalPtr6;
     
     double sampleRate;
 };

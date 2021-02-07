@@ -36,6 +36,8 @@ Audio::Audio()
     pedalPtr2 = &compressor;
     pedalPtr3 = &reverberation;
     pedalPtr4 = &delay;
+    pedalPtr5 = &delay;
+    pedalPtr6 = &delay;
 }
 
 Audio::~Audio()
@@ -72,7 +74,9 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
         auto pedalProcessSlot2 = pedalPtr2->process(pedalProcessSlot1);
         auto pedalProcessSlot3 = pedalPtr3->process(pedalProcessSlot2);
         auto pedalProcessSlot4 = pedalPtr4->process(pedalProcessSlot3);
-        auto output = pedalProcessSlot4;
+        auto pedalProcessSlot5 = pedalPtr5->process(pedalProcessSlot4);
+        auto pedalProcessSlot6 = pedalPtr6->process(pedalProcessSlot5);
+        auto output = pedalProcessSlot6;
         
         if (output > 1)
         {
@@ -123,6 +127,17 @@ Pedal* Audio::getPedal4()
     return pedalPtr4;
 }
 
+Pedal* Audio::getPedal5()
+{
+    return pedalPtr5;
+}
+
+Pedal* Audio::getPedal6()
+{
+    return pedalPtr6;
+}
+
+
 
 void Audio::setPedalPtr1(int index)
 {
@@ -168,4 +183,26 @@ void Audio::setPedalPtr4(int index)
         pedalPtr4 = &reverberation;
     else if (index == 4)
         pedalPtr4 = &delay;
+}
+void Audio::setPedalPtr5(int index)
+{
+    if (index == 1)
+        pedalPtr5 = &phaser;
+    if (index == 2)
+        pedalPtr5 = &compressor;
+    if (index == 3)
+        pedalPtr5 = &reverberation;
+    else if (index == 4)
+        pedalPtr5 = &delay;
+}
+void Audio::setPedalPtr6(int index)
+{
+    if (index == 1)
+        pedalPtr6 = &phaser;
+    if (index == 2)
+        pedalPtr6 = &compressor;
+    if (index == 3)
+        pedalPtr6 = &reverberation;
+    else if (index == 4)
+        pedalPtr6 = &delay;
 }

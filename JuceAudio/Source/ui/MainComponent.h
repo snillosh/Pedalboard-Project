@@ -62,6 +62,9 @@ private:
     std::array<ComboBox,4> comboBoxs;
     std::array<PedalGUI, 4> pedalGUI;
     RecordComponent recordComponent;
+    ComboBox pedalAmountSelector;
+    
+    int pedalAmount = 4;
     
 
     //==============================================================================

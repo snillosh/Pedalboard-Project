@@ -1,2 +1,4 @@
 JuceAudio/Builds
 JuceAudio/JuceLibraryCode
+JuceAudio/Source/audio/Storange.cpp
+JuceAudio/Source/audio/Storange.h
