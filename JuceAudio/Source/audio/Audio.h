@@ -12,12 +12,15 @@
 
 #include <JuceHeader.h>
 #include <array>
+#include <vector>
+#include <atomic>
 #include "Pedal.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Delay.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Compressor.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Phaser.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Reverberation.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/None.h"
+#include "Record.h"
 /** Class containing all audio processes */
 
 class Audio :   public MidiInputCallback,
@@ -32,6 +35,7 @@ public:
     
     Pedal* getPedal(int pedalToGet);
     void setPedalPtr(int pedalToSet ,int index);
+    Record* getRecord() {return &record;}
 
     AudioDeviceManager& getAudioDeviceManager() { return audioDeviceManager;}
     
@@ -45,21 +49,19 @@ public:
     void audioDeviceAboutToStart (AudioIODevice* device) override;
     void audioDeviceStopped() override;
     
-private:
-    AudioDeviceManager audioDeviceManager;
-    
     Delay delay;
     Phaser phaser;
     Compressor compressor;
     Reverberation reverberation;
     None none;
     
-    Pedal* pedalPtr1;
-    Pedal* pedalPtr2;
-    Pedal* pedalPtr3;
-    Pedal* pedalPtr4;
-    Pedal* pedalPtr5;
-    Pedal* pedalPtr6;
+private:
+    AudioDeviceManager audioDeviceManager;
+    Record record;
+    
+    
+    
+    std::array <Pedal* , 6> pedalPtr;
     
     double sampleRate;
 };

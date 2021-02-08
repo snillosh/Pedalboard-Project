@@ -14,7 +14,8 @@
 
 Record::Record()
 {
-    audioBuffer.fill (0.f);
+    audioBuffer.setSize(1, 176400);
+    audioBuffer.clear();
 }
 
 Record::~Record()
@@ -47,15 +48,20 @@ float Record::processSample(float input)
     auto output = 0.f;
     if (playState.load() == true)
     {
-        output = audioBuffer[bufferPosition];
+        float* audioSample;
+        audioSample = audioBuffer.getWritePointer(0, bufferPosition);
+        //play
+        output = *audioSample;
+        //click 4 times each bufferLength
+        if ((bufferPosition % (176400 / 8)) == 0)
+            *audioSample += 0.25f;
         
-        if((bufferPosition % (audioBuffer.size() / 4)) == 0)
-            output += 0.25;
-        
+        //record
         if (recordState.load() == true)
-            audioBuffer[bufferPosition] = input;
+            *audioSample = input + output;
         
-        if (++bufferPosition == audioBuffer.size())
+        //increment and cycle the buffer counter
+        if (++bufferPosition == 176400)
             bufferPosition = 0;
     }
     return output;

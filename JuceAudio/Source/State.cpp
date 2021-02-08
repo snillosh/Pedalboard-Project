@@ -8,18 +8,4 @@
   ==============================================================================
 */
 
-#include "State.h"
 
-const Identifier State::PARAMETERS = "PARAMETERS";
-const Identifier State::SliderValue = "SliderValue";
-const Identifier State::ButtonValue = "ButtonValue";
-
-State::State()
-{
-    valueTree = ValueTree (PARAMETERS);
-    DBG(valueTree.toXmlString());
-}
-State::~State()
-{
-    
-}

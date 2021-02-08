@@ -102,7 +102,6 @@ public:
 private:
     std::unique_ptr<MainWindow> mainWindow;
     Audio audio;
-    ValueTree valueTree;
 };
 
 //==============================================================================

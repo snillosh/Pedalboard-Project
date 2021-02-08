@@ -32,5 +32,5 @@ private:
     std::atomic<int> playState {false};
     
     unsigned int bufferPosition {0};
-    std::array<float, 88200> audioBuffer;
+    AudioBuffer<float> audioBuffer;
 };

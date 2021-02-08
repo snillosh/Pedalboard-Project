@@ -92,7 +92,7 @@ void MainComponent::paint (Graphics& g)
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
     g.setColour(Colours::blue);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
-    g.setColour(Colours::yellow);
+    g.setColour(Colours::maroon);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
     g.setColour(Colours::sandybrown);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
@@ -141,23 +141,27 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         audio.setPedalPtr(1, comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[0]->setPedal (audio.getPedal(1));
+        pedalGUIVector[0]->updateParametes(audio.getPedal(1));
     }
     if (comboBoxThatHasChanged == &*comboBoxVector[1])
     {
         audio.setPedalPtr(2,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[1]->setPedal (audio.getPedal(2));
+        pedalGUIVector[1]->updateParametes(audio.getPedal(2));
     }
         
     if (comboBoxThatHasChanged == &*comboBoxVector[2])
     {
         audio.setPedalPtr(3,comboBoxThatHasChanged->getSelectedId());
-        pedalGUIVector[3]->setPedal (audio.getPedal(3));
+        pedalGUIVector[2]->setPedal (audio.getPedal(3));
+        pedalGUIVector[2]->updateParametes(audio.getPedal(3));
     }
         
     if (comboBoxThatHasChanged == &*comboBoxVector[3])
     {
         audio.setPedalPtr(4,comboBoxThatHasChanged->getSelectedId());
-        pedalGUIVector[4]->setPedal (audio.getPedal(4));
+        pedalGUIVector[3]->setPedal (audio.getPedal(4));
+        pedalGUIVector[3]->updateParametes(audio.getPedal(4));
     }
     
     if(comboBoxThatHasChanged == &pedalAmountSelector)
