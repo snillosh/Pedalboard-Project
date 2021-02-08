@@ -42,7 +42,6 @@ PedalGUI::PedalGUI()
 
 PedalGUI::~PedalGUI()
 {
-    
 }
 
 void PedalGUI::setPedal(Pedal* pedalPtr)
@@ -52,7 +51,6 @@ void PedalGUI::setPedal(Pedal* pedalPtr)
 
 void PedalGUI::resized()
 {
-    //auto r2 = getLocalBounds();
     auto r = getLocalBounds();
     auto row = r.removeFromTop((getHeight() / 8) * 7);
     auto row2 = r.removeFromBottom(getHeight() / 8);

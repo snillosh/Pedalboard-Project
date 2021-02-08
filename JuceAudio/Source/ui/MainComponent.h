@@ -40,7 +40,6 @@ public:
     void paint (Graphics&) override;
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
     
-    
     //MenuBarEnums/MenuBarModel=====================================================
     enum Menus
     {
@@ -61,17 +60,13 @@ public:
     
 private:
     Audio& audio;
-    //std::array<ComboBox,4> comboBoxs;
     
-    //std::vector <ComboBox> comboBoxVector;
     std::vector<std::unique_ptr<PedalGUI>> pedalGUIVector;
     std::vector<std::unique_ptr<ComboBox>> comboBoxVector;
     RecordComponent recordComponent;
     ComboBox pedalAmountSelector;
     
     int pedalAmount = 4;
-    
-
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

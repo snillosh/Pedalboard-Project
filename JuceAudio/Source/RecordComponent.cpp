@@ -14,8 +14,6 @@
 //==============================================================================
 RecordComponent::RecordComponent()
 {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
     playButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     playButton.setColour (TextButton::buttonColourId, Colours::lightblue);
     playButton.setColour (TextButton::buttonOnColourId, Colours::lightgrey);
@@ -33,7 +31,6 @@ RecordComponent::RecordComponent()
     saveButton.setColour (TextButton::buttonOnColourId, Colours::lightgrey);
     addAndMakeVisible (&saveButton);
     saveButton.addListener (this);
-
 }
 
 RecordComponent::~RecordComponent()
@@ -53,12 +50,23 @@ void RecordComponent::resized()
     saveButton.setBounds ( row.removeFromLeft(getWidth() / 3));
 }
 
-void RecordComponent::buttonClicked(Button *)
+void RecordComponent::buttonClicked(Button* button)
 {
+    if (recordPtr == nullptr)
+        return;
     
-}
-
-void RecordComponent::setRecord(Record *record)
-{
-    recordPtr = record;
+    if (button == &playButton)
+    {
+        recordPtr->setPlayState( ! recordPtr->isPlaying());
+        playButton.setToggleState ( recordPtr->isPlaying(), dontSendNotification);
+        if (recordPtr->isPlaying())
+            playButton.setButtonText("Stop");
+        else
+            playButton.setButtonText("Play");
+    }
+    if ( button == &recordButton)
+    {
+        recordPtr->setRecordState( ! recordPtr->isRecording());
+        recordButton.setToggleState(recordPtr->isRecording(), dontSendNotification);
+    }
 }

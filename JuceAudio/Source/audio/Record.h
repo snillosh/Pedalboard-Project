@@ -17,6 +17,20 @@ public:
     Record();
     ~Record();
     
-private:
+    void setPlayState (bool newState);
     
+    bool isPlaying() const;
+    
+    void setRecordState (bool newState);
+    
+    bool isRecording() const;
+    
+    float processSample (float input);
+    
+private:
+    std::atomic<int> recordState {false};
+    std::atomic<int> playState {false};
+    
+    unsigned int bufferPosition {0};
+    std::array<float, 88200> audioBuffer;
 };

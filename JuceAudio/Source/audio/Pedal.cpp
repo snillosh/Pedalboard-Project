@@ -12,12 +12,10 @@
 
 Pedal::Pedal()
 {
-    
 }
 
 Pedal::~Pedal()
 {
-    
 }
 
 void Pedal::setOnOffState(const bool newState)

@@ -26,7 +26,7 @@ public:
     void setRecord (Record* recordPtr);
     void paint (juce::Graphics&) override;
     void resized() override;
-    void buttonClicked (Button*) override;
+    void buttonClicked (Button* button) override;
 
 private:
     Record* recordPtr             {nullptr};

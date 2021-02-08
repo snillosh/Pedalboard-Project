@@ -23,14 +23,12 @@ Audio::Audio()
     audioDeviceManager.addAudioCallback (this);
     
     dsp::ProcessSpec spec;
-    
     sampleRate = spec.sampleRate;
     
     delay.initialise();
     compressor.intitialise();
     phaser.initialise();
     reverberation.initialise();
-    
     
     pedalPtr1 = &none;
     pedalPtr2 = &none;
@@ -46,12 +44,8 @@ Audio::~Audio()
     audioDeviceManager.removeMidiInputCallback ("", this);
 }
 
-
 void Audio::handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message)
 {
-    //All MIDI inputs arrive here
-    DBG ("Midi event...");
-
 }
 
 void Audio::audioDeviceIOCallback (const float** inputChannelData,
@@ -60,7 +54,7 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
                                            int numOutputChannels,
                                            int numSamples)
 {
-    //All audio processing is done here
+
     const float* inL = inputChannelData[0];
 
     float *outL = outputChannelData[0];
@@ -68,17 +62,14 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
     
     while(numSamples--)
     {
-        //This needs to be changed to use the JUCE audio mixer
         auto input = *inL;
         auto pedalProcessSlot1 = pedalPtr1->process(input);
         auto pedalProcessSlot2 = pedalPtr2->process(pedalProcessSlot1);
         auto pedalProcessSlot3 = pedalPtr3->process(pedalProcessSlot2);
         auto pedalProcessSlot4 = pedalPtr4->process(pedalProcessSlot3);
-        /*
         auto pedalProcessSlot5 = pedalPtr5->process(pedalProcessSlot4);
         auto pedalProcessSlot6 = pedalPtr6->process(pedalProcessSlot5);
-         */
-        auto output = pedalProcessSlot4;
+        auto output = pedalProcessSlot6;
         
         if (output > 1)
         {
@@ -100,14 +91,11 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
 
 void Audio::audioDeviceAboutToStart (AudioIODevice* device)
 {
-
 }
 
 void Audio::audioDeviceStopped()
 {
-
 }
-
 
 Pedal* Audio::getPedal(int pedalToGet)
 {

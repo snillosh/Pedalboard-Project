@@ -18,7 +18,8 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     for (int index = 0; index < 6; ++index)
       comboBoxVector.emplace_back(std::make_unique<ComboBox>());
     
-    for (auto& b : comboBoxVector){
+    for (auto& b : comboBoxVector)
+    {
         addAndMakeVisible(b.get());
         b.get()->addItem ("Phaser", 1);
         b.get()->addItem ("Compressor", 2);
@@ -56,7 +57,6 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
 
 MainComponent::~MainComponent()
 {
-    
 }
 
 //==============================================================================
@@ -84,14 +84,8 @@ void MainComponent::resized()
 }
 void MainComponent::paint (Graphics& g)
 {
-    
     auto r = getLocalBounds();
-    /*
-    auto row = r.removeFromTop(300);
-    int halfWidth = getWidth() / 2.0;
-    int halfHeight = getHeight() / 2.0;
-    float threeQuarters = (getWidth() / 4) * 3;
-     */
+    
     g.setColour(Colours::green);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
     g.setColour(Colours::purple);
@@ -104,7 +98,6 @@ void MainComponent::paint (Graphics& g)
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
     g.setColour(Colours::lightgrey);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
-
 }
 
 //MenuBarCallbacks==============================================================

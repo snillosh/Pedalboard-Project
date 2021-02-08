@@ -31,9 +31,8 @@ public:
     ~Audio();
     
     Pedal* getPedal(int pedalToGet);
+    void setPedalPtr(int pedalToSet ,int index);
 
-    
-    /** Returns the audio device manager, don't keep a copy of it! */
     AudioDeviceManager& getAudioDeviceManager() { return audioDeviceManager;}
     
     void handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message) override;
@@ -46,16 +45,15 @@ public:
     void audioDeviceAboutToStart (AudioIODevice* device) override;
     void audioDeviceStopped() override;
     
-    void setPedalPtr(int pedalToSet ,int index);
-    
 private:
     AudioDeviceManager audioDeviceManager;
-    //std::array<Pedal, 4> pedal;
+    
     Delay delay;
     Phaser phaser;
     Compressor compressor;
     Reverberation reverberation;
     None none;
+    
     Pedal* pedalPtr1;
     Pedal* pedalPtr2;
     Pedal* pedalPtr3;
