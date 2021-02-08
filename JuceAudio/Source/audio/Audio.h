@@ -33,7 +33,7 @@ public:
     /** Destructor */
     ~Audio();
     
-    Pedal* getPedal(int pedalToGet);
+    Pedal* getPedal(int pedalToGet) const;
     void setPedalPtr(int pedalToSet ,int index);
     Record* getRecord() {return &record;}
 
@@ -49,11 +49,25 @@ public:
     void audioDeviceAboutToStart (AudioIODevice* device) override;
     void audioDeviceStopped() override;
     
+    Pedal* getDelayPtr();
+    Pedal* getPhaserPtr();
+    Pedal* getCompressorPtr();
+    Pedal* getReverberationPtr();
+    Pedal* getNonePtr();
+    
+    
     Delay delay;
     Phaser phaser;
     Compressor compressor;
     Reverberation reverberation;
     None none;
+    
+    /*
+    Phaser* phaserPtr = &phaser;
+    Delay* delayPtr = &delay;
+    Compressor* compressorPtr = &compressor;
+    Reverberation* reveberationPtr = &reverberation;
+     */
     
 private:
     AudioDeviceManager audioDeviceManager;

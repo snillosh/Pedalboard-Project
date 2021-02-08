@@ -141,27 +141,27 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         audio.setPedalPtr(1, comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[0]->setPedal (audio.getPedal(1));
-        pedalGUIVector[0]->updateParametes(audio.getPedal(1));
+        pedalGUIVector[0]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     if (comboBoxThatHasChanged == &*comboBoxVector[1])
     {
         audio.setPedalPtr(2,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[1]->setPedal (audio.getPedal(2));
-        pedalGUIVector[1]->updateParametes(audio.getPedal(2));
+        pedalGUIVector[1]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
         
     if (comboBoxThatHasChanged == &*comboBoxVector[2])
     {
         audio.setPedalPtr(3,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[2]->setPedal (audio.getPedal(3));
-        pedalGUIVector[2]->updateParametes(audio.getPedal(3));
+        pedalGUIVector[2]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
         
     if (comboBoxThatHasChanged == &*comboBoxVector[3])
     {
         audio.setPedalPtr(4,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[3]->setPedal (audio.getPedal(4));
-        pedalGUIVector[3]->updateParametes(audio.getPedal(4));
+        pedalGUIVector[3]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     
     if(comboBoxThatHasChanged == &pedalAmountSelector)

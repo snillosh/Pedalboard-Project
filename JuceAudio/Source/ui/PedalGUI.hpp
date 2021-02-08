@@ -25,11 +25,11 @@ public:
     void resized() override;
     void buttonClicked (Button* button) override;
     void sliderValueChanged (Slider* slider) override;
-    void updateParametes(Pedal* pedal);
+    void updateParametes(Pedal* delay, Pedal* phaser, Pedal* compressor, Pedal* reverberation, Pedal* none);
     
 private:
     Pedal* pedal           {nullptr};
-    Audio* audio           {nullptr};
+
     TextButton onOffButton {"Pedal is Off"};
     Slider parameterSlider1;
     Label parameterSlider1Label;

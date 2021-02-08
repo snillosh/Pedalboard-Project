@@ -37,6 +37,9 @@ Audio::Audio()
     pedalPtr[3] = &none;
     pedalPtr[4] = &none;
     pedalPtr[5] = &none;
+    
+    auto phaserRef = &phaser;
+    std::cout << "Phaser Audio : " << phaserRef << std::endl;
 }
 
 Audio::~Audio()
@@ -94,7 +97,7 @@ void Audio::audioDeviceStopped()
 {
 }
 
-Pedal* Audio::getPedal(int pedalToGet)
+Pedal* Audio::getPedal(int pedalToGet) const
 {
     if (pedalToGet == 1)
     {
@@ -202,4 +205,29 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         else if (index == 5)
             pedalPtr[5] = &none;
     }
+}
+
+Pedal* Audio::getDelayPtr()
+{
+    return &delay;
+}
+
+Pedal* Audio::getPhaserPtr()
+{
+    return &phaser;
+}
+
+Pedal* Audio::getCompressorPtr()
+{
+    return &compressor;
+}
+
+Pedal* Audio::getReverberationPtr()
+{
+    return &reverberation;
+}
+
+Pedal* Audio::getNonePtr()
+{
+    return &none;
 }

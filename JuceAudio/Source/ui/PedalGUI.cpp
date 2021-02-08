@@ -24,14 +24,14 @@ PedalGUI::PedalGUI()
     addAndMakeVisible(&parameterSlider1);
     parameterSlider1.addListener(this);
     parameterSlider1Label.attachToComponent(&parameterSlider1, false);
-    parameterSlider1Label.setText("Feedback Gain", dontSendNotification);
+    
     addAndMakeVisible(parameterSlider1Label);
 
     parameterSlider2.setSliderStyle(Slider::Rotary);
     parameterSlider2.setTextBoxStyle(Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
     addAndMakeVisible(&parameterSlider2);
     parameterSlider2.addListener(this);
-    parameterSlider2Label.setText("Delay Time", dontSendNotification);
+    
     parameterSlider2Label.attachToComponent(&parameterSlider2, false);
     addAndMakeVisible(parameterSlider2Label);
     
@@ -101,22 +101,56 @@ void PedalGUI::sliderValueChanged (Slider* slider)
         pedal->setParameter5(parameterSlider5.getValue());
 }
 
-void PedalGUI::updateParametes(Pedal* pedal)
+void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *compressor, Pedal *reverberation, Pedal *none)
 {
-    if (pedal == &audio->delay)
+    if (pedal == delay)
     {
-        
+        parameterSlider1Label.setText("Feedback Gain", dontSendNotification);
+        parameterSlider2Label.setText("Delay Time", dontSendNotification);
+        parameterSlider1.setVisible(true);
+        parameterSlider2.setVisible(true);
+        parameterSlider3.setVisible(false);
+        parameterSlider4.setVisible(false);
+        parameterSlider5.setVisible(false);
     }
-    if (pedal == &audio->compressor)
+    if (pedal == compressor)
     {
-        
+        parameterSlider1Label.setText("Attack", dontSendNotification);
+        parameterSlider2Label.setText("Release", dontSendNotification);
+        parameterSlider1.setVisible(true);
+        parameterSlider2.setVisible(true);
+        parameterSlider3.setVisible(true);
+        parameterSlider4.setVisible(false);
+        parameterSlider5.setVisible(false);
     }
-    if (pedal == &audio->reverberation)
+    if (pedal == reverberation)
     {
-        
+        parameterSlider1Label.setText("Size", dontSendNotification);
+        parameterSlider2Label.setText("Mix", dontSendNotification);
+        parameterSlider1.setVisible(true);
+        parameterSlider2.setVisible(true);
+        parameterSlider3.setVisible(true);
+        parameterSlider4.setVisible(true);
+        parameterSlider5.setVisible(false);
     }
-    else if (pedal == &audio->phaser)
+    if (pedal == phaser)
     {
-        
+        parameterSlider1Label.setText("Rate", dontSendNotification);
+        parameterSlider2Label.setText("Depth", dontSendNotification);
+        parameterSlider1.setVisible(true);
+        parameterSlider2.setVisible(true);
+        parameterSlider3.setVisible(true);
+        parameterSlider4.setVisible(true);
+        parameterSlider5.setVisible(true);
+    }
+    else if (pedal == none)
+    {
+        parameterSlider1Label.setText(" ", dontSendNotification);
+        parameterSlider2Label.setText(" ", dontSendNotification);
+        parameterSlider1.setVisible(false);
+        parameterSlider2.setVisible(false);
+        parameterSlider3.setVisible(false);
+        parameterSlider4.setVisible(false);
+        parameterSlider5.setVisible(false);
     }
 }
