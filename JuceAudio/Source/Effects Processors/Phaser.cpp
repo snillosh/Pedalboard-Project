@@ -76,10 +76,7 @@ void Phaser::initialise()
     dsp::ProcessSpec spec;
     spec.sampleRate = sampleRate;
     rateLFO.setSampleRate(sampleRate);
-    rate = 0.5f;
-    depth = 1.0f;
-    mix = 0.5f;
-    feedback = 0.8f;
+    
     for (auto n = 0; n < numStages; ++n)
     {
         allpassFilters[n]->prepare (spec);
@@ -113,7 +110,6 @@ float Phaser::process(float input)
     }
     else
     {
-        updateFilter();
         return input;
     }
 }

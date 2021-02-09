@@ -31,7 +31,7 @@ PedalGUI::PedalGUI()
     parameterSlider1.addListener(this);
     //Slider 1 Label Config
     //-------------------------------------------------------------------------
-    parameterSlider1Label.attachToComponent(&parameterSlider1, false);
+    parameterSlider1Label.attachToComponent(&parameterSlider1, true);
     parameterSlider1Label.setColour(TextEditor::textColourId, Colours::black);
     addAndMakeVisible(parameterSlider1Label);
     //Slider 2 Config
@@ -44,7 +44,7 @@ PedalGUI::PedalGUI()
     parameterSlider2.addListener(this);
     //Slider 2 Label Config
     //-------------------------------------------------------------------------
-    parameterSlider2Label.attachToComponent(&parameterSlider2, false);
+    parameterSlider2Label.attachToComponent(&parameterSlider2, true);
     addAndMakeVisible(parameterSlider2Label);
     //Slider 3 Config
     //-------------------------------------------------------------------------
@@ -56,7 +56,7 @@ PedalGUI::PedalGUI()
     parameterSlider3.addListener(this);
     //Slider 3 Label Config
     //-------------------------------------------------------------------------
-    parameterSlider3Label.attachToComponent(&parameterSlider3, false);
+    parameterSlider3Label.attachToComponent(&parameterSlider3, true);
     addAndMakeVisible(parameterSlider3Label);
     //Slider 4 Config
     //-------------------------------------------------------------------------
@@ -68,7 +68,7 @@ PedalGUI::PedalGUI()
     parameterSlider4.addListener(this);
     //Slider 4 Label Config
     //-------------------------------------------------------------------------
-    parameterSlider4Label.attachToComponent(&parameterSlider4, false);
+    parameterSlider4Label.attachToComponent(&parameterSlider4, true);
     addAndMakeVisible(parameterSlider4Label);
     //Slider 5 Config
     //-------------------------------------------------------------------------
@@ -81,7 +81,7 @@ PedalGUI::PedalGUI()
     parameterSlider5.addListener(this);
     //Slider 5 Label Config
     //-------------------------------------------------------------------------
-    parameterSlider5Label.attachToComponent(&parameterSlider5, false);
+    parameterSlider5Label.attachToComponent(&parameterSlider5, true);
     addAndMakeVisible(parameterSlider5Label);
     //-------------------------------------------------------------------------
 }
@@ -97,15 +97,13 @@ void PedalGUI::setPedal(Pedal* pedalPtr)
 
 void PedalGUI::resized()
 {
-    auto r = getLocalBounds();
-    auto row = r.removeFromTop((getHeight() / 8) * 7);
-    onOffButton.setBounds(getWidth() / 4, getHeight() * 0.7, getWidth() * 0.5, getHeight() * 0.15);
-    parameterSlider1.setBounds(row.removeFromBottom(getHeight() / 6));
-    parameterSlider2.setBounds(row.removeFromBottom(getHeight() / 6));
-    parameterSlider3.setBounds(row.removeFromBottom(getHeight() / 6));
-    parameterSlider4.setBounds(row.removeFromBottom(getHeight() / 6));
-    parameterSlider5.setBounds(row.removeFromBottom(getHeight() / 6));
-
+    onOffButton.setBounds(getWidth() / 4, getHeight() * 0.7, getWidth() * 0.25, getHeight() * 0.10);
+    
+    parameterSlider1.setBounds(getWidth() / 3, getHeight() / 6, getWidth() / 3, getWidth() / 3);
+    parameterSlider2.setBounds(getWidth() / 3, ((getHeight() / 48)), 100, 100);
+    parameterSlider3.setBounds(getWidth() / 3, ((getHeight() / 6) ), 100, 100);
+    parameterSlider4.setBounds(getWidth() / 3, ((getHeight() / 6) * 2), 100, 100);
+    parameterSlider5.setBounds(getWidth() / 3, ((getHeight() / 6) * 3), 100, 100);
 }
 
 void PedalGUI::paint(juce::Graphics &g)
@@ -116,6 +114,8 @@ void PedalGUI::paint(juce::Graphics &g)
         g.fillRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5);
         g.setColour(Colours::transparentBlack);
         g.drawRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5, 5);
+        g.setColour(Colours::transparentBlack);
+        g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
     }
     if (pedalColour == 1)
     {
@@ -123,6 +123,14 @@ void PedalGUI::paint(juce::Graphics &g)
         g.fillRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5);
         g.setColour(Colours::black);
         g.drawRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5, 5);
+        g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
+        if (pedal->isOn())
+        {
+            g.setColour(Colours::red);
+            g.fillEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25);
+            g.setColour(Colours::black);
+            g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
+        }
     }
     if (pedalColour == 2)
     {
@@ -130,6 +138,14 @@ void PedalGUI::paint(juce::Graphics &g)
         g.fillRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5);
         g.setColour(Colours::black);
         g.drawRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5, 5);
+        g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
+        if (pedal->isOn())
+        {
+            g.setColour(Colours::red);
+            g.fillEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25);
+            g.setColour(Colours::black);
+            g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
+        }
     }
     if (pedalColour == 3)
     {
@@ -137,13 +153,29 @@ void PedalGUI::paint(juce::Graphics &g)
         g.fillRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5);
         g.setColour(Colours::black);
         g.drawRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5, 5);
+        g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
+        if (pedal->isOn())
+        {
+            g.setColour(Colours::red);
+            g.fillEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25);
+            g.setColour(Colours::black);
+            g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
+        }
     }
     if (pedalColour == 4)
     {
-        g.setColour(Colours::orangered);
+        g.setColour(Colours::orange);
         g.fillRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5);
         g.setColour(Colours::black);
         g.drawRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5, 5);
+        g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
+        if (pedal->isOn())
+        {
+            g.setColour(Colours::red);
+            g.fillEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25);
+            g.setColour(Colours::black);
+            g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
+        }
     }
     
 }
@@ -155,9 +187,15 @@ void PedalGUI::buttonClicked(Button *button)
         pedal->setOnOffState( ! pedal->isOn());
         onOffButton.setToggleState(pedal->isOn(), dontSendNotification);
         if (pedal->isOn())
-            onOffButton.setButtonText ("Pedal is On");
+        {
+            repaint();
+        }
+            
         else
-            onOffButton.setButtonText("Pedal is Off");
+        {
+            repaint();
+        }
+            
     }
 }
 
@@ -182,8 +220,8 @@ void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *tremolo, Peda
         setPedalColour(1);
         repaint();
         parameterSlider1Label.setText(" ", dontSendNotification);
-        parameterSlider2Label.setText("Delay Time", dontSendNotification);
-        parameterSlider3Label.setText("Feedback Gain", dontSendNotification);
+        parameterSlider2Label.setText("Time", dontSendNotification);
+        parameterSlider3Label.setText("Feedback", dontSendNotification);
         parameterSlider4Label.setText(" ", dontSendNotification);
         parameterSlider5Label.setText(" ", dontSendNotification);
         
@@ -217,7 +255,7 @@ void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *tremolo, Peda
         repaint();
         parameterSlider1Label.setText(" ", dontSendNotification);
         parameterSlider2Label.setText("Cutoff", dontSendNotification);
-        parameterSlider3Label.setText("Reverb Amount", dontSendNotification);
+        parameterSlider3Label.setText("Amount", dontSendNotification);
         parameterSlider4Label.setText(" ", dontSendNotification);
         parameterSlider5Label.setText(" ", dontSendNotification);
         
@@ -263,12 +301,6 @@ void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *tremolo, Peda
         parameterSlider5.setVisible(false);
     }
 }
-
-void PedalGUI::resetButton()
-{
-    pedal->setOnOffState(false);
-}
-
 
 void PedalGUI::setPedalColour(int colour)
 {

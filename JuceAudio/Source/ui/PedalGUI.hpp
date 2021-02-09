@@ -28,7 +28,6 @@ public:
     void buttonClicked (Button* button) override;
     void sliderValueChanged (Slider* slider) override;
     void updateParametes(Pedal* delay, Pedal* phaser, Pedal* tremolo, Pedal* reverberation, Pedal* none);
-    void resetButton();
     
     void setPedalColour(int colour);
     
@@ -37,7 +36,7 @@ private:
     
     int pedalColour;
     LookAndFeel_V4 otherLookAndFeel;
-    TextButton onOffButton {"Pedal is Off"};
+    TextButton onOffButton;
     
     Slider parameterSlider1;
     Slider parameterSlider2;

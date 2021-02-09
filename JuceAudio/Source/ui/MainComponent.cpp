@@ -144,14 +144,12 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         audio.setPedalPtr(1, comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[0]->setPedal (audio.getPedal(1));
-        pedalGUIVector[0]->resetButton();
         pedalGUIVector[0]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     if (comboBoxThatHasChanged == &*comboBoxVector[1])
     {
         audio.setPedalPtr(2,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[1]->setPedal (audio.getPedal(2));
-        pedalGUIVector[0]->resetButton();
         pedalGUIVector[1]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
         
@@ -159,7 +157,6 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         audio.setPedalPtr(3,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[2]->setPedal (audio.getPedal(3));
-        pedalGUIVector[0]->resetButton();
         pedalGUIVector[2]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
         
@@ -167,7 +164,6 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         audio.setPedalPtr(4,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[3]->setPedal (audio.getPedal(4));
-        pedalGUIVector[0]->resetButton();
         pedalGUIVector[3]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     
@@ -175,7 +171,6 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         audio.setPedalPtr(5,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[4]->setPedal (audio.getPedal(5));
-        pedalGUIVector[0]->resetButton();
         pedalGUIVector[4]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     
@@ -183,7 +178,6 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         audio.setPedalPtr(6,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[5]->setPedal (audio.getPedal(6));
-        pedalGUIVector[0]->resetButton();
         pedalGUIVector[5]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     
