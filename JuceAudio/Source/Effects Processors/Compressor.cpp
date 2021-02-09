@@ -23,74 +23,68 @@ Compressor::~Compressor()
 //------------------------------------------------
 void Compressor::setParameter1(float input)
 {
-    fThresh = input / 10.f;
 }
 float Compressor::getParameter1() const
 {
-    return fThresh;
+    return 0;
 }
 //---------------------------------------------
 void Compressor::setParameter2(float input)
 {
-    fRatio = ((input / 10.f) * 31.f) + 1.f;
+    depth = input / 10.0f;
 }
 float Compressor::getParameter2() const
 {
-    return fRatio;
+    return depth;
 }
 //---------------------------------------------
 void Compressor::setParameter3(float input)
 {
-    makeUp = input + 1.f;
+    rate = input * 2.0f;
 }
 float Compressor::getParameter3() const
 {
-    return makeUp;
+    return rate;
 }
 //---------------------------------------------
 void Compressor::setParameter4(float input)
 {
+
 }
 float Compressor::getParameter4() const
 {
+    return 0;
 }
 //---------------------------------------------
 void Compressor::setParameter5(float input)
 {
+    
 }
 float Compressor::getParameter5() const
 {
+    return 0;
 }
 //---------------------------------------------
 void Compressor::intitialise()
 {
-    dsp::ProcessSpec spec;
-    peak.initalise(0.001 * 44100);
-    compress.setThreshold(20);
-    compress.setRatio(16);
-    compress.setAttack(16);
-    compress.setRelease(100);
-    compress.prepare(spec);
-    
+    LFO.setSampleRate(sampleRate);
 }
 
-float Compressor::Compress(float x){
-    float y = 0.0;
-    if(x > fThresh){ // When the input siganl is above the threshold
-        y = fThresh + (x-fThresh)/fRatio; // divide any signal above the threshold by the ratio
-    }
-    else {
-        y = x; // Else the input siganl = output signal
-    }
-    return y / x; // Return gain reduction for the gain stage
+void Compressor::updateLFO()
+{
+    LFO.setFrequency(rate);
+    LFO.setGain(depth);
 }
 
 float Compressor::process(float input)
 {
     if (isOn())
     {
-        DBG("COMPRESSION IN ACTION");
-        return compress.processSample(0, input);
+        updateLFO();
+        auto outputGain = (LFO.nextSample() * 0.5) + 0.5;
+        float outputValue = outputGain * input;
+        return outputValue;
+        
     }
     else
     {

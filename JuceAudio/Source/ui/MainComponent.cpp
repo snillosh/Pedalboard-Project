@@ -66,7 +66,7 @@ void MainComponent::resized()
     
     auto row = r.removeFromTop (getHeight() / 16);
     
-    auto row2 = r.removeFromBottom(getHeight() * 0.75);
+    auto row2 = r.removeFromBottom(getHeight() * 0.90);
     
     auto row3 = r.removeFromTop(getHeight()/ 32);
     
@@ -86,18 +86,21 @@ void MainComponent::paint (Graphics& g)
 {
     auto r = getLocalBounds();
     
-    g.setColour(Colours::green);
+    g.setColour(Colours::lightblue);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
-    g.setColour(Colours::purple);
+    g.setColour(Colours::lightcyan);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
-    g.setColour(Colours::blue);
+    g.setColour(Colours::lightblue);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
-    g.setColour(Colours::maroon);
+    g.setColour(Colours::lightcyan);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
-    g.setColour(Colours::sandybrown);
+    g.setColour(Colours::lightblue);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
-    g.setColour(Colours::lightgrey);
+    g.setColour(Colours::lightcyan);
     g.fillRect(r.removeFromLeft(getWidth() / pedalAmount));
+    
+    g.setColour(Colours::black);
+    g.fillRect(0, getHeight() * 0.5, getWidth(), getHeight() / 16);
 }
 
 //MenuBarCallbacks==============================================================
@@ -141,12 +144,14 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         audio.setPedalPtr(1, comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[0]->setPedal (audio.getPedal(1));
+        pedalGUIVector[0]->resetButton();
         pedalGUIVector[0]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     if (comboBoxThatHasChanged == &*comboBoxVector[1])
     {
         audio.setPedalPtr(2,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[1]->setPedal (audio.getPedal(2));
+        pedalGUIVector[0]->resetButton();
         pedalGUIVector[1]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
         
@@ -154,6 +159,7 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         audio.setPedalPtr(3,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[2]->setPedal (audio.getPedal(3));
+        pedalGUIVector[0]->resetButton();
         pedalGUIVector[2]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
         
@@ -161,8 +167,26 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         audio.setPedalPtr(4,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[3]->setPedal (audio.getPedal(4));
+        pedalGUIVector[0]->resetButton();
         pedalGUIVector[3]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
+    
+    if (comboBoxThatHasChanged == &*comboBoxVector[4])
+    {
+        audio.setPedalPtr(5,comboBoxThatHasChanged->getSelectedId());
+        pedalGUIVector[4]->setPedal (audio.getPedal(5));
+        pedalGUIVector[0]->resetButton();
+        pedalGUIVector[4]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
+    }
+    
+    if (comboBoxThatHasChanged == &*comboBoxVector[5])
+    {
+        audio.setPedalPtr(6,comboBoxThatHasChanged->getSelectedId());
+        pedalGUIVector[5]->setPedal (audio.getPedal(6));
+        pedalGUIVector[0]->resetButton();
+        pedalGUIVector[5]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
+    }
+    
     
     if(comboBoxThatHasChanged == &pedalAmountSelector)
     {

@@ -13,6 +13,8 @@
       <FILE id="ht3a8Z" name="Record.h" compile="0" resource="0" file="Source/audio/Record.h"/>
     </GROUP>
     <GROUP id="{FABFE436-4E34-880A-F613-BB39AE5C15B5}" name="Effects Processors">
+      <FILE id="L24enl" name="Vibrato.cpp" compile="1" resource="0" file="Source/Effects Processors/Vibrato.cpp"/>
+      <FILE id="gig7uE" name="Vibrato.h" compile="0" resource="0" file="Source/Effects Processors/Vibrato.h"/>
       <FILE id="CWqMbq" name="None.cpp" compile="1" resource="0" file="Source/Effects Processors/None.cpp"/>
       <FILE id="CU9RWa" name="None.h" compile="0" resource="0" file="Source/Effects Processors/None.h"/>
       <FILE id="kDmkgc" name="Compressor.cpp" compile="1" resource="0" file="Source/Effects Processors/Compressor.cpp"/>
@@ -33,6 +35,8 @@
       <FILE id="IXEgm7" name="LFO.h" compile="0" resource="0" file="../../../Level 3/Final Year Project/Xcode Projects/FYP Phaser Project/FYP Phaser Project/Source/LFO.h"/>
     </GROUP>
     <GROUP id="{B5A08D2B-B7C2-AAAD-B270-7A62E29BA044}" name="ui">
+      <FILE id="Csp14e" name="PedalShape.cpp" compile="1" resource="0" file="Source/ui/PedalShape.cpp"/>
+      <FILE id="dc3IJy" name="PedalShape.h" compile="0" resource="0" file="Source/ui/PedalShape.h"/>
       <FILE id="RL5djg" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/ui/MainComponent.cpp"/>
       <FILE id="tg5Zvj" name="MainComponent.h" compile="0" resource="0" file="Source/ui/MainComponent.h"/>

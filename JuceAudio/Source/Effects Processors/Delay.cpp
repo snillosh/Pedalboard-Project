@@ -34,12 +34,11 @@ void Delay::initialise()
 //Mutator
 void Delay::setParameter1(float input)
 {
-    fFeedbackGain = (input / 10) * 0.7;
 }
 // ACCESSOR
 float Delay::getParameter1() const
 {
-    return fFeedbackGain;
+    return 0;
 }
 //---------------------------------------------
 void Delay::setParameter2(float input)
@@ -53,9 +52,11 @@ float Delay::getParameter2() const
 //---------------------------------------------
 void Delay::setParameter3(float input)
 {
+    fFeedbackGain = (input / 10) * 0.7;
 }
 float Delay::getParameter3() const
 {
+    return fFeedbackGain;
 }
 //---------------------------------------------
 void Delay::setParameter4(float input)

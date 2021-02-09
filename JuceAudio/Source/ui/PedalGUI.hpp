@@ -11,6 +11,7 @@
 #pragma once
 #include <JuceHeader.h>
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
+#include "PedalShape.h"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Audio.h"
 
 class PedalGUI : public Component,
@@ -23,20 +24,33 @@ public:
     
     void setPedal (Pedal* pedalPtr);
     void resized() override;
+    void paint (juce::Graphics&) override;
+    
     void buttonClicked (Button* button) override;
     void sliderValueChanged (Slider* slider) override;
     void updateParametes(Pedal* delay, Pedal* phaser, Pedal* compressor, Pedal* reverberation, Pedal* none);
+    void resetButton();
+    
+    void setPedalColour(int colour);
     
 private:
     Pedal* pedal           {nullptr};
-
+    
+    int pedalColour;
+    std::vector<std::unique_ptr<PedalShape>> pedalShapeVector;
+    LookAndFeel_V4 otherLookAndFeel;
     TextButton onOffButton {"Pedal is Off"};
+    
     Slider parameterSlider1;
-    Label parameterSlider1Label;
     Slider parameterSlider2;
-    Label parameterSlider2Label;
     Slider parameterSlider3;
     Slider parameterSlider4;
     Slider parameterSlider5;
+    
+    Label parameterSlider1Label;
+    Label parameterSlider2Label;
+    Label parameterSlider3Label;
+    Label parameterSlider4Label;
+    Label parameterSlider5Label;
 };
 

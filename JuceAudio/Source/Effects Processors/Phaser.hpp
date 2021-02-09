@@ -43,7 +43,7 @@ private:
     OwnedArray<juce::dsp::FirstOrderTPTFilter<float>> allpassFilters;
     SinOscillator rateLFO;
     
-    float rate = 0.04f, depth = 0.8f, feedback = 0.8f, mix = 0.5f, output = 1.0f;
+    float rate, depth, feedback, mix, output;
     static constexpr int numStages = 4;
     double sampleRate = 44100.0;
     float allpassOutFinal = 1.0f;

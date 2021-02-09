@@ -28,30 +28,38 @@ Phaser::~Phaser()
 
 void Phaser::setParameter1(float input)
 {
+    rate = input * 2;
 }
 float Phaser::getParameter1() const
 {
+    return rate;
 }
 //----------------------------------------
 void Phaser::setParameter2(float input)
 {
+    depth = input / 10;
 }
 float Phaser::getParameter2() const
 {
+    return depth;
 }
 //----------------------------------------
 void Phaser::setParameter3(float input)
 {
+    feedback = input / 10;
 }
 float Phaser::getParameter3() const
 {
+    return feedback;
 }
 //----------------------------------------
 void Phaser::setParameter4(float input)
 {
+    mix = input / 10;
 }
 float Phaser::getParameter4() const
 {
+    return mix;
 }
 //----------------------------------------
 void Phaser::setParameter5(float input)
@@ -59,6 +67,7 @@ void Phaser::setParameter5(float input)
 }
 float Phaser::getParameter5() const
 {
+    return 0;
 }
 //----------------------------------------
 void Phaser::initialise()
@@ -75,15 +84,10 @@ void Phaser::initialise()
 
 void Phaser::updateFilter()
 {
-    rate = 10.0f;
-    depth = 0.8f;
-    mix = 0.5f;
-    feedback = 0.8f;
     rateLFO.setFrequency(rate);
     rateLFO.setGain(depth);
     float phaserPositionInHertz = (rateLFO.nextSample() * 0.5f) + 0.5f;
     phaserPositionInHertz = (phaserPositionInHertz * 9702.0f) + 98.0f;
-    DBG("PHASE POSITON IN HERTZ: " << phaserPositionInHertz);
     for (auto n = 0; n < numStages; n++)
     {
         allpassFilters[n]->setCutoffFrequency(phaserPositionInHertz);
@@ -96,11 +100,12 @@ float Phaser::process(float input)
     if (isOn())
     {
         updateFilter();
-        float allpass1 = allpassFilters[0]->processSample(1, input) + (allpassOutFinal * feedback);
-        float allpass2 = allpassFilters[1]->processSample(1, allpass1);
-        float allpass3 = allpassFilters[2]->processSample(1, allpass2);
-        allpassOutFinal = allpassFilters[3]-> processSample(1, allpass3);
+        float allpass1 = allpassFilters[0]->processSample(0, input) + (allpassOutFinal * feedback);
+        float allpass2 = allpassFilters[1]->processSample(0, allpass1);
+        float allpass3 = allpassFilters[2]->processSample(0, allpass2);
+        allpassOutFinal = allpassFilters[3]-> processSample(0, allpass3);
         output = (mix * allpassOutFinal) + ((1.0f - mix) * input);
+        DBG(output);
         return output;
     }
     else

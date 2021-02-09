@@ -15,20 +15,20 @@
 RecordComponent::RecordComponent()
 {
     playButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    playButton.setColour (TextButton::buttonColourId, Colours::lightblue);
-    playButton.setColour (TextButton::buttonOnColourId, Colours::lightgrey);
+    playButton.setColour (TextButton::buttonColourId, Colours::green);
+    playButton.setColour (TextButton::buttonOnColourId, Colours::black);
     addAndMakeVisible (&playButton);
     playButton.addListener (this);
     
     recordButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    recordButton.setColour (TextButton::buttonColourId, Colours::goldenrod);
-    recordButton.setColour (TextButton::buttonOnColourId, Colours::lightgrey);
+    recordButton.setColour (TextButton::buttonColourId, Colours::red);
+    recordButton.setColour (TextButton::buttonOnColourId, Colours::black);
     addAndMakeVisible (&recordButton);
     recordButton.addListener (this);
     
     saveButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    saveButton.setColour (TextButton::buttonColourId, Colours::red);
-    saveButton.setColour (TextButton::buttonOnColourId, Colours::lightgrey);
+    saveButton.setColour (TextButton::buttonColourId, Colours::blue);
+    saveButton.setColour (TextButton::buttonOnColourId, Colours::black);
     addAndMakeVisible (&saveButton);
     saveButton.addListener (this);
 }

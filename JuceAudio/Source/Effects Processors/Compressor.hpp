@@ -10,7 +10,7 @@
 
 #pragma once
 #include <JuceHeader.h>
-#include "PeakDetection.hpp"
+#include "/Users/bevansalter/Desktop/Level 3/Final Year Project/Xcode Projects/FYP Phaser Project/FYP Phaser Project/Source/LFO.h"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
 
 
@@ -21,9 +21,9 @@ public:
     ~Compressor();
     void intitialise();
     
-    float process(float input) override;
+    void updateLFO();
     
-    float Compress(float x);
+    float process(float input) override;
     
     void setParameter1(float input) override;
     float getParameter1() const override;
@@ -41,11 +41,9 @@ public:
     float getParameter5() const override;
     
 private:
-    float fThresh = 0;
-    float fRatio = 0;
-    float makeUp = 0;
-    float peakValue = 0;
-    float gainReduction = 0;
-    peakDetection peak;
-    dsp::Compressor<float> compress;
+    
+    float rate, depth;
+    float sampleRate = 44100.0f;
+    
+    SinOscillator LFO;
 };
