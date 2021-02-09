@@ -14,11 +14,6 @@
 
 PedalGUI::PedalGUI()
 {
-    for (int index = 0; index < 6; ++index)
-      pedalShapeVector.emplace_back(std::make_unique<PedalShape>());
-    
-    for(auto& p : pedalShapeVector)
-        addAndMakeVisible (p.get());
     
     //onOffButton Config
     //-------------------------------------------------------------------------

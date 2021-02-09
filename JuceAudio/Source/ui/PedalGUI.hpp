@@ -11,7 +11,6 @@
 #pragma once
 #include <JuceHeader.h>
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
-#include "PedalShape.h"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Audio.h"
 
 class PedalGUI : public Component,
@@ -37,7 +36,6 @@ private:
     Pedal* pedal           {nullptr};
     
     int pedalColour;
-    std::vector<std::unique_ptr<PedalShape>> pedalShapeVector;
     LookAndFeel_V4 otherLookAndFeel;
     TextButton onOffButton {"Pedal is Off"};
     
