@@ -25,7 +25,7 @@ public:
     
     bool isRecording() const;
     
-    void setResetState(bool newState);
+    void reset();
     
     float processSample (float input);
     

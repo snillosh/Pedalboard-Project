@@ -18,7 +18,7 @@ PedalGUI::PedalGUI()
     //onOffButton Config
     //-------------------------------------------------------------------------
     onOffButton.setColour (TextButton::buttonColourId, Colours::grey);
-    onOffButton.setColour (TextButton::buttonOnColourId, Colours::lightgrey);
+    onOffButton.setColour (TextButton::buttonOnColourId, Colours::darkgrey);
     addAndMakeVisible(&onOffButton);
     onOffButton.addListener(this);
     //Slider 1 Config
@@ -184,6 +184,7 @@ void PedalGUI::buttonClicked(Button *button)
 {
     if (button == &onOffButton)
     {
+        DBG("Button Clicked");
         pedal->setOnOffState( ! pedal->isOn());
         onOffButton.setToggleState(pedal->isOn(), dontSendNotification);
         if (pedal->isOn())
@@ -273,15 +274,15 @@ void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *tremolo, Peda
         parameterSlider1Label.setText(" ", dontSendNotification);
         parameterSlider2Label.setText("Depth", dontSendNotification);
         parameterSlider3Label.setText("Feedback", dontSendNotification);
-        parameterSlider4Label.setText("Mix", dontSendNotification);
-        parameterSlider5Label.setText("Rate", dontSendNotification);
+        parameterSlider4Label.setText("Rate", dontSendNotification);
+        parameterSlider5Label.setText(" ", dontSendNotification);
         
         onOffButton.setVisible(true);
         parameterSlider1.setVisible(false);
         parameterSlider2.setVisible(true);
         parameterSlider3.setVisible(true);
         parameterSlider4.setVisible(true);
-        parameterSlider5.setVisible(true);
+        parameterSlider5.setVisible(false);
     }
     else if (pedal == none)
     {

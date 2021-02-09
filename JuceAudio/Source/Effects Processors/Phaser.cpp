@@ -17,7 +17,6 @@ Phaser::Phaser()
     {
         allpassFilters.add(new juce::dsp::FirstOrderTPTFilter<float>());
         allpassFilters[n]->setType(juce::dsp::FirstOrderTPTFilterType::allpass);
-        //allpassFilters[n]->snapToZero();
     }
 }
 
@@ -54,25 +53,24 @@ float Phaser::getParameter3() const
 //----------------------------------------
 void Phaser::setParameter4(float input)
 {
-    mix = input / 10;
+    rate = input * 2.0f;
 }
 float Phaser::getParameter4() const
-{
-    return mix;
-}
-//----------------------------------------
-void Phaser::setParameter5(float input)
-{
-    rate = input * 2;
-
-}
-float Phaser::getParameter5() const
 {
     return rate;
 }
 //----------------------------------------
+void Phaser::setParameter5(float input)
+{
+}
+float Phaser::getParameter5() const
+{
+    return 0;
+}
+//----------------------------------------
 void Phaser::initialise()
 {
+    mix = 0.5f;
     dsp::ProcessSpec spec;
     spec.sampleRate = sampleRate;
     rateLFO.setSampleRate(sampleRate);
