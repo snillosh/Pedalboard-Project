@@ -11,11 +11,11 @@
 #pragma once
 
 
-class None : public Pedal
+class BlankPedal : public Pedal
 {
 public:
-    None();
-    ~None();
+    BlankPedal();
+    ~BlankPedal();
     
     void intitialise();
     

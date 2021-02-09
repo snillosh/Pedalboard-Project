@@ -13,8 +13,8 @@
       <FILE id="ht3a8Z" name="Record.h" compile="0" resource="0" file="Source/audio/Record.h"/>
     </GROUP>
     <GROUP id="{FABFE436-4E34-880A-F613-BB39AE5C15B5}" name="Effects Processors">
-      <FILE id="CWqMbq" name="None.cpp" compile="1" resource="0" file="Source/Effects Processors/None.cpp"/>
-      <FILE id="CU9RWa" name="None.h" compile="0" resource="0" file="Source/Effects Processors/None.h"/>
+      <FILE id="CWqMbq" name="BlankPedal.cpp" compile="1" resource="0" file="Source/Effects Processors/BlankPedal.cpp"/>
+      <FILE id="CU9RWa" name="BlankPedal.h" compile="0" resource="0" file="Source/Effects Processors/BlankPedal.h"/>
       <FILE id="kDmkgc" name="Tremolo.cpp" compile="1" resource="0" file="Source/Effects Processors/Tremolo.cpp"/>
       <FILE id="dFDg32" name="Tremolo.hpp" compile="0" resource="0" file="Source/Effects Processors/Tremolo.hpp"/>
       <FILE id="i3o46X" name="Delay.cpp" compile="1" resource="0" file="Source/Effects Processors/Delay.cpp"/>

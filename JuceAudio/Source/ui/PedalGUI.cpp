@@ -184,7 +184,6 @@ void PedalGUI::buttonClicked(Button *button)
 {
     if (button == &onOffButton)
     {
-        DBG("Button Clicked");
         pedal->setOnOffState( ! pedal->isOn());
         onOffButton.setToggleState(pedal->isOn(), dontSendNotification);
         if (pedal->isOn())

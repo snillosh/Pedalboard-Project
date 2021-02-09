@@ -19,7 +19,7 @@
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Tremolo.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Phaser.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Reverberation.hpp"
-#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/None.h"
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/BlankPedal.h"
 #include "Record.h"
 /** Class containing all audio processes */
 
@@ -33,8 +33,12 @@ public:
     /** Destructor */
     ~Audio();
     
+    
+    //Returns a pointer to the pedal object based on the pedal entered.
     Pedal* getPedal(int pedalToGet) const;
-    void setPedalPtr(int pedalToSet ,int index);
+    //Sets the entered pedal to the reference of an effect based on the index (pedal type)
+    void setPedal(int pedalToSet ,int index);
+    //Returns a pointer to record object
     Record* getRecord() {return &record;}
 
     AudioDeviceManager& getAudioDeviceManager() { return audioDeviceManager;}
@@ -49,33 +53,29 @@ public:
     void audioDeviceAboutToStart (AudioIODevice* device) override;
     void audioDeviceStopped() override;
     
-    Pedal* getDelayPtr();
-    Pedal* getPhaserPtr();
-    Pedal* getTremoloPtr();
-    Pedal* getReverberationPtr();
-    Pedal* getNonePtr();
-    
-    
-    Delay delay;
-    Phaser phaser;
-    Tremolo tremolo;
-    Reverberation reverberation;
-    None none;
-    
-    /*
-    Phaser* phaserPtr = &phaser;
-    Delay* delayPtr = &delay;
-    Compressor* compressorPtr = &compressor;
-    Reverberation* reveberationPtr = &reverberation;
-     */
+    //Returns a reference of the delay object
+    Pedal* getDelay();
+    //Returns a reference of the phaser object
+    Pedal* getPhaser();
+    //Returns a reference of the tremolo oject
+    Pedal* getTremolo();
+    //Returns a reference of the reverberation object
+    Pedal* getReverberation();
+    //Returns a reference of the blank pedal object
+    Pedal* getBlankPedal();
     
 private:
     AudioDeviceManager audioDeviceManager;
     Record record;
     
+    Delay delay;
+    Phaser phaser;
+    Tremolo tremolo;
+    Reverberation reverberation;
+    BlankPedal blankPedal;
     
-    
+    // an array of 6 pedal pointers is created based on the 6 process slots, with each one being used to process a casscade of audio signals
     std::array <Pedal* , 6> pedalPtr;
     
-    double sampleRate;
+    float sampleRate = 44100.0f;
 };

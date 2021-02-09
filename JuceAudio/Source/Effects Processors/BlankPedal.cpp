@@ -8,64 +8,64 @@
   ==============================================================================
 */
 
-#include "None.h"
+#include "BlankPedal.h"
 
-None::None()
+BlankPedal::BlankPedal()
 {
     
 }
 
-None::~None()
+BlankPedal::~BlankPedal()
 {
     
 }
 
-void None::intitialise()
+void BlankPedal::intitialise()
 {
     
 }
 //------------------------------------------------
-void None::setParameter1(float input)
+void BlankPedal::setParameter1(float input)
 {
 }
-float None::getParameter1() const
-{
-    return 0;
-}
-//------------------------------------------------
-void None::setParameter2(float input)
-{
-}
-float None::getParameter2() const
+float BlankPedal::getParameter1() const
 {
     return 0;
 }
 //------------------------------------------------
-void None::setParameter3(float input)
+void BlankPedal::setParameter2(float input)
 {
 }
-float None::getParameter3() const
-{
-    return 0;
-}
-//------------------------------------------------
-void None::setParameter4(float input)
-{
-}
-float None::getParameter4() const
+float BlankPedal::getParameter2() const
 {
     return 0;
 }
 //------------------------------------------------
-void None::setParameter5(float input)
+void BlankPedal::setParameter3(float input)
 {
 }
-float None::getParameter5() const
+float BlankPedal::getParameter3() const
 {
     return 0;
 }
 //------------------------------------------------
-float None::process(float input)
+void BlankPedal::setParameter4(float input)
+{
+}
+float BlankPedal::getParameter4() const
+{
+    return 0;
+}
+//------------------------------------------------
+void BlankPedal::setParameter5(float input)
+{
+}
+float BlankPedal::getParameter5() const
+{
+    return 0;
+}
+//------------------------------------------------
+float BlankPedal::process(float input)
 {
     return input;
 }

@@ -24,24 +24,23 @@ Audio::Audio()
         DBG (errorMessage);
     audioDeviceManager.addAudioCallback (this);
     
+    //initiates of sample rate for audio
     dsp::ProcessSpec spec;
     sampleRate = spec.sampleRate;
     
+    //initialises each audio effect class ready for processing
     delay.initialise();
     tremolo.intitialise();
     phaser.initialise();
     reverberation.initialise();
     
-    
-    pedalPtr[0] = &none;
-    pedalPtr[1] = &none;
-    pedalPtr[2] = &none;
-    pedalPtr[3] = &none;
-    pedalPtr[4] = &none;
-    pedalPtr[5] = &none;
-    
-    auto phaserRef = &phaser;
-    std::cout << "Phaser Audio : " << phaserRef << std::endl;
+    //initially each pedal process pointer is set to the blank pedal
+    pedalPtr[0] = &blankPedal;
+    pedalPtr[1] = &blankPedal;
+    pedalPtr[2] = &blankPedal;
+    pedalPtr[3] = &blankPedal;
+    pedalPtr[4] = &blankPedal;
+    pedalPtr[5] = &blankPedal;
 }
 
 Audio::~Audio()
@@ -131,7 +130,7 @@ Pedal* Audio::getPedal(int pedalToGet) const
     }
 }
 
-void Audio::setPedalPtr(int pedalToSet,int index)
+void Audio::setPedal(int pedalToSet,int index)
 {
     if (pedalToSet == 1)
     {
@@ -144,7 +143,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 4)
             pedalPtr[0] = &delay;
         else if (index == 5)
-            pedalPtr[0] = &none;
+            pedalPtr[0] = &blankPedal;
     }
     if (pedalToSet == 2)
     {
@@ -157,7 +156,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 4)
             pedalPtr[1] = &delay;
         else if (index == 5)
-            pedalPtr[1] = &none;
+            pedalPtr[1] = &blankPedal;
     }
     if (pedalToSet == 3)
     {
@@ -170,7 +169,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 4)
             pedalPtr[2] = &delay;
         else if (index == 5)
-            pedalPtr[2] = &none;
+            pedalPtr[2] = &blankPedal;
     }
     if (pedalToSet == 4)
     {
@@ -183,7 +182,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 4)
             pedalPtr[3] = &delay;
         else if (index == 5)
-            pedalPtr[3] = &none;
+            pedalPtr[3] = &blankPedal;
     }
     if (pedalToSet == 5)
     {
@@ -196,7 +195,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 4)
             pedalPtr[4] = &delay;
         else if (index == 5)
-            pedalPtr[4] = &none;
+            pedalPtr[4] = &blankPedal;
     }
     if (pedalToSet == 6)
     {
@@ -209,31 +208,31 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 4)
             pedalPtr[5] = &delay;
         else if (index == 5)
-            pedalPtr[5] = &none;
+            pedalPtr[5] = &blankPedal;
     }
 }
 
-Pedal* Audio::getDelayPtr()
+Pedal* Audio::getDelay()
 {
     return &delay;
 }
 
-Pedal* Audio::getPhaserPtr()
+Pedal* Audio::getPhaser()
 {
     return &phaser;
 }
 
-Pedal* Audio::getTremoloPtr()
+Pedal* Audio::getTremolo()
 {
     return &tremolo;
 }
 
-Pedal* Audio::getReverberationPtr()
+Pedal* Audio::getReverberation()
 {
     return &reverberation;
 }
 
-Pedal* Audio::getNonePtr()
+Pedal* Audio::getBlankPedal()
 {
-    return &none;
+    return &blankPedal;
 }
