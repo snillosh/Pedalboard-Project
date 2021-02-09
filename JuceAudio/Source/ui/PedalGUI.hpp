@@ -27,7 +27,7 @@ public:
     
     void buttonClicked (Button* button) override;
     void sliderValueChanged (Slider* slider) override;
-    void updateParametes(Pedal* delay, Pedal* phaser, Pedal* compressor, Pedal* reverberation, Pedal* none);
+    void updateParametes(Pedal* delay, Pedal* phaser, Pedal* tremolo, Pedal* reverberation, Pedal* none);
     void resetButton();
     
     void setPedalColour(int colour);

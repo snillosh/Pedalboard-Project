@@ -64,6 +64,7 @@ void Delay::setParameter4(float input)
 }
 float Delay::getParameter4() const
 {
+    return 0;
 }
 //---------------------------------------------
 void Delay::setParameter5(float input)
@@ -71,6 +72,7 @@ void Delay::setParameter5(float input)
 }
 float Delay::getParameter5() const
 {
+    return 0;
 }
 //---------------------------------------------
 float Delay::process(float input)

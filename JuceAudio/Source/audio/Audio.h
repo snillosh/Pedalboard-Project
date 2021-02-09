@@ -16,7 +16,7 @@
 #include <atomic>
 #include "Pedal.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Delay.hpp"
-#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Compressor.hpp"
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Tremolo.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Phaser.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Reverberation.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/None.h"
@@ -51,14 +51,14 @@ public:
     
     Pedal* getDelayPtr();
     Pedal* getPhaserPtr();
-    Pedal* getCompressorPtr();
+    Pedal* getTremoloPtr();
     Pedal* getReverberationPtr();
     Pedal* getNonePtr();
     
     
     Delay delay;
     Phaser phaser;
-    Compressor compressor;
+    Tremolo tremolo;
     Reverberation reverberation;
     None none;
     

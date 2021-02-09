@@ -99,7 +99,6 @@ void PedalGUI::resized()
 {
     auto r = getLocalBounds();
     auto row = r.removeFromTop((getHeight() / 8) * 7);
-    auto row2 = r.removeFromBottom(getHeight() / 8);
     onOffButton.setBounds(getWidth() / 4, getHeight() * 0.7, getWidth() * 0.5, getHeight() * 0.15);
     parameterSlider1.setBounds(row.removeFromBottom(getHeight() / 6));
     parameterSlider2.setBounds(row.removeFromBottom(getHeight() / 6));
@@ -176,7 +175,7 @@ void PedalGUI::sliderValueChanged (Slider* slider)
         pedal->setParameter5(parameterSlider5.getValue());
 }
 
-void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *compressor, Pedal *reverberation, Pedal *none)
+void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *tremolo, Pedal *reverberation, Pedal *none)
 {
     if (pedal == delay)
     {
@@ -195,7 +194,7 @@ void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *compressor, P
         parameterSlider4.setVisible(false);
         parameterSlider5.setVisible(false);
     }
-    if (pedal == compressor)
+    if (pedal == tremolo)
     {
         setPedalColour(2);
         repaint();

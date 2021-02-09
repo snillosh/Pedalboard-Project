@@ -8,77 +8,77 @@
   ==============================================================================
 */
 
-#include "Compressor.hpp"
+#include "Tremolo.hpp"
 
 
-Compressor::Compressor()
+Tremolo::Tremolo()
 {
     
 }
 
-Compressor::~Compressor()
+Tremolo::~Tremolo()
 {
     
 }
 //------------------------------------------------
-void Compressor::setParameter1(float input)
+void Tremolo::setParameter1(float input)
 {
 }
-float Compressor::getParameter1() const
+float Tremolo::getParameter1() const
 {
     return 0;
 }
 //---------------------------------------------
-void Compressor::setParameter2(float input)
+void Tremolo::setParameter2(float input)
 {
     depth = input / 10.0f;
 }
-float Compressor::getParameter2() const
+float Tremolo::getParameter2() const
 {
     return depth;
 }
 //---------------------------------------------
-void Compressor::setParameter3(float input)
+void Tremolo::setParameter3(float input)
 {
     rate = input * 2.0f;
 }
-float Compressor::getParameter3() const
+float Tremolo::getParameter3() const
 {
     return rate;
 }
 //---------------------------------------------
-void Compressor::setParameter4(float input)
+void Tremolo::setParameter4(float input)
 {
 
 }
-float Compressor::getParameter4() const
+float Tremolo::getParameter4() const
 {
     return 0;
 }
 //---------------------------------------------
-void Compressor::setParameter5(float input)
+void Tremolo::setParameter5(float input)
 {
     
 }
-float Compressor::getParameter5() const
+float Tremolo::getParameter5() const
 {
     return 0;
 }
 //---------------------------------------------
-void Compressor::intitialise()
+void Tremolo::intitialise()
 {
     dsp::ProcessSpec spec;
     spec.sampleRate = sampleRate;
     LFO.setSampleRate(sampleRate);
 }
 
-void Compressor::updateLFO()
+void Tremolo::updateLFO()
 {
     LFO.setFrequency(rate);
     LFO.setGain(depth);
 }
 
-float Compressor::process(float input)
+float Tremolo::process(float input)
 {
     if (isOn())
     {

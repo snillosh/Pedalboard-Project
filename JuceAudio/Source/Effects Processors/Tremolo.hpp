@@ -14,11 +14,11 @@
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
 
 
-class Compressor :   public Pedal
+class Tremolo :   public Pedal
 {
 public:
-    Compressor();
-    ~Compressor();
+    Tremolo();
+    ~Tremolo();
     void intitialise();
     
     void updateLFO();

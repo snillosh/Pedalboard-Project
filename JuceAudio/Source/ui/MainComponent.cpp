@@ -22,7 +22,7 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     {
         addAndMakeVisible(b.get());
         b.get()->addItem ("Phaser", 1);
-        b.get()->addItem ("Compressor", 2);
+        b.get()->addItem ("Tremolo", 2);
         b.get()->addItem ("Reverb", 3);
         b.get()->addItem ("Delay", 4);
         b.get()->addItem ("None", 5);
@@ -145,14 +145,14 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         audio.setPedalPtr(1, comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[0]->setPedal (audio.getPedal(1));
         pedalGUIVector[0]->resetButton();
-        pedalGUIVector[0]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
+        pedalGUIVector[0]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     if (comboBoxThatHasChanged == &*comboBoxVector[1])
     {
         audio.setPedalPtr(2,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[1]->setPedal (audio.getPedal(2));
         pedalGUIVector[0]->resetButton();
-        pedalGUIVector[1]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
+        pedalGUIVector[1]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
         
     if (comboBoxThatHasChanged == &*comboBoxVector[2])
@@ -160,7 +160,7 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         audio.setPedalPtr(3,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[2]->setPedal (audio.getPedal(3));
         pedalGUIVector[0]->resetButton();
-        pedalGUIVector[2]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
+        pedalGUIVector[2]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
         
     if (comboBoxThatHasChanged == &*comboBoxVector[3])
@@ -168,7 +168,7 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         audio.setPedalPtr(4,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[3]->setPedal (audio.getPedal(4));
         pedalGUIVector[0]->resetButton();
-        pedalGUIVector[3]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
+        pedalGUIVector[3]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     
     if (comboBoxThatHasChanged == &*comboBoxVector[4])
@@ -176,7 +176,7 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         audio.setPedalPtr(5,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[4]->setPedal (audio.getPedal(5));
         pedalGUIVector[0]->resetButton();
-        pedalGUIVector[4]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
+        pedalGUIVector[4]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     
     if (comboBoxThatHasChanged == &*comboBoxVector[5])
@@ -184,7 +184,7 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         audio.setPedalPtr(6,comboBoxThatHasChanged->getSelectedId());
         pedalGUIVector[5]->setPedal (audio.getPedal(6));
         pedalGUIVector[0]->resetButton();
-        pedalGUIVector[5]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getCompressorPtr(), audio.getReverberationPtr(), audio.getNonePtr());
+        pedalGUIVector[5]->updateParametes(audio.getDelayPtr(), audio.getPhaserPtr(), audio.getTremoloPtr(), audio.getReverberationPtr(), audio.getNonePtr());
     }
     
     

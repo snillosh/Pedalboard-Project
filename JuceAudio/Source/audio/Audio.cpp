@@ -26,7 +26,7 @@ Audio::Audio()
     sampleRate = spec.sampleRate;
     
     delay.initialise();
-    compressor.intitialise();
+    tremolo.intitialise();
     phaser.initialise();
     reverberation.initialise();
     
@@ -123,6 +123,10 @@ Pedal* Audio::getPedal(int pedalToGet) const
     {
         return pedalPtr[5];
     }
+    else
+    {
+        return 0;
+    }
 }
 
 void Audio::setPedalPtr(int pedalToSet,int index)
@@ -132,7 +136,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 1)
             pedalPtr[0] = &phaser;
         if (index == 2)
-            pedalPtr[0] = &compressor;
+            pedalPtr[0] = &tremolo;
         if (index == 3)
             pedalPtr[0] = &reverberation;
         if (index == 4)
@@ -145,7 +149,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 1)
             pedalPtr[1] = &phaser;
         if (index == 2)
-            pedalPtr[1] = &compressor;
+            pedalPtr[1] = &tremolo;
         if (index == 3)
             pedalPtr[1] = &reverberation;
         if (index == 4)
@@ -158,7 +162,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 1)
             pedalPtr[2] = &phaser;
         if (index == 2)
-            pedalPtr[2] = &compressor;
+            pedalPtr[2] = &tremolo;
         if (index == 3)
             pedalPtr[2] = &reverberation;
         if (index == 4)
@@ -171,7 +175,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 1)
             pedalPtr[3] = &phaser;
         if (index == 2)
-            pedalPtr[3] = &compressor;
+            pedalPtr[3] = &tremolo;
         if (index == 3)
             pedalPtr[3] = &reverberation;
         if (index == 4)
@@ -184,7 +188,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 1)
             pedalPtr[4] = &phaser;
         if (index == 2)
-            pedalPtr[4] = &compressor;
+            pedalPtr[4] = &tremolo;
         if (index == 3)
             pedalPtr[4] = &reverberation;
         if (index == 4)
@@ -197,7 +201,7 @@ void Audio::setPedalPtr(int pedalToSet,int index)
         if (index == 1)
             pedalPtr[5] = &phaser;
         if (index == 2)
-            pedalPtr[5] = &compressor;
+            pedalPtr[5] = &tremolo;
         if (index == 3)
             pedalPtr[5] = &reverberation;
         if (index == 4)
@@ -217,9 +221,9 @@ Pedal* Audio::getPhaserPtr()
     return &phaser;
 }
 
-Pedal* Audio::getCompressorPtr()
+Pedal* Audio::getTremoloPtr()
 {
-    return &compressor;
+    return &tremolo;
 }
 
 Pedal* Audio::getReverberationPtr()
