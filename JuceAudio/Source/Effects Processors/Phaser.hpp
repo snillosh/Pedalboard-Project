@@ -45,6 +45,6 @@ private:
     
     float rate, depth, feedback, mix, output;
     static constexpr int numStages = 4;
-    double sampleRate = 44100.0;
+    float sampleRate = 44100.0f;
     float allpassOutFinal = 1.0f;
 };

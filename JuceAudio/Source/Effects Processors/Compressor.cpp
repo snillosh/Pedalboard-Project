@@ -67,6 +67,8 @@ float Compressor::getParameter5() const
 //---------------------------------------------
 void Compressor::intitialise()
 {
+    dsp::ProcessSpec spec;
+    spec.sampleRate = sampleRate;
     LFO.setSampleRate(sampleRate);
 }
 

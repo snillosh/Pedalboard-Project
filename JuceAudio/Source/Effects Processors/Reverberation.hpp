@@ -37,6 +37,23 @@ public:
     
     void initialise ();
     
+    void updateFilter();
+    
 private:
-    dsp::Reverb reverb;
+    float cutOff, feedbackGain, delayTime1, delayTime2, delayTime3, delayTimeParameter;
+    float sampleRate = 44100.0f;
+    float *pfCircularBuffer;
+    int iBufferSize;
+    int iBufferWritePos;
+    int iBufferReadPos1;
+    int iBufferReadPos2;
+    int iBufferReadPos3;
+    float fDelSig1 = 0;
+    float fDelSig2 = 0;
+    float fDelSig3 = 0;
+    float fDelSigSummed = 0;
+    float fOut;
+    
+    OwnedArray<juce::dsp::FirstOrderTPTFilter<float>> lowPassFilter;
+    
 };

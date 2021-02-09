@@ -222,27 +222,27 @@ void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *compressor, P
         setPedalColour(3);
         repaint();
         parameterSlider1Label.setText(" ", dontSendNotification);
-        parameterSlider2Label.setText("Size", dontSendNotification);
-        parameterSlider3Label.setText("Mix", dontSendNotification);
-        parameterSlider4Label.setText("Type", dontSendNotification);
-        parameterSlider5Label.setText("Length", dontSendNotification);
+        parameterSlider2Label.setText("Cutoff", dontSendNotification);
+        parameterSlider3Label.setText("Reverb Amount", dontSendNotification);
+        parameterSlider4Label.setText(" ", dontSendNotification);
+        parameterSlider5Label.setText(" ", dontSendNotification);
         
         onOffButton.setVisible(true);
         parameterSlider1.setVisible(false);
         parameterSlider2.setVisible(true);
         parameterSlider3.setVisible(true);
-        parameterSlider4.setVisible(true);
-        parameterSlider5.setVisible(true);
+        parameterSlider4.setVisible(false);
+        parameterSlider5.setVisible(false);
     }
     if (pedal == phaser)
     {
         setPedalColour(4);
         repaint();
         parameterSlider1Label.setText(" ", dontSendNotification);
-        parameterSlider2Label.setText("Rate", dontSendNotification);
-        parameterSlider3Label.setText("Depth", dontSendNotification);
-        parameterSlider4Label.setText("Feedback", dontSendNotification);
-        parameterSlider5Label.setText("Mix", dontSendNotification);
+        parameterSlider2Label.setText("Depth", dontSendNotification);
+        parameterSlider3Label.setText("Feedback", dontSendNotification);
+        parameterSlider4Label.setText("Mix", dontSendNotification);
+        parameterSlider5Label.setText("Rate", dontSendNotification);
         
         onOffButton.setVisible(true);
         parameterSlider1.setVisible(false);
