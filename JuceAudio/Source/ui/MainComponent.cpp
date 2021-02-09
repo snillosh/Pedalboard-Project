@@ -15,6 +15,8 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
 {
     setSize (1280, 720);
     
+    recordComponent.setRecord(audio.getRecord());
+    
     for (int index = 0; index < 6; ++index)
       comboBoxVector.emplace_back(std::make_unique<ComboBox>());
     

@@ -43,9 +43,15 @@ bool Record::isRecording() const
     return recordState.load();
 }
 
+void Record::reset()
+{
+    DBG("Cleared");
+    audioBuffer.clear();
+}
+
 float Record::processSample(float input)
 {
-    auto output = 0.f;
+    auto output = input;
     if (playState.load() == true)
     {
         float* audioSample;

@@ -33,4 +33,5 @@ private:
     TextButton recordButton       {"Record"};
     TextButton saveButton         {"Save"};
     TextButton playButton         {"Play"};
+    TextButton resetButton        {"Reset"};
 };

@@ -25,11 +25,14 @@ public:
     
     bool isRecording() const;
     
+    void setResetState(bool newState);
+    
     float processSample (float input);
     
 private:
     std::atomic<int> recordState {false};
     std::atomic<int> playState {false};
+    std::atomic<int> resetState {false};
     
     unsigned int bufferPosition {0};
     AudioBuffer<float> audioBuffer;

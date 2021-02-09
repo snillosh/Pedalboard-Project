@@ -12,6 +12,8 @@
 
 Audio::Audio()
 {
+    
+    
     auto midiInputDevices = MidiInput::getAvailableDevices();
     if (midiInputDevices.size() > 0)
         audioDeviceManager.setMidiInputDeviceEnabled (midiInputDevices[0].identifier, true);
@@ -77,7 +79,7 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
         auto pedalProcessSlot4 = pedalPtr[3]->process(pedalProcessSlot3);
         auto pedalProcessSlot5 = pedalPtr[4]->process(pedalProcessSlot4);
         auto pedalProcessSlot6 = pedalPtr[5]->process(pedalProcessSlot5);
-        auto output = pedalProcessSlot6;
+        auto output = record.processSample(pedalProcessSlot6);
         
         *outL = output;
         *outR = output;

@@ -16,20 +16,26 @@ RecordComponent::RecordComponent()
 {
     playButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     playButton.setColour (TextButton::buttonColourId, Colours::green);
-    playButton.setColour (TextButton::buttonOnColourId, Colours::black);
+    playButton.setColour (TextButton::buttonOnColourId, Colours::darkgreen);
     addAndMakeVisible (&playButton);
     playButton.addListener (this);
     
     recordButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     recordButton.setColour (TextButton::buttonColourId, Colours::red);
-    recordButton.setColour (TextButton::buttonOnColourId, Colours::black);
+    recordButton.setColour (TextButton::buttonOnColourId, Colours::darkred);
     addAndMakeVisible (&recordButton);
     recordButton.addListener (this);
     
     saveButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     saveButton.setColour (TextButton::buttonColourId, Colours::blue);
-    saveButton.setColour (TextButton::buttonOnColourId, Colours::black);
+    saveButton.setColour (TextButton::buttonOnColourId, Colours::darkblue);
     addAndMakeVisible (&saveButton);
+    saveButton.addListener (this);
+    
+    resetButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
+    resetButton.setColour (TextButton::buttonColourId, Colours::orange);
+    resetButton.setColour (TextButton::buttonOnColourId, Colours::darkorange);
+    addAndMakeVisible (&resetButton);
     saveButton.addListener (this);
 }
 
@@ -45,9 +51,10 @@ void RecordComponent::resized()
 {
     auto r = getLocalBounds();
     auto row = r.removeFromTop (getHeight());
-    playButton.setBounds (row.removeFromLeft (getWidth() / 3));
-    recordButton.setBounds (row.removeFromLeft(getWidth() / 3));
-    saveButton.setBounds ( row.removeFromLeft(getWidth() / 3));
+    playButton.setBounds (row.removeFromLeft (getWidth() / 4));
+    recordButton.setBounds (row.removeFromLeft(getWidth() / 4));
+    saveButton.setBounds ( row.removeFromLeft(getWidth() / 4));
+    resetButton.setBounds (row.removeFromLeft(getWidth() / 4));
 }
 
 void RecordComponent::buttonClicked(Button* button)
@@ -69,4 +76,14 @@ void RecordComponent::buttonClicked(Button* button)
         recordPtr->setRecordState( ! recordPtr->isRecording());
         recordButton.setToggleState(recordPtr->isRecording(), dontSendNotification);
     }
+    if ( button == &resetButton)
+    {
+        DBG("RESET BUTTON CLICKED");
+        recordPtr->reset();
+    }
+}
+
+void RecordComponent::setRecord(Record *newRecordPtr)
+{
+    recordPtr = newRecordPtr;
 }
