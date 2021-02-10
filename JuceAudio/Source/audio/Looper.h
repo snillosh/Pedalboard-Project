@@ -27,6 +27,8 @@ public:
     
     void reset();
     
+    void save();
+    
     void setBufferSize(int tempo);
     
     float processSample (float input);

@@ -45,8 +45,25 @@ bool Looper::isRecording() const
 
 void Looper::reset()
 {
-    DBG("Cleared");
     audioBuffer.clear();
+}
+
+void Looper::save()
+{
+    FileChooser chooser ("Please selet a file: ", File::getSpecialLocation(File::userMusicDirectory), "*.wav");
+    if (chooser.browseForFileToSave(true))
+    {
+        auto file = chooser.getResult().withFileExtension(".wav");
+        auto ostream = file.createOutputStream();
+        WavAudioFormat format;
+        std::unique_ptr<AudioFormatWriter> writer;
+        writer.reset(format.createWriterFor(ostream.get(), 44100, audioBuffer.getNumChannels(), 16, nullptr, 0));
+        if (writer != nullptr)
+        {
+            writer->writeFromAudioSampleBuffer(audioBuffer, 0, audioBuffer.getNumSamples());
+            ostream.release();
+        }
+    }
 }
 
 void Looper::setBufferSize(int tempo)
@@ -67,9 +84,10 @@ float Looper::processSample(float input)
         audioSample = audioBuffer.getWritePointer(0, bufferPosition);
         //play
         output = *audioSample;
-        //click 16 times each bufferLength
+        //click 16 times each bufferLength to represent each beat
         if ((bufferPosition % (bufferLengthInSamples / 16)) == 0)
             *audioSample += 0.15f;
+        //click 4 times each bufferLength to represent each bar
         if ((bufferPosition % (bufferLengthInSamples / 4)) == 0)
             *audioSample += 0.5f;
         //record
@@ -79,6 +97,10 @@ float Looper::processSample(float input)
         //increment and cycle the buffer counter
         if (++bufferPosition == bufferLengthInSamples)
             bufferPosition = 0;
+        return output;
     }
-    return output;
+    else
+    {
+        return output;
+    }
 }

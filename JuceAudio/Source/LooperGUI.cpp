@@ -80,6 +80,10 @@ void LooperGUI::buttonClicked(Button* button)
     {
         looper->reset();
     }
+    if (button == &saveButton)
+    {
+        looper->save();
+    }
 }
 
 void LooperGUI::setLooper(Looper *newLooper)

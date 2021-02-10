@@ -56,7 +56,7 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     addAndMakeVisible(looperGUI);
     
     tempoTextBox.setInputRestrictions(3, "0123456789");
-    //tempoTextBox.setText("Enter the tempo in BPM for the loop time: ");
+    tempoTextBox.setTextToShowWhenEmpty("120", Colours::white);
     addAndMakeVisible(tempoTextBox);
     tempoTextBox.addListener(this);
     
