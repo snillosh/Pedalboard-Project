@@ -27,10 +27,14 @@ Audio::Audio()
     sampleRate = spec.sampleRate;
     
     //initialises each audio effect class ready for processing
-    delay.initialise();
-    tremolo.intitialise();
-    phaser.initialise();
-    reverberation.initialise();
+    for (int i = 0; i < 6; i++)
+    {
+        delay[i].initialise();
+        tremolo[i].intitialise();
+        phaser[i].initialise();
+        reverberation[i].initialise();
+    }
+    
     
     //initially each pedal process pointer is set to the blank pedal
     pedal[0] = &blankPedal;
@@ -132,101 +136,209 @@ void Audio::setPedal(int pedalToSet,int index)
     if (pedalToSet == 1)
     {
         if (index == 1)
-            pedal[0] = &phaser;
+            pedal[0] = &phaser[0];
         if (index == 2)
-            pedal[0] = &tremolo;
+            pedal[0] = &tremolo[0];
         if (index == 3)
-            pedal[0] = &reverberation;
+            pedal[0] = &reverberation[0];
         if (index == 4)
-            pedal[0] = &delay;
+            pedal[0] = &delay[0];
         else if (index == 5)
             pedal[0] = &blankPedal;
     }
     if (pedalToSet == 2)
     {
         if (index == 1)
-            pedal[1] = &phaser;
+            pedal[1] = &phaser[1];
         if (index == 2)
-            pedal[1] = &tremolo;
+            pedal[1] = &tremolo[1];
         if (index == 3)
-            pedal[1] = &reverberation;
+            pedal[1] = &reverberation[1];
         if (index == 4)
-            pedal[1] = &delay;
+            pedal[1] = &delay[1];
         else if (index == 5)
             pedal[1] = &blankPedal;
     }
     if (pedalToSet == 3)
     {
         if (index == 1)
-            pedal[2] = &phaser;
+            pedal[2] = &phaser[2];
         if (index == 2)
-            pedal[2] = &tremolo;
+            pedal[2] = &tremolo[2];
         if (index == 3)
-            pedal[2] = &reverberation;
+            pedal[2] = &reverberation[2];
         if (index == 4)
-            pedal[2] = &delay;
+            pedal[2] = &delay[2];
         else if (index == 5)
             pedal[2] = &blankPedal;
     }
     if (pedalToSet == 4)
     {
         if (index == 1)
-            pedal[3] = &phaser;
+            pedal[3] = &phaser[3];
         if (index == 2)
-            pedal[3] = &tremolo;
+            pedal[3] = &tremolo[3];
         if (index == 3)
-            pedal[3] = &reverberation;
+            pedal[3] = &reverberation[3];
         if (index == 4)
-            pedal[3] = &delay;
+            pedal[3] = &delay[3];
         else if (index == 5)
             pedal[3] = &blankPedal;
     }
     if (pedalToSet == 5)
     {
         if (index == 1)
-            pedal[4] = &phaser;
+            pedal[4] = &phaser[4];
         if (index == 2)
-            pedal[4] = &tremolo;
+            pedal[4] = &tremolo[4];
         if (index == 3)
-            pedal[4] = &reverberation;
+            pedal[4] = &reverberation[4];
         if (index == 4)
-            pedal[4] = &delay;
+            pedal[4] = &delay[4];
         else if (index == 5)
             pedal[4] = &blankPedal;
     }
     if (pedalToSet == 6)
     {
         if (index == 1)
-            pedal[5] = &phaser;
+            pedal[5] = &phaser[5];
         if (index == 2)
-            pedal[5] = &tremolo;
+            pedal[5] = &tremolo[5];
         if (index == 3)
-            pedal[5] = &reverberation;
+            pedal[5] = &reverberation[5];
         if (index == 4)
-            pedal[5] = &delay;
+            pedal[5] = &delay[5];
         else if (index == 5)
             pedal[5] = &blankPedal;
     }
 }
 
-Pedal* Audio::getDelay()
+Pedal* Audio::getDelay(int delayToGet)
 {
-    return &delay;
+    if (delayToGet == 1)
+    {
+        return &delay[0];
+    }
+    if (delayToGet == 2)
+    {
+        return &delay[1];
+    }
+    if (delayToGet == 3)
+    {
+        return &delay[2];
+    }
+    if (delayToGet == 4)
+    {
+        return &delay[3];
+    }
+    if (delayToGet == 5)
+    {
+        return &delay[4];
+    }
+    if (delayToGet == 6)
+    {
+        return &delay[5];
+    }
+    else
+    {
+        return 0;
+    }
 }
 
-Pedal* Audio::getPhaser()
+Pedal* Audio::getPhaser(int phaserToGet)
 {
-    return &phaser;
+    if (phaserToGet == 1)
+    {
+        return &phaser[0];
+    }
+    if (phaserToGet == 2)
+    {
+        return &phaser[1];
+    }
+    if (phaserToGet == 3)
+    {
+        return &phaser[2];
+    }
+    if (phaserToGet == 4)
+    {
+        return &phaser[3];
+    }
+    if (phaserToGet == 5)
+    {
+        return &phaser[4];
+    }
+    if (phaserToGet == 6)
+    {
+        return &phaser[5];
+    }
+    else
+    {
+        return 0;
+    }
 }
 
-Pedal* Audio::getTremolo()
+Pedal* Audio::getTremolo(int tremoloToGet)
 {
-    return &tremolo;
+    if (tremoloToGet == 1)
+    {
+        return &tremolo[0];
+    }
+    if (tremoloToGet == 2)
+    {
+        return &tremolo[1];
+    }
+    if (tremoloToGet == 3)
+    {
+        return &tremolo[2];
+    }
+    if (tremoloToGet == 4)
+    {
+        return &tremolo[3];
+    }
+    if (tremoloToGet == 5)
+    {
+        return &tremolo[4];
+    }
+    if (tremoloToGet == 6)
+    {
+        return &tremolo[5];
+    }
+    else
+    {
+        return 0;
+    }
 }
 
-Pedal* Audio::getReverberation()
+Pedal* Audio::getReverberation(int reverberationToGet)
 {
-    return &reverberation;
+    if (reverberationToGet == 1)
+    {
+        return &reverberation[0];
+    }
+    if (reverberationToGet == 2)
+    {
+        return &reverberation[1];
+    }
+    if (reverberationToGet == 3)
+    {
+        return &reverberation[2];
+    }
+    if (reverberationToGet == 4)
+    {
+        return &reverberation[3];
+    }
+    if (reverberationToGet == 5)
+    {
+        return &reverberation[4];
+    }
+    if (reverberationToGet == 6)
+    {
+        return &reverberation[5];
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 Pedal* Audio::getBlankPedal()

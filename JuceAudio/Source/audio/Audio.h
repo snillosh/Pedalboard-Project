@@ -54,13 +54,13 @@ public:
     void audioDeviceStopped() override;
     
     //Returns a reference of the delay object
-    Pedal* getDelay();
+    Pedal* getDelay(int delayToGet);
     //Returns a reference of the phaser object
-    Pedal* getPhaser();
+    Pedal* getPhaser(int phaserToGet);
     //Returns a reference of the tremolo oject
-    Pedal* getTremolo();
+    Pedal* getTremolo(int tremoloToGet);
     //Returns a reference of the reverberation object
-    Pedal* getReverberation();
+    Pedal* getReverberation(int reverberationToGet);
     //Returns a reference of the blank pedal object
     Pedal* getBlankPedal();
     
@@ -68,10 +68,10 @@ private:
     AudioDeviceManager audioDeviceManager;
     Looper looper;
     
-    Delay delay;
-    Phaser phaser;
-    Tremolo tremolo;
-    Reverberation reverberation;
+    std::array<Delay, 6> delay;
+    std::array<Phaser, 6> phaser;
+    std::array<Tremolo, 6> tremolo;
+    std::array<Reverberation, 6> reverberation;
     BlankPedal blankPedal;
     
     // an array of 6 pedal pointers is created based on the 6 process slots, with each one being used to process a casscade of audio signals

@@ -82,6 +82,12 @@ void LooperGUI::buttonClicked(Button* button)
     }
     if (button == &saveButton)
     {
+        looper->setPlayState( ! looper->isPlaying());
+        playButton.setToggleState ( looper->isPlaying(), dontSendNotification);
+        if (looper->isPlaying())
+            playButton.setButtonText("Stop");
+        else
+            playButton.setButtonText("Play");
         looper->save();
     }
 }

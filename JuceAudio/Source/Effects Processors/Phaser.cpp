@@ -73,6 +73,7 @@ void Phaser::initialise()
     mix = 0.5f;
     dsp::ProcessSpec spec;
     spec.sampleRate = sampleRate;
+    spec.numChannels = 1;
     rateLFO.setSampleRate(sampleRate);
     
     for (auto n = 0; n < numStages; ++n)
