@@ -24,6 +24,7 @@ public:
     ~LooperGUI() override;
     
     void setLooper (Looper* newLooper);
+    void setTempoValue (int newTempoValue);
     void paint (juce::Graphics&) override;
     void resized() override;
     void buttonClicked (Button* button) override;
@@ -34,4 +35,6 @@ private:
     TextButton saveButton         {"Save"};
     TextButton playButton         {"Play"};
     TextButton resetButton        {"Reset"};
+    
+    int tempoValue;
 };

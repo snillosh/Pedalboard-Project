@@ -36,7 +36,7 @@ LooperGUI::LooperGUI()
     resetButton.setColour (TextButton::buttonColourId, Colours::orange);
     resetButton.setColour (TextButton::buttonOnColourId, Colours::darkorange);
     addAndMakeVisible (&resetButton);
-    saveButton.addListener (this);
+    resetButton.addListener (this);
 }
 
 LooperGUI::~LooperGUI()
@@ -78,7 +78,6 @@ void LooperGUI::buttonClicked(Button* button)
     }
     if ( button == &resetButton)
     {
-        DBG("RESET BUTTON CLICKED");
         looper->reset();
     }
 }
@@ -86,4 +85,19 @@ void LooperGUI::buttonClicked(Button* button)
 void LooperGUI::setLooper(Looper *newLooper)
 {
     looper = newLooper;
+}
+
+void LooperGUI::setTempoValue(int newTempoValue)
+{
+    if (looper->isPlaying())
+    {
+        looper->setPlayState( ! looper->isPlaying());
+        playButton.setToggleState ( looper->isPlaying(), dontSendNotification);
+        if (looper->isPlaying())
+            playButton.setButtonText("Stop");
+        else
+            playButton.setButtonText("Play");
+    }
+    tempoValue = newTempoValue;
+    looper->setBufferSize(tempoValue);
 }

@@ -27,6 +27,8 @@ public:
     
     void reset();
     
+    void setBufferSize(int tempo);
+    
     float processSample (float input);
     
 private:
@@ -36,4 +38,8 @@ private:
     
     unsigned int bufferPosition {0};
     AudioBuffer<float> audioBuffer;
+    
+    int tempoValue;
+    int bufferLengthInSamples = 352800;
+    float sampleRate = 44100.0f;
 };

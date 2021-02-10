@@ -14,6 +14,7 @@
 #include <JuceHeader.h>
 #include <array>
 #include <vector>
+#include <string>
 #include "../audio/Audio.h"
 #include "PedalGUI.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/LooperGUI.h"
@@ -25,7 +26,8 @@
 */
 class MainComponent   : public Component,
                         public MenuBarModel,
-                        public ComboBox::Listener
+                        public ComboBox::Listener,
+                        public TextEditor::Listener
 {
 public:
     //==============================================================================
@@ -39,6 +41,7 @@ public:
     void resized() override;
     void paint (Graphics&) override;
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
+    void textEditorReturnKeyPressed (TextEditor& text) override;
     
     //MenuBarEnums/MenuBarModel=====================================================
     enum Menus
@@ -63,8 +66,9 @@ private:
     
     std::vector<std::unique_ptr<PedalGUI>> pedalGUIVector;   //vector of pedalGUI objects created on the ???????????????
     std::vector<std::unique_ptr<ComboBox>> effectSelectorComboBoxVector; // vector of
-    LooperGUI looperGUI; //creates an instance of the GUI for the record feature
+    LooperGUI looperGUI; //creates an instance of the looprt GUI within main component
     ComboBox pedalAmountSelector; // creates a combobox to select the amount of pedal slots
+    TextEditor tempoTextBox;
     
     int pedalAmount = 4;
     //==============================================================================

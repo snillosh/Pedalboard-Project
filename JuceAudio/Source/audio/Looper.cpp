@@ -14,7 +14,7 @@
 
 Looper::Looper()
 {
-    audioBuffer.setSize(1, 176400);
+    audioBuffer.setSize(1, 352800);
     audioBuffer.clear();
 }
 
@@ -49,6 +49,15 @@ void Looper::reset()
     audioBuffer.clear();
 }
 
+void Looper::setBufferSize(int tempo)
+{
+    bufferPosition = 0;
+    tempoValue = tempo;
+    float bufferLengthInSecond = (16.0f/ tempoValue) * 60.0f;
+    bufferLengthInSamples = bufferLengthInSecond * sampleRate;
+    audioBuffer.setSize(1, bufferLengthInSamples);
+}
+
 float Looper::processSample(float input)
 {
     auto output = input;
@@ -58,16 +67,17 @@ float Looper::processSample(float input)
         audioSample = audioBuffer.getWritePointer(0, bufferPosition);
         //play
         output = *audioSample;
-        //click 4 times each bufferLength
-        if ((bufferPosition % (176400 / 8)) == 0)
-            *audioSample += 0.25f;
-        
+        //click 16 times each bufferLength
+        if ((bufferPosition % (bufferLengthInSamples / 16)) == 0)
+            *audioSample += 0.15f;
+        if ((bufferPosition % (bufferLengthInSamples / 4)) == 0)
+            *audioSample += 0.5f;
         //record
         if (recordState.load() == true)
             *audioSample = input + output;
         
         //increment and cycle the buffer counter
-        if (++bufferPosition == 176400)
+        if (++bufferPosition == bufferLengthInSamples)
             bufferPosition = 0;
     }
     return output;

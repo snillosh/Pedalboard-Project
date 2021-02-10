@@ -54,6 +54,12 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     }
     
     addAndMakeVisible(looperGUI);
+    
+    tempoTextBox.setInputRestrictions(3, "0123456789");
+    //tempoTextBox.setText("Enter the tempo in BPM for the loop time: ");
+    addAndMakeVisible(tempoTextBox);
+    tempoTextBox.addListener(this);
+    
     resized();
 }
 
@@ -74,12 +80,16 @@ void MainComponent::resized()
     
     auto recordComp = row.removeFromTop(getHeight()/16);
     
+    auto pedalAmountSecectorRow = row.removeFromTop(getHeight() / 32);
+    
     for (auto& b : effectSelectorComboBoxVector)
         b.get()->setBounds(row3.removeFromLeft(getWidth() / pedalAmount));
     
     looperGUI.setBounds (recordComp.removeFromRight (getWidth() * 0.75));
     
-    pedalAmountSelector.setBounds(recordComp.removeFromLeft(getWidth()/4));
+    pedalAmountSelector.setBounds(0, 0, getWidth() / 4, getHeight() / 32);
+    
+    tempoTextBox.setBounds(0, getHeight() / 32, getWidth() / 4, getHeight() / 32);
     
     for (auto& p : pedalGUIVector)
         p.get()->setBounds (row2.removeFromLeft (getWidth() /pedalAmount));
@@ -190,4 +200,11 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         repaint();
         resized();
     }
+}
+
+void MainComponent::textEditorReturnKeyPressed (TextEditor& text)
+{
+    juce::String tempoValue = text.getText();
+    int tempoValueInt = tempoValue.getIntValue();
+    looperGUI.setTempoValue(tempoValueInt);
 }
