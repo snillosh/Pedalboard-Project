@@ -12,6 +12,12 @@
 #include <JuceHeader.h>
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
 
+
+/**
+    A simple reverb created using 3 delays with very short delay times and feedback, then processed using a lowpass filter.
+
+    This audio effect is controled using: filter cutoff (parameter2), feedback gain (parameter3).
+*/
 class Reverberation : public Pedal
 {
 public:

@@ -11,25 +11,25 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Record.h"
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Looper.h"
 
 //==============================================================================
 /*
 */
-class RecordComponent  : public Component,
+class LooperGUI  : public Component,
                          public Button::Listener
 {
 public:
-    RecordComponent();
-    ~RecordComponent() override;
+    LooperGUI();
+    ~LooperGUI() override;
     
-    void setRecord (Record* recordPtr);
+    void setLooper (Looper* newLooper);
     void paint (juce::Graphics&) override;
     void resized() override;
     void buttonClicked (Button* button) override;
 
 private:
-    Record* recordPtr             {nullptr};
+    Looper* looper             {nullptr};
     TextButton recordButton       {"Record"};
     TextButton saveButton         {"Save"};
     TextButton playButton         {"Play"};

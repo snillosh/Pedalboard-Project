@@ -16,7 +16,7 @@
 #include <vector>
 #include "../audio/Audio.h"
 #include "PedalGUI.hpp"
-#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/RecordComponent.h"
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/LooperGUI.h"
 
 //==============================================================================
 /*
@@ -59,12 +59,12 @@ public:
     void menuItemSelected (int menuItemID, int topLevelMenuIndex) override;
     
 private:
-    Audio& audio;
+    Audio& audio;  // reference to audio
     
-    std::vector<std::unique_ptr<PedalGUI>> pedalGUIVector;
-    std::vector<std::unique_ptr<ComboBox>> comboBoxVector;
-    RecordComponent recordComponent;
-    ComboBox pedalAmountSelector;
+    std::vector<std::unique_ptr<PedalGUI>> pedalGUIVector;   //vector of pedalGUI objects created on the ???????????????
+    std::vector<std::unique_ptr<ComboBox>> effectSelectorComboBoxVector; // vector of
+    LooperGUI looperGUI; //creates an instance of the GUI for the record feature
+    ComboBox pedalAmountSelector; // creates a combobox to select the amount of pedal slots
     
     int pedalAmount = 4;
     //==============================================================================

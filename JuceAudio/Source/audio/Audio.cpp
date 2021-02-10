@@ -12,8 +12,6 @@
 
 Audio::Audio()
 {
-    
-    
     auto midiInputDevices = MidiInput::getAvailableDevices();
     if (midiInputDevices.size() > 0)
         audioDeviceManager.setMidiInputDeviceEnabled (midiInputDevices[0].identifier, true);
@@ -35,12 +33,12 @@ Audio::Audio()
     reverberation.initialise();
     
     //initially each pedal process pointer is set to the blank pedal
-    pedalPtr[0] = &blankPedal;
-    pedalPtr[1] = &blankPedal;
-    pedalPtr[2] = &blankPedal;
-    pedalPtr[3] = &blankPedal;
-    pedalPtr[4] = &blankPedal;
-    pedalPtr[5] = &blankPedal;
+    pedal[0] = &blankPedal;
+    pedal[1] = &blankPedal;
+    pedal[2] = &blankPedal;
+    pedal[3] = &blankPedal;
+    pedal[4] = &blankPedal;
+    pedal[5] = &blankPedal;
 }
 
 Audio::~Audio()
@@ -59,10 +57,6 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
                                            int numOutputChannels,
                                            int numSamples)
 {
-    ScopedNoDenormals noDenormals;
-    
-    AudioBuffer<float> buffer(outputChannelData, numOutputChannels, numSamples);
-
     const float* inL = inputChannelData[0];
 
     float *outL = outputChannelData[0];
@@ -72,13 +66,16 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
     while(numSamples--)
     {
         auto input = *inL;
-        auto pedalProcessSlot1 = pedalPtr[0]->process(input);
-        auto pedalProcessSlot2 = pedalPtr[1]->process(pedalProcessSlot1);
-        auto pedalProcessSlot3 = pedalPtr[2]->process(pedalProcessSlot2);
-        auto pedalProcessSlot4 = pedalPtr[3]->process(pedalProcessSlot3);
-        auto pedalProcessSlot5 = pedalPtr[4]->process(pedalProcessSlot4);
-        auto pedalProcessSlot6 = pedalPtr[5]->process(pedalProcessSlot5);
-        auto output = record.processSample(pedalProcessSlot6);
+        //each process slot represents the 6 possible pedals running at a time
+        //the input signal is run through each pedal where (depending on the pedal selected) the process function of the effect gets applied to the signal
+        auto pedalProcessSlot1 = pedal[0]->process(input);
+        auto pedalProcessSlot2 = pedal[1]->process(pedalProcessSlot1);
+        auto pedalProcessSlot3 = pedal[2]->process(pedalProcessSlot2);
+        auto pedalProcessSlot4 = pedal[3]->process(pedalProcessSlot3);
+        auto pedalProcessSlot5 = pedal[4]->process(pedalProcessSlot4);
+        auto pedalProcessSlot6 = pedal[5]->process(pedalProcessSlot5);
+        //after outputing from the pedals, the signal is run through the looper 
+        auto output = looper.processSample(pedalProcessSlot6);
         
         *outL = output;
         *outR = output;
@@ -102,27 +99,27 @@ Pedal* Audio::getPedal(int pedalToGet) const
 {
     if (pedalToGet == 1)
     {
-        return pedalPtr[0];
+        return pedal[0];
     }
     if (pedalToGet == 2)
     {
-        return pedalPtr[1];
+        return pedal[1];
     }
     if (pedalToGet == 3)
     {
-        return pedalPtr[2];
+        return pedal[2];
     }
     if (pedalToGet == 4)
     {
-        return pedalPtr[3];
+        return pedal[3];
     }
     if (pedalToGet == 5)
     {
-        return pedalPtr[4];
+        return pedal[4];
     }
     if (pedalToGet == 6)
     {
-        return pedalPtr[5];
+        return pedal[5];
     }
     else
     {
@@ -135,80 +132,80 @@ void Audio::setPedal(int pedalToSet,int index)
     if (pedalToSet == 1)
     {
         if (index == 1)
-            pedalPtr[0] = &phaser;
+            pedal[0] = &phaser;
         if (index == 2)
-            pedalPtr[0] = &tremolo;
+            pedal[0] = &tremolo;
         if (index == 3)
-            pedalPtr[0] = &reverberation;
+            pedal[0] = &reverberation;
         if (index == 4)
-            pedalPtr[0] = &delay;
+            pedal[0] = &delay;
         else if (index == 5)
-            pedalPtr[0] = &blankPedal;
+            pedal[0] = &blankPedal;
     }
     if (pedalToSet == 2)
     {
         if (index == 1)
-            pedalPtr[1] = &phaser;
+            pedal[1] = &phaser;
         if (index == 2)
-            pedalPtr[1] = &tremolo;
+            pedal[1] = &tremolo;
         if (index == 3)
-            pedalPtr[1] = &reverberation;
+            pedal[1] = &reverberation;
         if (index == 4)
-            pedalPtr[1] = &delay;
+            pedal[1] = &delay;
         else if (index == 5)
-            pedalPtr[1] = &blankPedal;
+            pedal[1] = &blankPedal;
     }
     if (pedalToSet == 3)
     {
         if (index == 1)
-            pedalPtr[2] = &phaser;
+            pedal[2] = &phaser;
         if (index == 2)
-            pedalPtr[2] = &tremolo;
+            pedal[2] = &tremolo;
         if (index == 3)
-            pedalPtr[2] = &reverberation;
+            pedal[2] = &reverberation;
         if (index == 4)
-            pedalPtr[2] = &delay;
+            pedal[2] = &delay;
         else if (index == 5)
-            pedalPtr[2] = &blankPedal;
+            pedal[2] = &blankPedal;
     }
     if (pedalToSet == 4)
     {
         if (index == 1)
-            pedalPtr[3] = &phaser;
+            pedal[3] = &phaser;
         if (index == 2)
-            pedalPtr[3] = &tremolo;
+            pedal[3] = &tremolo;
         if (index == 3)
-            pedalPtr[3] = &reverberation;
+            pedal[3] = &reverberation;
         if (index == 4)
-            pedalPtr[3] = &delay;
+            pedal[3] = &delay;
         else if (index == 5)
-            pedalPtr[3] = &blankPedal;
+            pedal[3] = &blankPedal;
     }
     if (pedalToSet == 5)
     {
         if (index == 1)
-            pedalPtr[4] = &phaser;
+            pedal[4] = &phaser;
         if (index == 2)
-            pedalPtr[4] = &tremolo;
+            pedal[4] = &tremolo;
         if (index == 3)
-            pedalPtr[4] = &reverberation;
+            pedal[4] = &reverberation;
         if (index == 4)
-            pedalPtr[4] = &delay;
+            pedal[4] = &delay;
         else if (index == 5)
-            pedalPtr[4] = &blankPedal;
+            pedal[4] = &blankPedal;
     }
     if (pedalToSet == 6)
     {
         if (index == 1)
-            pedalPtr[5] = &phaser;
+            pedal[5] = &phaser;
         if (index == 2)
-            pedalPtr[5] = &tremolo;
+            pedal[5] = &tremolo;
         if (index == 3)
-            pedalPtr[5] = &reverberation;
+            pedal[5] = &reverberation;
         if (index == 4)
-            pedalPtr[5] = &delay;
+            pedal[5] = &delay;
         else if (index == 5)
-            pedalPtr[5] = &blankPedal;
+            pedal[5] = &blankPedal;
     }
 }
 

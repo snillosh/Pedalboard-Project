@@ -1,55 +1,55 @@
 /*
   ==============================================================================
 
-    Record.cpp
+    Looper.cpp
     Created: 18 Jan 2021 5:23:00pm
     Author:  Bevan Salter
 
   ==============================================================================
 */
 
-#include "Record.h"
+#include "Looper.h"
 
 
 
-Record::Record()
+Looper::Looper()
 {
     audioBuffer.setSize(1, 176400);
     audioBuffer.clear();
 }
 
-Record::~Record()
+Looper::~Looper()
 {
     
 }
 
-void Record::setPlayState(const bool newState)
+void Looper::setPlayState(const bool newState)
 {
     playState = newState;
 }
 
-bool Record::isPlaying() const
+bool Looper::isPlaying() const
 {
     return playState.load();
 }
 
-void Record::setRecordState(const bool newState)
+void Looper::setRecordState(const bool newState)
 {
     recordState = newState;
 }
 
-bool Record::isRecording() const
+bool Looper::isRecording() const
 {
     return recordState.load();
 }
 
-void Record::reset()
+void Looper::reset()
 {
     DBG("Cleared");
     audioBuffer.clear();
 }
 
-float Record::processSample(float input)
+float Looper::processSample(float input)
 {
     auto output = input;
     if (playState.load() == true)

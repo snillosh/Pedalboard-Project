@@ -11,7 +11,12 @@
 #include <JuceHeader.h>
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
 #include "/Users/bevansalter/Desktop/Level 3/Final Year Project/Xcode Projects/FYP Phaser Project/FYP Phaser Project/Source/LFO.h"
+/**
+    A 6 stage phaser that modulates first order all-pass filters to create sweeping
+    notches in the magnitude frequency response.
 
+    This audio effect is controled using the standard phaser controls: depth (parameter2), feedback (parameter3) and rate (parameter4).
+*/
 class Phaser : public Pedal
 {
 public:
@@ -45,7 +50,7 @@ private:
     
     float depth, feedback, mix, output;
     float rate;
-    static constexpr int numStages = 4;
+    static constexpr int numStages = 6;
     float sampleRate = 44100.0f;
     float allpassOutFinal = 1.0f;
 };

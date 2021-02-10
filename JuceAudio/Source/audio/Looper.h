@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    Record.h
+    Looper.h
     Created: 18 Jan 2021 5:23:00pm
     Author:  Bevan Salter
 
@@ -11,11 +11,11 @@
 #pragma once
 #include <JuceHeader.h>
 
-class Record
+class Looper
 {
 public:
-    Record();
-    ~Record();
+    Looper();
+    ~Looper();
     
     void setPlayState (bool newState);
     

@@ -10,7 +10,7 @@
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
 #pragma once
 
-
+// Blank pedal class to set the audio and GUI to an empty state.
 class BlankPedal : public Pedal
 {
 public:

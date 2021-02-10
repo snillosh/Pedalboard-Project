@@ -9,10 +9,10 @@
 */
 
 #include <JuceHeader.h>
-#include "RecordComponent.h"
+#include "LooperGUI.h"
 
 //==============================================================================
-RecordComponent::RecordComponent()
+LooperGUI::LooperGUI()
 {
     playButton.setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     playButton.setColour (TextButton::buttonColourId, Colours::green);
@@ -39,15 +39,15 @@ RecordComponent::RecordComponent()
     saveButton.addListener (this);
 }
 
-RecordComponent::~RecordComponent()
+LooperGUI::~LooperGUI()
 {
 }
 
-void RecordComponent::paint (juce::Graphics& g)
+void LooperGUI::paint (juce::Graphics& g)
 {
 }
 
-void RecordComponent::resized()
+void LooperGUI::resized()
 {
     auto r = getLocalBounds();
     auto row = r.removeFromTop (getHeight());
@@ -57,33 +57,33 @@ void RecordComponent::resized()
     resetButton.setBounds (row.removeFromLeft(getWidth() / 4));
 }
 
-void RecordComponent::buttonClicked(Button* button)
+void LooperGUI::buttonClicked(Button* button)
 {
-    if (recordPtr == nullptr)
+    if (looper == nullptr)
         return;
     
     if (button == &playButton)
     {
-        recordPtr->setPlayState( ! recordPtr->isPlaying());
-        playButton.setToggleState ( recordPtr->isPlaying(), dontSendNotification);
-        if (recordPtr->isPlaying())
+        looper->setPlayState( ! looper->isPlaying());
+        playButton.setToggleState ( looper->isPlaying(), dontSendNotification);
+        if (looper->isPlaying())
             playButton.setButtonText("Stop");
         else
             playButton.setButtonText("Play");
     }
     if ( button == &recordButton)
     {
-        recordPtr->setRecordState( ! recordPtr->isRecording());
-        recordButton.setToggleState(recordPtr->isRecording(), dontSendNotification);
+        looper->setRecordState( ! looper->isRecording());
+        recordButton.setToggleState(looper->isRecording(), dontSendNotification);
     }
     if ( button == &resetButton)
     {
         DBG("RESET BUTTON CLICKED");
-        recordPtr->reset();
+        looper->reset();
     }
 }
 
-void RecordComponent::setRecord(Record *newRecordPtr)
+void LooperGUI::setLooper(Looper *newLooper)
 {
-    recordPtr = newRecordPtr;
+    looper = newLooper;
 }

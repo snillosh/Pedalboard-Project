@@ -26,7 +26,6 @@ void Reverberation::initialise()
 {
     cutOff = 50.0f;
     feedbackGain = 0.3f;
-    delayTimeParameter = 0.1f;
     delayTime1 = 0.1f;
     delayTime2 = 0.033f;
     delayTime3 = 0.015;
@@ -76,11 +75,10 @@ float Reverberation::getParameter3() const
 //------------------------------------------------
 void Reverberation::setParameter4(float input)
 {
-    delayTimeParameter = input / 100;
 }
 float Reverberation::getParameter4() const
 {
-    return delayTimeParameter;
+    return 0;
 }
 //------------------------------------------------
 void Reverberation::setParameter5(float input)

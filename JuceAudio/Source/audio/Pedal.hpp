@@ -10,7 +10,7 @@
 
 #pragma once
 #include <JuceHeader.h>
-
+// Base class for each effect processor. 
 class Pedal
 {
 public:

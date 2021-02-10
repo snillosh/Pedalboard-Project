@@ -11,6 +11,11 @@
 #pragma once
 #include <JuceHeader.h>
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
+/**
+    A simple audio buffer based delay with feedback.
+
+    This audio effect is controled using the standard delay controls: delay time (parameter2) and feedback volume (parameter3).
+*/
 class Delay : public Pedal
 {
 public:

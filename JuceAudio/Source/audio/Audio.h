@@ -20,7 +20,7 @@
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Phaser.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Reverberation.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/BlankPedal.h"
-#include "Record.h"
+#include "Looper.h"
 /** Class containing all audio processes */
 
 class Audio :   public MidiInputCallback,
@@ -39,7 +39,7 @@ public:
     //Sets the entered pedal to the reference of an effect based on the index (pedal type)
     void setPedal(int pedalToSet ,int index);
     //Returns a pointer to record object
-    Record* getRecord() {return &record;}
+    Looper* getLooper() {return &looper;}
 
     AudioDeviceManager& getAudioDeviceManager() { return audioDeviceManager;}
     
@@ -66,7 +66,7 @@ public:
     
 private:
     AudioDeviceManager audioDeviceManager;
-    Record record;
+    Looper looper;
     
     Delay delay;
     Phaser phaser;
@@ -75,7 +75,7 @@ private:
     BlankPedal blankPedal;
     
     // an array of 6 pedal pointers is created based on the 6 process slots, with each one being used to process a casscade of audio signals
-    std::array <Pedal* , 6> pedalPtr;
+    std::array <Pedal* , 6> pedal;
     
     float sampleRate = 44100.0f;
 };

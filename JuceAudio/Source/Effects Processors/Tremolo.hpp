@@ -14,6 +14,11 @@
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
 
 
+/**
+    A simple LFO tremolo where the volume of  the input signal is modulated by a sine wave LFO.
+
+    This audio effect is controled using the standard tremolo controls: depth (parameter2) and rate (parameter3).
+*/
 class Tremolo :   public Pedal
 {
 public:
