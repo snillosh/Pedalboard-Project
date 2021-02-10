@@ -99,31 +99,32 @@ void Audio::audioDeviceStopped()
 {
 }
 
-Pedal* Audio::getPedal(int pedalToGet) const
+
+Pedal* Audio::getAudioPedal(int pedalToGet) const
 {
-    if (pedalToGet == 1)
+    if (pedalToGet == 1) // get first pedal pointer in array
     {
-        return pedal[0];
+        return pedal[0]; // return pedal 0
     }
     if (pedalToGet == 2)
     {
-        return pedal[1];
+        return pedal[1]; // return pedal 1
     }
     if (pedalToGet == 3)
     {
-        return pedal[2];
+        return pedal[2]; // return pedal 2
     }
     if (pedalToGet == 4)
     {
-        return pedal[3];
+        return pedal[3]; // return pedal 3
     }
     if (pedalToGet == 5)
     {
-        return pedal[4];
+        return pedal[4]; // return pedal 4
     }
     if (pedalToGet == 6)
     {
-        return pedal[5];
+        return pedal[5]; // return pedal 5
     }
     else
     {
@@ -131,7 +132,7 @@ Pedal* Audio::getPedal(int pedalToGet) const
     }
 }
 
-void Audio::setPedal(int pedalToSet,int index)
+void Audio::setAudioPedal(int pedalToSet,int index)
 {
     if (pedalToSet == 1)
     {

@@ -4,7 +4,7 @@
     Compressor.cpp
     Created: 12 Jan 2021 11:17:00pm
     Author:  Bevan Salter
-
+    DSP code: Bevan Salter
   ==============================================================================
 */
 
@@ -31,7 +31,7 @@ float Tremolo::getParameter1() const
 //---------------------------------------------
 void Tremolo::setParameter2(float input)
 {
-    depth = input / 10.0f;
+    depth = (input / 10.0f) + 0.001f;
 }
 float Tremolo::getParameter2() const
 {
@@ -40,7 +40,7 @@ float Tremolo::getParameter2() const
 //---------------------------------------------
 void Tremolo::setParameter3(float input)
 {
-    rate = input * 2.0f;
+    rate = (input * 2.0f) + 0.001f;
 }
 float Tremolo::getParameter3() const
 {
@@ -67,6 +67,8 @@ float Tremolo::getParameter5() const
 //---------------------------------------------
 void Tremolo::intitialise()
 {
+    rate = 0.001f;
+    depth = 0.001f;
     dsp::ProcessSpec spec;
     spec.sampleRate = sampleRate;
     LFO.setSampleRate(sampleRate);
@@ -83,7 +85,7 @@ float Tremolo::process(float input)
     if (isOn())
     {
         updateLFO();
-        auto outputGain = (LFO.nextSample() * 0.5) + 0.5;
+        auto outputGain = (LFO.nextSample() * 0.5) + 0.5; // offset the LFO values to be between 1 and 0
         float outputValue = outputGain * input;
         return outputValue;
         

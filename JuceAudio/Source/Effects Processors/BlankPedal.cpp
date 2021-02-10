@@ -20,10 +20,6 @@ BlankPedal::~BlankPedal()
     
 }
 
-void BlankPedal::intitialise()
-{
-    
-}
 //------------------------------------------------
 void BlankPedal::setParameter1(float input)
 {

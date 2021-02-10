@@ -4,7 +4,7 @@
     Reverb.cpp
     Created: 12 Jan 2021 11:17:00pm
     Author:  Bevan Salter
-
+    DSP code: Bevan Salter
   ==============================================================================
 */
 
@@ -25,12 +25,12 @@ Reverberation::~Reverberation()
 void Reverberation::initialise()
 {
     cutOff = 50.0f;
-    feedbackGain = 0.3f;
+    feedbackGain = 0.0f;
     delayTime1 = 0.1f;
     delayTime2 = 0.033f;
     delayTime3 = 0.015;
-    lowPassFilter.add(new juce::dsp::FirstOrderTPTFilter<float>());
-    lowPassFilter[0]->setType(juce::dsp::FirstOrderTPTFilterType::lowpass);
+    lowPassFilter.add(new juce::dsp::FirstOrderTPTFilter<float>()); // adds 1 filter
+    lowPassFilter[0]->setType(juce::dsp::FirstOrderTPTFilterType::lowpass); // makes it lowpass
     dsp::ProcessSpec spec;
     spec.sampleRate = sampleRate;
     lowPassFilter[0]->prepare(spec);
@@ -89,7 +89,7 @@ float Reverberation::getParameter5() const
     return 0;
 }
 //------------------------------------------------
-float Reverberation::process(float input)
+float Reverberation::process(float input) // uses 3 short delays
 {
     if (isOn())
     {

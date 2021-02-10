@@ -109,5 +109,5 @@ void LooperGUI::setTempoValue(int newTempoValue)
             playButton.setButtonText("Play");
     }
     tempoValue = newTempoValue;
-    looper->setBufferSize(tempoValue);
+    looper->updateBufferSize(tempoValue); // send tempo value to looper
 }

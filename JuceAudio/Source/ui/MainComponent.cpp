@@ -13,26 +13,26 @@
 //==============================================================================
 MainComponent::MainComponent (Audio& a) :   audio (a)
 {
-    setSize (1280, 720);
+    setSize (1280, 720); // set initial window size
     
-    looperGUI.setLooper(audio.getLooper());
+    looperGUI.setLooper(audio.getLooper()); // sets looper gui pointer to audio looper
     
-    for (int index = 0; index < 6; ++index)
-      effectSelectorComboBoxVector.emplace_back(std::make_unique<ComboBox>());
+    for (int index = 0; index < 6; ++index) // for each pedal slot
+      effectSelectorComboBoxVector.emplace_back(std::make_unique<ComboBox>()); // put comboBox in vector
     
-    for (auto& b : effectSelectorComboBoxVector)
+    for (auto& b : effectSelectorComboBoxVector) // for each combobox vector
     {
         addAndMakeVisible(b.get());
-        b.get()->addItem ("Phaser", 1);
+        b.get()->addItem ("Phaser", 1); // add text to combobox
         b.get()->addItem ("Tremolo", 2);
         b.get()->addItem ("Reverb", 3);
         b.get()->addItem ("Delay", 4);
         b.get()->addItem ("None", 5);
-        b.get()->setSelectedId(5);
+        b.get()->setSelectedId(5);     // set inital combobox text as "None:
         b.get()->addListener(this);
     }
     
-    pedalAmountSelector.addItem("1", 1);
+    pedalAmountSelector.addItem("1", 1); // add text to pedal amount selector
     pedalAmountSelector.addItem("2", 2);
     pedalAmountSelector.addItem("3", 3);
     pedalAmountSelector.addItem("4", 4);
@@ -43,24 +43,24 @@ MainComponent::MainComponent (Audio& a) :   audio (a)
     addAndMakeVisible(pedalAmountSelector);
     
     for (int index = 0; index < 6; ++index)
-      pedalGUIVector.emplace_back(std::make_unique<PedalGUI>());
+      pedalGUIVector.emplace_back(std::make_unique<PedalGUI>()); // put pedalGui object in vector
     
     for(auto& p : pedalGUIVector)
         addAndMakeVisible (p.get());
     
     for (int i = 0; i < pedalGUIVector.size(); i++)
     {
-        pedalGUIVector[i]->setPedal (audio.getPedal(i + 1));
+        pedalGUIVector[i]->setGUIPedal (audio.getAudioPedal(i + 1));  // set pointer for pedalGui
     }
     
     addAndMakeVisible(looperGUI);
     
-    tempoTextBox.setInputRestrictions(3, "0123456789");
-    tempoTextBox.setTextToShowWhenEmpty("120", Colours::white);
+    tempoTextBox.setInputRestrictions(3, "0123456789");              // only numbers can be entered
+    tempoTextBox.setTextToShowWhenEmpty("120", Colours::white);      // set default text
     addAndMakeVisible(tempoTextBox);
     tempoTextBox.addListener(this);
     
-    resized();
+    resized();   // resize to update changes
 }
 
 MainComponent::~MainComponent()
@@ -68,7 +68,7 @@ MainComponent::~MainComponent()
 }
 
 //==============================================================================
-void MainComponent::resized()
+void MainComponent::resized()     // set bounds for each object in mainComponent
 {
     auto r = getLocalBounds();
     
@@ -92,7 +92,7 @@ void MainComponent::resized()
     for (auto& p : pedalGUIVector)
         p.get()->setBounds (row2.removeFromLeft (getWidth() /pedalAmount));
 }
-void MainComponent::paint (Graphics& g)
+void MainComponent::paint (Graphics& g) // paint background
 {
     auto r = getLocalBounds();
     
@@ -152,57 +152,57 @@ void MainComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 {
     if (comboBoxThatHasChanged == &*effectSelectorComboBoxVector[0])
     {
-        audio.setPedal(1, comboBoxThatHasChanged->getSelectedId());
-        pedalGUIVector[0]->setPedal (audio.getPedal(1));
-        pedalGUIVector[0]->updateParametes(audio.getDelay(1), audio.getPhaser(1), audio.getTremolo(1), audio.getReverberation(1), audio.getBlankPedal());
+        audio.setAudioPedal(1, comboBoxThatHasChanged->getSelectedId()); // sets effect to process
+        pedalGUIVector[0]->setGUIPedal (audio.getAudioPedal(1));         // sets pedalGUI 1 to audio pedal 1
+        pedalGUIVector[0]->updateGUIParameters(audio.getDelay(1), audio.getPhaser(1), audio.getTremolo(1), audio.getReverberation(1), audio.getBlankPedal()); // input effect references to pedalGUI
     }
     if (comboBoxThatHasChanged == &*effectSelectorComboBoxVector[1])
     {
-        audio.setPedal(2,comboBoxThatHasChanged->getSelectedId());
-        pedalGUIVector[1]->setPedal (audio.getPedal(2));
-        pedalGUIVector[1]->updateParametes(audio.getDelay(2), audio.getPhaser(2), audio.getTremolo(2), audio.getReverberation(2), audio.getBlankPedal());
+        audio.setAudioPedal(2,comboBoxThatHasChanged->getSelectedId());
+        pedalGUIVector[1]->setGUIPedal (audio.getAudioPedal(2));
+        pedalGUIVector[1]->updateGUIParameters(audio.getDelay(2), audio.getPhaser(2), audio.getTremolo(2), audio.getReverberation(2), audio.getBlankPedal());
     }
         
     if (comboBoxThatHasChanged == &*effectSelectorComboBoxVector[2])
     {
-        audio.setPedal(3,comboBoxThatHasChanged->getSelectedId());
-        pedalGUIVector[2]->setPedal (audio.getPedal(3));
-        pedalGUIVector[2]->updateParametes(audio.getDelay(3), audio.getPhaser(3), audio.getTremolo(3), audio.getReverberation(3), audio.getBlankPedal());
+        audio.setAudioPedal(3,comboBoxThatHasChanged->getSelectedId());
+        pedalGUIVector[2]->setGUIPedal (audio.getAudioPedal(3));
+        pedalGUIVector[2]->updateGUIParameters(audio.getDelay(3), audio.getPhaser(3), audio.getTremolo(3), audio.getReverberation(3), audio.getBlankPedal());
     }
         
     if (comboBoxThatHasChanged == &*effectSelectorComboBoxVector[3])
     {
-        audio.setPedal(4,comboBoxThatHasChanged->getSelectedId());
-        pedalGUIVector[3]->setPedal (audio.getPedal(4));
-        pedalGUIVector[3]->updateParametes(audio.getDelay(4), audio.getPhaser(4), audio.getTremolo(4), audio.getReverberation(4), audio.getBlankPedal());
+        audio.setAudioPedal(4,comboBoxThatHasChanged->getSelectedId());
+        pedalGUIVector[3]->setGUIPedal (audio.getAudioPedal(4));
+        pedalGUIVector[3]->updateGUIParameters(audio.getDelay(4), audio.getPhaser(4), audio.getTremolo(4), audio.getReverberation(4), audio.getBlankPedal());
     }
     
     if (comboBoxThatHasChanged == &*effectSelectorComboBoxVector[4])
     {
-        audio.setPedal(5,comboBoxThatHasChanged->getSelectedId());
-        pedalGUIVector[4]->setPedal (audio.getPedal(5));
-        pedalGUIVector[4]->updateParametes(audio.getDelay(5), audio.getPhaser(5), audio.getTremolo(5), audio.getReverberation(5), audio.getBlankPedal());
+        audio.setAudioPedal(5,comboBoxThatHasChanged->getSelectedId());
+        pedalGUIVector[4]->setGUIPedal (audio.getAudioPedal(5));
+        pedalGUIVector[4]->updateGUIParameters(audio.getDelay(5), audio.getPhaser(5), audio.getTremolo(5), audio.getReverberation(5), audio.getBlankPedal());
     }
     
     if (comboBoxThatHasChanged == &*effectSelectorComboBoxVector[5])
     {
-        audio.setPedal(6,comboBoxThatHasChanged->getSelectedId());
-        pedalGUIVector[5]->setPedal (audio.getPedal(6));
-        pedalGUIVector[5]->updateParametes(audio.getDelay(6), audio.getPhaser(6), audio.getTremolo(6), audio.getReverberation(6), audio.getBlankPedal());
+        audio.setAudioPedal(6,comboBoxThatHasChanged->getSelectedId());
+        pedalGUIVector[5]->setGUIPedal (audio.getAudioPedal(6));
+        pedalGUIVector[5]->updateGUIParameters(audio.getDelay(6), audio.getPhaser(6), audio.getTremolo(6), audio.getReverberation(6), audio.getBlankPedal());
     }
     
     
     if(comboBoxThatHasChanged == &pedalAmountSelector)
     {
-        pedalAmount = comboBoxThatHasChanged->getSelectedId();
+        pedalAmount = comboBoxThatHasChanged->getSelectedId(); // set pedal amount to dropdown box
         repaint();
         resized();
     }
 }
 
-void MainComponent::textEditorReturnKeyPressed (TextEditor& text)
+void MainComponent::textEditorReturnKeyPressed (TextEditor& text) // when return key is pressed on the tempo textEditor
 {
     juce::String tempoValue = text.getText();
     int tempoValueInt = tempoValue.getIntValue();
-    looperGUI.setTempoValue(tempoValueInt);
+    looperGUI.setTempoValue(tempoValueInt); // send tempo value to looper Gui
 }

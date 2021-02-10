@@ -4,7 +4,7 @@
     Phaser.cpp
     Created: 12 Jan 2021 11:17:00pm
     Author:  Bevan Salter
-
+    DSP code: Bevan Salter
   ==============================================================================
 */
 
@@ -15,8 +15,8 @@ Phaser::Phaser()
 {
     for (auto n = 0; n < numStages; n++ )
     {
-        allpassFilters.add(new juce::dsp::FirstOrderTPTFilter<float>());
-        allpassFilters[n]->setType(juce::dsp::FirstOrderTPTFilterType::allpass);
+        allpassFilters.add(new juce::dsp::FirstOrderTPTFilter<float>()); // fills array based on number of stages
+        allpassFilters[n]->setType(juce::dsp::FirstOrderTPTFilterType::allpass); // sets all filters to allpass
     }
 }
 
@@ -53,7 +53,7 @@ float Phaser::getParameter3() const
 //----------------------------------------
 void Phaser::setParameter4(float input)
 {
-    rate = input * 2.0f;
+    rate = input + 0.001f;
 }
 float Phaser::getParameter4() const
 {
@@ -71,9 +71,12 @@ float Phaser::getParameter5() const
 void Phaser::initialise()
 {
     mix = 0.5f;
+    rate = 0.001f;
+    depth = 0.0f;
+    feedback = 0.0f;
     dsp::ProcessSpec spec;
     spec.sampleRate = sampleRate;
-    spec.numChannels = 1;
+    spec.numChannels = 1;                // crashes without this
     rateLFO.setSampleRate(sampleRate);
     
     for (auto n = 0; n < numStages; ++n)
@@ -87,11 +90,11 @@ void Phaser::updateFilter()
 {
     rateLFO.setFrequency(rate);
     rateLFO.setGain(depth);
-    float phaserPositionInHertz = (rateLFO.nextSample() * 0.5f) + 0.5f;
-    phaserPositionInHertz = (phaserPositionInHertz * 9702.0f) + 98.0f;
+    float phaserPositionInHertz = (rateLFO.nextSample() * 0.5f) + 0.5f; // offset to between 1 and 0
+    phaserPositionInHertz = (phaserPositionInHertz * 9702.0f) + 98.0f;  // offset for frequency sweep
     for (auto n = 0; n < numStages; n++)
     {
-        allpassFilters[n]->setCutoffFrequency(phaserPositionInHertz);
+        allpassFilters[n]->setCutoffFrequency(phaserPositionInHertz); // set cutoff to frequency sweep
     }
 }
 

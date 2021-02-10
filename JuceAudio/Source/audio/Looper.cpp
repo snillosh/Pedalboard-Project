@@ -14,8 +14,8 @@
 
 Looper::Looper()
 {
-    audioBuffer.setSize(1, 352800);
-    audioBuffer.clear();
+    audioBuffer.setSize(1, 352800); // sets audio buffer to initial size
+    audioBuffer.clear(); // clear to make sure its empty
 }
 
 Looper::~Looper()
@@ -45,7 +45,7 @@ bool Looper::isRecording() const
 
 void Looper::reset()
 {
-    audioBuffer.clear();
+    audioBuffer.clear(); // empty the buffer
 }
 
 void Looper::save()
@@ -66,13 +66,13 @@ void Looper::save()
     }
 }
 
-void Looper::setBufferSize(int tempo)
+void Looper::updateBufferSize(int tempo)
 {
-    bufferPosition = 0;
+    bufferPosition = 0; // sets audio buffer index to 0
     tempoValue = tempo;
-    float bufferLengthInSecond = (16.0f/ tempoValue) * 60.0f;
-    bufferLengthInSamples = bufferLengthInSecond * sampleRate;
-    audioBuffer.setSize(1, bufferLengthInSamples);
+    float bufferLengthInSecond = (16.0f/ tempoValue) * 60.0f; // converts tempo value to the length of 4 bars in seconds
+    bufferLengthInSamples = bufferLengthInSecond * sampleRate; // converts seconds to samples
+    audioBuffer.setSize(1, bufferLengthInSamples); // sets buffer size to new size based on tempo set by user
 }
 
 float Looper::processSample(float input)

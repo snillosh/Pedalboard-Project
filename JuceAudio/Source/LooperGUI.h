@@ -16,21 +16,31 @@
 //==============================================================================
 /*
 */
-class LooperGUI  : public Component,
-                         public Button::Listener
+/** Looper GUI class for displaying and listening to looper buttons in mainComponent*/
+class LooperGUI  :  public Component,
+                    public Button::Listener
 {
 public:
+    /** LooperGUI Constructor*/
     LooperGUI();
+    /** LooperGUI Destructor*/
     ~LooperGUI() override;
     
+    /** Sets the looper to the looper object in audio
+     @param newLooper looper to set to*/
     void setLooper (Looper* newLooper);
+    
+    /** Sets the tempo value
+     @param newTempoValue sets tempo value*/
     void setTempoValue (int newTempoValue);
+    
     void paint (juce::Graphics&) override;
     void resized() override;
     void buttonClicked (Button* button) override;
 
 private:
-    Looper* looper             {nullptr};
+    
+    Looper* looper             {nullptr};  // pointer to looper
     TextButton recordButton       {"Record"};
     TextButton saveButton         {"Save"};
     TextButton playButton         {"Play"};

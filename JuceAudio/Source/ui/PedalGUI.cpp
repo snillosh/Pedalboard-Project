@@ -14,6 +14,7 @@
 
 PedalGUI::PedalGUI()
 {
+    //set default pedal Gui looks
     
     //onOffButton Config
     //-------------------------------------------------------------------------
@@ -90,7 +91,7 @@ PedalGUI::~PedalGUI()
 {
 }
 
-void PedalGUI::setPedal(Pedal* pedalPtr)
+void PedalGUI::setGUIPedal(Pedal* pedalPtr)
 {
     pedal = pedalPtr;
 }
@@ -108,7 +109,7 @@ void PedalGUI::resized()
 
 void PedalGUI::paint(juce::Graphics &g)
 {
-    if (pedalColour == 0)
+    if (pedalColour == 0) // if blankPedal is selected
     {
         g.setColour(Colours::transparentBlack);
         g.fillRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5);
@@ -117,7 +118,7 @@ void PedalGUI::paint(juce::Graphics &g)
         g.setColour(Colours::transparentBlack);
         g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
     }
-    if (pedalColour == 1)
+    if (pedalColour == 1) // if delay is selected
     {
         g.setColour(Colours::purple);
         g.fillRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5);
@@ -132,7 +133,7 @@ void PedalGUI::paint(juce::Graphics &g)
             g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
         }
     }
-    if (pedalColour == 2)
+    if (pedalColour == 2) // if tremolo is selected
     {
         g.setColour(Colours::green);
         g.fillRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5);
@@ -147,7 +148,7 @@ void PedalGUI::paint(juce::Graphics &g)
             g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
         }
     }
-    if (pedalColour == 3)
+    if (pedalColour == 3) // if reverb is selected
     {
         g.setColour(Colours::blue);
         g.fillRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5);
@@ -162,7 +163,7 @@ void PedalGUI::paint(juce::Graphics &g)
             g.drawEllipse(getWidth() * 0.65, getHeight() * 0.72, 25, 25, 5);
         }
     }
-    if (pedalColour == 4)
+    if (pedalColour == 4) // if phaser is selected
     {
         g.setColour(Colours::orange);
         g.fillRoundedRectangle(getWidth() * 0.1, getHeight() * 0.025, getWidth() * 0.8, getHeight() * 0.835, 5);
@@ -188,7 +189,7 @@ void PedalGUI::buttonClicked(Button *button)
         onOffButton.setToggleState(pedal->isOn(), dontSendNotification);
         if (pedal->isOn())
         {
-            repaint();
+            repaint(); // repaint when button is clicked
         }
             
         else
@@ -202,7 +203,7 @@ void PedalGUI::buttonClicked(Button *button)
 void PedalGUI::sliderValueChanged (Slider* slider)
 {
     if (slider == &parameterSlider1)
-        pedal->setParameter1(parameterSlider1.getValue());
+        pedal->setParameter1(parameterSlider1.getValue()); // send slider values to effect
     else if (slider == &parameterSlider2)
         pedal->setParameter2(parameterSlider2.getValue());
     else if (slider == &parameterSlider3)
@@ -213,14 +214,14 @@ void PedalGUI::sliderValueChanged (Slider* slider)
         pedal->setParameter5(parameterSlider5.getValue());
 }
 
-void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *tremolo, Pedal *reverberation, Pedal *none)
+void PedalGUI::updateGUIParameters(Pedal *delay, Pedal *phaser, Pedal *tremolo, Pedal *reverberation, Pedal *blankPedal)
 {
-    if (pedal == delay)
+    if (pedal == delay) // if the reference that pedal Gui is the same as the reference for delay in audio
     {
-        setPedalColour(1);
+        setPedalColour(1); // set the colours to change
         repaint();
         parameterSlider1Label.setText(" ", dontSendNotification);
-        parameterSlider2Label.setText("Time", dontSendNotification);
+        parameterSlider2Label.setText("Time", dontSendNotification);  // change labels
         parameterSlider3Label.setText("Feedback", dontSendNotification);
         parameterSlider4Label.setText(" ", dontSendNotification);
         parameterSlider5Label.setText(" ", dontSendNotification);
@@ -230,7 +231,7 @@ void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *tremolo, Peda
         parameterSlider2.setVisible(true);
         parameterSlider3.setVisible(true);
         parameterSlider4.setVisible(false);
-        parameterSlider5.setVisible(false);
+        parameterSlider5.setVisible(false);  // make certain sliders invisible
     }
     if (pedal == tremolo)
     {
@@ -283,7 +284,7 @@ void PedalGUI::updateParametes(Pedal *delay, Pedal *phaser, Pedal *tremolo, Peda
         parameterSlider4.setVisible(true);
         parameterSlider5.setVisible(false);
     }
-    else if (pedal == none)
+    else if (pedal == blankPedal)
     {
         setPedalColour(0);
         repaint();
