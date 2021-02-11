@@ -101,7 +101,7 @@ private:
     BlankPedal blankPedal;
     
     /** an array of 6 pedal pointers is created based on the 6 process slots, with each one being used to process a casscade of audio signals*/
-    std::array <Pedal* , 6> pedal;
+    std::array <std::atomic<Pedal*> , 6> pedal   = {&blankPedal, &blankPedal, &blankPedal, &blankPedal, &blankPedal, &blankPedal};
     
     float sampleRate = 44100.0f;
 };

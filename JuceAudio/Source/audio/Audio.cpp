@@ -12,6 +12,14 @@
 
 Audio::Audio()
 {
+    
+    std::cout << pedal[0] << std::endl;
+    std::cout << pedal[1] << std::endl;
+    std::cout << pedal[2] << std::endl;
+    std::cout << pedal[3] << std::endl;
+    std::cout << pedal[4] << std::endl;
+    std::cout << pedal[5] << std::endl;
+    
     auto midiInputDevices = MidiInput::getAvailableDevices();
     if (midiInputDevices.size() > 0)
         audioDeviceManager.setMidiInputDeviceEnabled (midiInputDevices[0].identifier, true);
@@ -72,12 +80,12 @@ void Audio::audioDeviceIOCallback (const float** inputChannelData,
         auto input = *inL;
         //each process slot represents the 6 possible pedals running at a time
         //the input signal is run through each pedal where (depending on the pedal selected) the process function of the effect gets applied to the signal
-        auto pedalProcessSlot1 = pedal[0]->process(input);
-        auto pedalProcessSlot2 = pedal[1]->process(pedalProcessSlot1);
-        auto pedalProcessSlot3 = pedal[2]->process(pedalProcessSlot2);
-        auto pedalProcessSlot4 = pedal[3]->process(pedalProcessSlot3);
-        auto pedalProcessSlot5 = pedal[4]->process(pedalProcessSlot4);
-        auto pedalProcessSlot6 = pedal[5]->process(pedalProcessSlot5);
+        auto pedalProcessSlot1 = pedal[0].load()->process(input);
+        auto pedalProcessSlot2 = pedal[1].load()->process(pedalProcessSlot1);
+        auto pedalProcessSlot3 = pedal[2].load()->process(pedalProcessSlot2);
+        auto pedalProcessSlot4 = pedal[3].load()->process(pedalProcessSlot3);
+        auto pedalProcessSlot5 = pedal[4].load()->process(pedalProcessSlot4);
+        auto pedalProcessSlot6 = pedal[5].load()->process(pedalProcessSlot5);
         //after outputing from the pedals, the signal is run through the looper 
         auto output = looper.processSample(pedalProcessSlot6);
         
@@ -104,27 +112,27 @@ Pedal* Audio::getAudioPedal(int pedalToGet) const
 {
     if (pedalToGet == 1) // get first pedal pointer in array
     {
-        return pedal[0]; // return pedal 0
+        return pedal[0].load(); // return pedal 0
     }
     if (pedalToGet == 2)
     {
-        return pedal[1]; // return pedal 1
+        return pedal[1].load(); // return pedal 1
     }
     if (pedalToGet == 3)
     {
-        return pedal[2]; // return pedal 2
+        return pedal[2].load(); // return pedal 2
     }
     if (pedalToGet == 4)
     {
-        return pedal[3]; // return pedal 3
+        return pedal[3].load(); // return pedal 3
     }
     if (pedalToGet == 5)
     {
-        return pedal[4]; // return pedal 4
+        return pedal[4].load(); // return pedal 4
     }
     if (pedalToGet == 6)
     {
-        return pedal[5]; // return pedal 5
+        return pedal[5].load(); // return pedal 5
     }
     else
     {
