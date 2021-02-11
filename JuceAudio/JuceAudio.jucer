@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="suWwtt" name="SDA Pedal Project" projectType="guiapp" displaySplashScreen="1"
               jucerFormatVersion="1" bundleIdentifier="com.sda.JuceAudio" cppLanguageStandard="17"
-              companyName="UWE" useAppConfig="0" addUsingNamespaceToJuceHeader="1">
+              companyName="Bevan Salter" useAppConfig="0" addUsingNamespaceToJuceHeader="1">
   <MAINGROUP id="jzdGEt" name="SDA Pedal Project">
     <FILE id="w1w42h" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
     <GROUP id="{F4120B7C-4CD0-BA95-C120-3C1D261F78DD}" name="audio">
@@ -12,17 +12,17 @@
       <FILE id="ht3a8Z" name="Looper.h" compile="0" resource="0" file="Source/audio/Looper.h"/>
     </GROUP>
     <GROUP id="{B5A08D2B-B7C2-AAAD-B270-7A62E29BA044}" name="ui">
+      <FILE id="nENyo9" name="LooperGUI.cpp" compile="1" resource="0" file="Source/ui/LooperGUI.cpp"/>
+      <FILE id="wec0Xe" name="LooperGUI.h" compile="0" resource="0" file="Source/ui/LooperGUI.h"/>
       <FILE id="RL5djg" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/ui/MainComponent.cpp"/>
       <FILE id="tg5Zvj" name="MainComponent.h" compile="0" resource="0" file="Source/ui/MainComponent.h"/>
-      <FILE id="ehlutd" name="LooperGUI.cpp" compile="1" resource="0" file="Source/LooperGUI.cpp"/>
-      <FILE id="zF6tAf" name="LooperGUI.h" compile="0" resource="0" file="Source/LooperGUI.h"/>
       <FILE id="D5ctCZ" name="PedalGUI.cpp" compile="1" resource="0" file="Source/ui/PedalGUI.cpp"/>
       <FILE id="cB0R1N" name="PedalGUI.hpp" compile="0" resource="0" file="Source/ui/PedalGUI.hpp"/>
     </GROUP>
     <GROUP id="{FABFE436-4E34-880A-F613-BB39AE5C15B5}" name="Effects Processors">
-      <FILE id="qpe0rE" name="Pedal.cpp" compile="1" resource="0" file="Source/audio/Pedal.cpp"/>
-      <FILE id="vINQRR" name="Pedal.hpp" compile="0" resource="0" file="Source/audio/Pedal.hpp"/>
+      <FILE id="YZ1oyi" name="Pedal.cpp" compile="1" resource="0" file="Source/Effects Processors/Pedal.cpp"/>
+      <FILE id="EYyjrH" name="Pedal.hpp" compile="0" resource="0" file="Source/Effects Processors/Pedal.hpp"/>
       <FILE id="CWqMbq" name="BlankPedal.cpp" compile="1" resource="0" file="Source/Effects Processors/BlankPedal.cpp"/>
       <FILE id="CU9RWa" name="BlankPedal.h" compile="0" resource="0" file="Source/Effects Processors/BlankPedal.h"/>
       <FILE id="kDmkgc" name="Tremolo.cpp" compile="1" resource="0" file="Source/Effects Processors/Tremolo.cpp"/>
@@ -35,8 +35,8 @@
             file="Source/Effects Processors/Reverberation.cpp"/>
       <FILE id="rWih6w" name="Reverberation.hpp" compile="0" resource="0"
             file="Source/Effects Processors/Reverberation.hpp"/>
-      <FILE id="FRp0vO" name="LFO.cpp" compile="1" resource="0" file="../../../Level 3/Final Year Project/Xcode Projects/FYP Phaser Project/FYP Phaser Project/Source/LFO.cpp"/>
-      <FILE id="IXEgm7" name="LFO.h" compile="0" resource="0" file="../../../Level 3/Final Year Project/Xcode Projects/FYP Phaser Project/FYP Phaser Project/Source/LFO.h"/>
+      <FILE id="gBOd0r" name="LFO.cpp" compile="1" resource="0" file="Source/Effects Processors/LFO.cpp"/>
+      <FILE id="F1zuXh" name="LFO.h" compile="0" resource="0" file="Source/Effects Processors/LFO.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>

@@ -10,7 +10,7 @@
 
 #pragma once
 #include <JuceHeader.h>
-#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Pedal.hpp"
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Pedal.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/audio/Audio.h"
 
 /** PedalGUI class for displaying the sliders, buttons, labels and graphics with main component.
@@ -29,11 +29,16 @@ public:
      @param pedalPtr pointer to set*/
     void setGUIPedal (Pedal* pedalPtr);
     
+    /** Returns pedalGUI pedal pointer
+     @return pedal pointer*/
+    Pedal* getGUIPedal() const;
+    
     void resized() override;
     
     void paint (juce::Graphics&) override;
     
     void buttonClicked (Button* button) override;
+    
     void sliderValueChanged (Slider* slider) override;
     /** Updates the look of the pedalGUI object depending on what pedal is in the slot
      @param delay the reference to delay object

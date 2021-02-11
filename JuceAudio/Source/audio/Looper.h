@@ -53,12 +53,12 @@ public:
     float processSample (float input);
     
 private:
-    /** Atomic state variables */
+    // Atomic state variables
     std::atomic<int> recordState {false};
     std::atomic<int> playState {false};
     std::atomic<int> resetState {false};
     
-    /** Audio buffer variables*/
+    //Audio buffer variables
     unsigned int bufferPosition {0};
     AudioBuffer<float> audioBuffer;
     

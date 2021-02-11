@@ -14,7 +14,7 @@
 #include <array>
 #include <vector>
 #include <atomic>
-#include "Pedal.hpp"
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Pedal.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Delay.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Tremolo.hpp"
 #include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/Effects Processors/Phaser.hpp"
@@ -60,12 +60,13 @@ public:
                                 int numOutputChannels,
                                 int numSamples) override;
     void audioDeviceAboutToStart (AudioIODevice* device) override;
+    
     void audioDeviceStopped() override;
     
     /** Returns the reference of the delay object in the delay array
      @param delayToGet the delay index to return
      @return delay reference from array*/
-    Pedal* getDelay(int delayToGet);
+    Pedal* getDelay(int delayToGet);      // Error is displayed when set as const
     
     /** Returns the reference of the phaser object in the phaser array
      @param phaserToGet the phaser index to return
@@ -88,6 +89,7 @@ public:
     
 private:
     AudioDeviceManager audioDeviceManager;
+    
     Looper looper;
     
     /** arrays of objects of each effect type corresponding to the 6 pedal slots

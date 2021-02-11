@@ -30,12 +30,18 @@ public:
      @param newLooper looper to set to*/
     void setLooper (Looper* newLooper);
     
+    /** Gets the reference to the looper
+     @return Looper pointer*/
+    Looper* getLooper () const;
+    
     /** Sets the tempo value
      @param newTempoValue sets tempo value*/
     void setTempoValue (int newTempoValue);
     
     void paint (juce::Graphics&) override;
+    
     void resized() override;
+    
     void buttonClicked (Button* button) override;
 
 private:

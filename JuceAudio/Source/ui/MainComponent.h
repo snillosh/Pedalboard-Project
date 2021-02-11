@@ -17,7 +17,7 @@
 #include <string>
 #include "../audio/Audio.h"
 #include "PedalGUI.hpp"
-#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/LooperGUI.h"
+#include "/Users/bevansalter/Desktop/SDA 2021/SDA Pedal Project/JuceAudio/Source/ui/LooperGUI.h"
 
 //==============================================================================
 /*
@@ -65,9 +65,13 @@ private:
     Audio& audio;  // reference to audio
     
     std::vector<std::unique_ptr<PedalGUI>> pedalGUIVector;   //vector of pedalGUI objects created to be displayed in mainComponent
+    
     std::vector<std::unique_ptr<ComboBox>> effectSelectorComboBoxVector; // vector of comboBoxs
+    
     LooperGUI looperGUI; //creates an instance of the looper GUI within main component
+    
     ComboBox pedalAmountSelector; // creates a combobox to select the amount of pedal slots
+    
     TextEditor tempoTextBox; // text box for looper tempo changes
     
     int pedalAmount = 4;

@@ -96,6 +96,11 @@ void PedalGUI::setGUIPedal(Pedal* pedalPtr)
     pedal = pedalPtr;
 }
 
+Pedal* PedalGUI::getGUIPedal() const
+{
+    return pedal;
+}
+
 void PedalGUI::resized()
 {
     onOffButton.setBounds(getWidth() / 4, getHeight() * 0.7, getWidth() * 0.25, getHeight() * 0.10);

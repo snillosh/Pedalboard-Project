@@ -97,6 +97,11 @@ void LooperGUI::setLooper(Looper *newLooper)
     looper = newLooper;
 }
 
+Looper* LooperGUI::getLooper () const
+{
+    return looper;
+}
+
 void LooperGUI::setTempoValue(int newTempoValue)
 {
     if (looper->isPlaying())
